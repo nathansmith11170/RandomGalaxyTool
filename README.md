@@ -1,0 +1,1 @@
+A random generator tool to work with Celludriel's galaxy generation tool, based on his version 1.4.1.
