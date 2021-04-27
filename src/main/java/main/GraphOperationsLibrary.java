@@ -7,5 +7,4 @@ public class GraphOperationsLibrary {
     public static IGraph GenerateHexagonalMaze( ) {
         return null;
     }
-
 }
