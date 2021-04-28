@@ -1,6 +1,7 @@
 package abstractmodel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -17,13 +18,13 @@ public class AxialHexGrid implements IAxialHexGrid{
      */
     public Set<AxialHexCoord> DeadZones;
 
-    private static Map<String, AxialHexCoord> UnitDirections = new ArrayList<AxialHexCoord>() {{
-        put( "left", new AxialHexCoord(-1, 0) );
-        put( "right", new AxialHexCoord(1, 0) );
-        put( "upright", new AxialHexCoord(0, 1) );
-        put( "downright", new AxialHexCoord(1, -1) );
-        put( "upleft", new AxialHexCoord(-1, 1) );
-        put( "downleft", new AxialHexCoord(0, -1) );
+    private static Map<String, AxialHexCoord> UnitDirections = new HashMap<String, AxialHexCoord>() {{
+        put( "left",      new AxialHexCoord( -1,  0 ) );
+        put( "right",     new AxialHexCoord(  1,  0 ) );
+        put( "upright",   new AxialHexCoord(  1, -1 ) );
+        put( "downright", new AxialHexCoord(  0,  1 ) );
+        put( "upleft",    new AxialHexCoord(  0, -1 ) );
+        put( "downleft",  new AxialHexCoord( -1,  1 ) );
     }};
 
     public AxialHexGrid(int columns, int rows) {
@@ -61,6 +62,7 @@ public class AxialHexGrid implements IAxialHexGrid{
 
     }
 
-    public void CreateDeadZones()
-    
+    public void CreateDeadZones() {
+
+     }
 }
