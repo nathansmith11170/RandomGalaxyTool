@@ -1,5 +1,7 @@
 package main;
 
+import abstractmodel.AxialHexGridSquare;
+
 /**
  * Hello world!
  */
@@ -12,6 +14,6 @@ public final class App {
      * @param args The arguments of the program.
      */
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        AxialHexGridSquare test = new AxialHexGridSquare(3,3);
     }
 }

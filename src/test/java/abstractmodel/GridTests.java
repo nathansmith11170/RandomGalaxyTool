@@ -5,60 +5,113 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Objects;
 
 
 
 public class GridTests {
 
-    public record AxialHexCoord (int q, int r) {}
-
     @Test
     public void PopulateRectangularGrid_DoesNotThrow() {
-        new AxialHexGrid( 1, 1 );
+        new AxialHexGridSquare( 1, 1 );
     }
 
     @Test
-    public void PopulateRectangularGrid_With4x4_CreatesProperGrid() {
-        AxialHexCoord[][] reference = new AxialHexCoord[][] {
-            { null, new AxialHexCoord(0,0), new AxialHexCoord(1,0), new AxialHexCoord(2,0), new AxialHexCoord(3,0) },
-            { null, new AxialHexCoord(0,1), new AxialHexCoord(1,1), new AxialHexCoord(2,1), new AxialHexCoord(3,1) },
-            { new AxialHexCoord(-1,2), new AxialHexCoord(0,2), new AxialHexCoord(1,2), new AxialHexCoord(2,2), null },
-            { new AxialHexCoord(-1,3), new AxialHexCoord(0,3), new AxialHexCoord(1,3), new AxialHexCoord(2,3), null }
-        };
+    public void MakeSquareGrid_With4x4NoDeadzones_CreatesProperGrid() {
+        Hashtable<Integer, AxialHexCoord> reference = new Hashtable<Integer, AxialHexCoord>() {{
+            put( new AxialHexCoord(0,0).hashCode(), new AxialHexCoord(0,0) );
+            put( new AxialHexCoord(1,0).hashCode(), new AxialHexCoord(1,0) );
+            put( new AxialHexCoord(2,0).hashCode(), new AxialHexCoord(2,0) );
+            put( new AxialHexCoord(3,0).hashCode(), new AxialHexCoord(3,0) );
+            put( new AxialHexCoord(0,1).hashCode(), new AxialHexCoord(0,1) );
+            put( new AxialHexCoord(1,1).hashCode(), new AxialHexCoord(1,1) );
+            put( new AxialHexCoord(2,1).hashCode(), new AxialHexCoord(2,1) );
+            put( new AxialHexCoord(3,1).hashCode(), new AxialHexCoord(3,1) );
+            put( new AxialHexCoord(-1,2).hashCode(), new AxialHexCoord(-1,2) );
+            put( new AxialHexCoord(0,2).hashCode(), new AxialHexCoord(0,2) );
+            put( new AxialHexCoord(1,2).hashCode(), new AxialHexCoord(1,2) );
+            put( new AxialHexCoord(2,2).hashCode(), new AxialHexCoord(2,2) );
+            put( new AxialHexCoord(-1,3).hashCode(), new AxialHexCoord(-1,3) );
+            put( new AxialHexCoord(0,3).hashCode(), new AxialHexCoord(0,3) );
+            put( new AxialHexCoord(1,3).hashCode(), new AxialHexCoord(1,3) );
+            put( new AxialHexCoord(2,3).hashCode(), new AxialHexCoord(2,3) );
+    }};
 
-        AxialHexGrid unitUnderTest = new AxialHexGrid(4,4);
+        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare(3,3);
 
-        assertTrue( Arrays.deepEquals(unitUnderTest.Grid, reference) );
+        assertTrue( Objects.deepEquals(unitUnderTest.Grid, reference) );
     }
 
     @Test
     public void GetNeighbors_WithValidParameters_DoesNotThrow() {
-        
+        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare(4,4);
+
+        unitUnderTest.GetNeighbors( new AxialHexCoord(0,0) );
     }
 
     @Test
-    public void GetNeighbors_WithZeroZeroAndLargeGrid_ReturnsProperNeighbors() {
+    public void GetNeighbors_WithOneOneAndLargeGrid_ReturnsProperNeighbors() {
+        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare(4,4);
+        ArrayList<AxialHexCoord> reference = new ArrayList<AxialHexCoord>() {{
+            add( new AxialHexCoord(1,0) );
+            add( new AxialHexCoord(0,1) );
+            add( new AxialHexCoord(2,0) );
+            add( new AxialHexCoord(2,1) );
+            add( new AxialHexCoord(1,2) );
+            add( new AxialHexCoord(0,2) );
+        }};
 
+        ArrayList<AxialHexCoord> result = unitUnderTest.GetNeighbors( new AxialHexCoord(1,1) );
+
+        boolean allCoordsInReference = true;
+        for ( AxialHexCoord coord : result ) {
+            if( !reference.contains( coord ) ) {
+                allCoordsInReference = false;
+            }
+        }
+        assertTrue( allCoordsInReference );
     }
     
     @Test
     public void GetNeighbors_WithEdgeCoord_OmitsNonexistentNeighbors() {
+        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare(4,4);
+        ArrayList<AxialHexCoord> reference = new ArrayList<AxialHexCoord>() {{
+            add( new AxialHexCoord(0,1) );
+            add( new AxialHexCoord(0,2) );
+            add( new AxialHexCoord(-1, 3) );
+        }};
 
+        ArrayList<AxialHexCoord> result = unitUnderTest.GetNeighbors( new AxialHexCoord(-1,2) );
+
+        boolean allCoordsInReference = true;
+        for ( AxialHexCoord coord : result ) {
+            if( !reference.contains( coord ) ) {
+                allCoordsInReference = false;
+            }
+        }
+        assertTrue( allCoordsInReference );
     }
 
     @Test
     public void IsNeighbor_WithValidParams_DoesNotThrow() {
+        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare(4,4);
 
+        unitUnderTest.IsNeighbor( new AxialHexCoord(0,0), new AxialHexCoord(1,1) );
     }
 
     @Test
     public void IsNeighbor_WithNeighbors_ReturnsTrue() {
+        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare(4,4);
 
+        assertTrue( unitUnderTest.IsNeighbor( new AxialHexCoord(0,0), new AxialHexCoord(0,1) ) );
     }
 
     @Test
     public void IsNeighbor_WithNonNeighbors_ReturnsFalse() {
+        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare(4,4);
 
+        assertFalse( unitUnderTest.IsNeighbor( new AxialHexCoord(0,0), new AxialHexCoord(1,1) ) );
     }
 }

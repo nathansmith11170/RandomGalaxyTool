@@ -27,15 +27,4 @@ public interface IAxialHexGrid {
      *          True if the coordinate are neighbors, otherwise false.
      */
     public boolean IsNeighbor( AxialHexCoord coordinate_one, AxialHexCoord coordinate_two );
-
-    /**
-     * Generate a rectangular grid where the odd numbered rows are offset by
-     * a half column
-     * 
-     * @param columns
-     *          The number of columns in the grid
-     * @param rows
-     *          The number of rows in the grid
-     */
-    public void PopulateRectangularGrid( int columns, int rows );
 }
