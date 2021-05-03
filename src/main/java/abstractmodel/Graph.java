@@ -14,11 +14,11 @@ public class Graph implements IGraph {
      */
     public class Node implements Comparable<Node>, Comparator<Node>{
         /* fields */
-        private String identifier;
-        private ArrayList<String> neighbors;
+        final String identifier;
+        ArrayList<String> neighbors;
     
         /* public facing accessors */
-        public String GetIdentifier() {
+        public String identifier() {
             return this.identifier;
         }
     
@@ -31,15 +31,24 @@ public class Graph implements IGraph {
             this.identifier = id;
             this.neighbors = neighbors;
         }
+
+        @Override
+        public boolean equals( Object o ) {
+            if( o.getClass() != Node.class ) {
+                return false;
+            }
+            Node cast = (Node) o;
+            return this.identifier() == cast.identifier();
+        }
     
         @Override
         public int compare(Node o1, Node o2) {
-            return o1.GetIdentifier().compareTo( o2.GetIdentifier() );
+            return o1.identifier().compareTo( o2.identifier() );
         }
     
         @Override
         public int compareTo(Node o) {
-            return this.GetIdentifier().compareTo( o.GetIdentifier() );
+            return this.identifier().compareTo( o.identifier() );
         }
     
         /**
@@ -89,7 +98,7 @@ public class Graph implements IGraph {
         ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
         for( Node n : this.graph.values() )  {
             ArrayList<String> temp = new ArrayList<String>();
-            temp.add( n.GetIdentifier() );
+            temp.add( n.identifier() );
             temp.addAll(n.GetNeighbors());
             result.add(temp);
         }
