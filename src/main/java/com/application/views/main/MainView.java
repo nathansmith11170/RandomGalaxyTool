@@ -1,7 +1,10 @@
-package com.example.application.views.main;
+package com.application.views.main;
 
 import java.util.Optional;
 
+import com.application.views.about.AboutView;
+import com.application.views.generator.GeneratorView;
+import com.application.views.main.MainView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -20,9 +23,6 @@ import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
-import com.example.application.views.main.MainView;
-import com.example.application.views.generator.GeneratorView;
-import com.example.application.views.about.AboutView;
 
 /**
  * The main view is a top-level placeholder for other views.
