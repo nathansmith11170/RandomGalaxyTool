@@ -1,6 +1,6 @@
 # X4 Galaxy Generator
 
-This is a simple web UI for a tool that generates diffs for a new galaxy map for X4 Foundations. Collaborated with user Celludriel.
+This is a simple web UI for a tool that generates diffs for a new galaxy map for X4 Foundations. Collaborated with user Celludriel on Egosoft discord for X4 galaxy model and xml generation.
 Based on version 1.4.1 of his galaxy generation tool, which takes configurations and produces the xml for X4.
 My contribution being the UI and the random generation of the galaxy configurations.
 
