@@ -14,287 +14,287 @@ public class GraphTests {
     void AddIsolatedNode_DoesNotThrow_WhenIDIsNew() {
         IGraph testGraph = new Graph();
 
-        testGraph.AddIsolatedNode( "1" );
+        testGraph.addIsolatedNode( "1" );
     }
 
     @Test
     void AddIsolatedNode_Throws_WhenIDIsNotNew() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
             }});
         }};
 
-        assertThrows( IllegalArgumentException.class, () -> { testGraph.AddIsolatedNode( "1" ); } );
+        assertThrows( IllegalArgumentException.class, () -> { testGraph.addIsolatedNode( "1" ); } );
     }
 
     @Test
     void ContainsNode_ReturnsFalse_WhenNodeDoesNotExist() {
         IGraph testGraph = new Graph();
         
-        assertFalse( testGraph.ContainsNode( "1" ) );
+        assertFalse( testGraph.containsNode( "1" ) );
     }
 
     @Test
     void ContainsNode_ReturnsTrue_WhenNodeExists() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
             }});
         }};
         
-        assertTrue( testGraph.ContainsNode( "1" ) );
+        assertTrue( testGraph.containsNode( "1" ) );
     }
 
     @Test
     void AddIsolatedNode_AddsNode_WhenIdIsNew() {
         IGraph testGraph = new Graph();
 
-        testGraph.AddIsolatedNode( "1" );
+        testGraph.addIsolatedNode( "1" );
         
-        assertTrue(testGraph.ContainsNode( "1" ) );
+        assertTrue(testGraph.containsNode( "1" ) );
     }
 
     @Test
     void AddSpecificNode_DoesNotThrow_WhenIDIsNew() {
         IGraph testGraph = new Graph();
 
-        testGraph.AddSpecificNode( "1", new ArrayList<String>( ) );
+        testGraph.addSpecificNode( "1", new ArrayList<String>( ) );
     }
 
     @Test
     void AddSpecificNode_Throws_WhenIDIsNotNew() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
             }});
         }};
 
-        assertThrows( IllegalArgumentException.class, () -> { testGraph.AddSpecificNode( "1", new ArrayList<String>( ) ); } );
+        assertThrows( IllegalArgumentException.class, () -> { testGraph.addSpecificNode( "1", new ArrayList<String>( ) ); } );
     }
 
     @Test
     void AddSpecificNode_Throws_WhenANeighborDoesNotExist() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
             }});
         }};
 
-        assertThrows( IllegalArgumentException.class, () -> { testGraph.AddSpecificNode( "2", new ArrayList<String>( ) {{ add("3"); }} ); } );
+        assertThrows( IllegalArgumentException.class, () -> { testGraph.addSpecificNode( "2", new ArrayList<String>( ) {{ add("3"); }} ); } );
     }
 
     @Test
     void AddSpecificNode_AddsNode_WhenIDIsNewAndNoNeighbors() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
             }});
         }};
 
-        testGraph.AddSpecificNode( "2", new ArrayList<String>( ) );
+        testGraph.addSpecificNode( "2", new ArrayList<String>( ) );
 
-        assertTrue(testGraph.ContainsNode("2"));
+        assertTrue(testGraph.containsNode("2"));
     }
 
     @Test
     void AddSpecificNode_AddsNode_WhenIDIsNewAndNeighborsExist() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
             }});
         }};
 
-        testGraph.AddSpecificNode( "2", new ArrayList<String>( ) {{ add("1"); }} );
+        testGraph.addSpecificNode( "2", new ArrayList<String>( ) {{ add("1"); }} );
     }
 
     @Test
     void ContainsEdge_DoesNotThrow_WhenNodesExist() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
                 put( "2", new Node("2", new ArrayList<String>( ) ) );
             }});
         }};
 
-        testGraph.ContainsEdge("1", "2");
+        testGraph.containsEdge("1", "2");
     }
 
     @Test
     void ContainsEdge_ReturnsTrue_WhenEdgeExists() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) {{ add( "2" ); }} ) );
                 put( "2", new Node("2", new ArrayList<String>( ) {{ add( "1" ); }} ) );
             }});
         }};
 
-        assertTrue( testGraph.ContainsEdge("1", "2") );
+        assertTrue( testGraph.containsEdge("1", "2") );
     }
 
     @Test
     void ContainsEdge_ReturnsFalse_WhenEdgeDoesNotExist() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
                 put( "2", new Node("2", new ArrayList<String>( ) ) );
             }});
         }};
 
-        assertFalse( testGraph.ContainsEdge("1", "2") );
+        assertFalse( testGraph.containsEdge("1", "2") );
     }
 
     @Test
     void ContainsEdge_Throws_WhenNodeDoesNotExist() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
             }});
         }};
 
-        assertThrows(IllegalArgumentException.class, () -> { testGraph.ContainsEdge("1", "2"); } );
+        assertThrows(IllegalArgumentException.class, () -> { testGraph.containsEdge("1", "2"); } );
     }
 
     @Test
     void AddSpecificNode_AddsEdges_WhenIDIsNewAndNeighborsExist() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
             }});
         }};
 
-        testGraph.AddSpecificNode( "2", new ArrayList<String>( ) {{ add("1"); }} );
+        testGraph.addSpecificNode( "2", new ArrayList<String>( ) {{ add("1"); }} );
 
-        assertTrue( testGraph.ContainsEdge( "1", "2" ) );
+        assertTrue( testGraph.containsEdge( "1", "2" ) );
     }
 
     @Test
     void AddEdge_DoesNotThrow_WhenNodesExist() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
                 put( "2", new Node("2", new ArrayList<String>( ) ) );
             }});
         }};
 
-        testGraph.AddEdge( "1", "2" );
+        testGraph.addEdge( "1", "2" );
     }
 
     @Test
     void AddEdge_AddsEdge_WhenNodesExist() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
                 put( "2", new Node("2", new ArrayList<String>( ) ) );
             }});
         }};
 
-        testGraph.AddEdge( "1", "2" );
+        testGraph.addEdge( "1", "2" );
 
-        assertTrue( testGraph.ContainsEdge( "1", "2" ) );
+        assertTrue( testGraph.containsEdge( "1", "2" ) );
     }
 
     @Test
     void AddEdge_Throws_WhenNodeDoesNotExist() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
             }});
         }};
 
-        assertThrows(IllegalArgumentException.class, () -> { testGraph.AddEdge( "1", "2" ); } );
+        assertThrows(IllegalArgumentException.class, () -> { testGraph.addEdge( "1", "2" ); } );
     }
 
     @Test
     void RemoveNode_DoesNotThrow_WhenNodeExists() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
                 put( "2", new Node("2", new ArrayList<String>( ) ) );
             }});
         }};
 
-        testGraph.RemoveNode("2");
+        testGraph.removeNode("2");
     }
 
     @Test
     void RemoveNode_Throws_WhenNodeDoesNotExist() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
             }});
         }};
 
-        assertThrows( IllegalArgumentException.class, () -> { testGraph.RemoveNode("2"); } ) ;
+        assertThrows( IllegalArgumentException.class, () -> { testGraph.removeNode("2"); } ) ;
     }
 
     @Test
     void RemoveNode_RemovesNode(){
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
                 put( "2", new Node("2", new ArrayList<String>( ) ) );
             }});
         }};
 
-        testGraph.RemoveNode("2");
+        testGraph.removeNode("2");
 
-        assertFalse( testGraph.ContainsNode( "2" ) );
+        assertFalse( testGraph.containsNode( "2" ) );
     }
 
     @Test
     void RemoveNode_RemovesExtantEdges(){
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) {{ add( "2" ); }} ) );
                 put( "2", new Node("2", new ArrayList<String>( ) {{ add( "1" ); }} ) );
             }});
         }};
 
-        testGraph.RemoveNode("2");
+        testGraph.removeNode("2");
 
-        assertFalse( testGraph.GetGraph().contains( new ArrayList<String> () {{ add("1"); add("2"); }}) );
+        assertFalse( testGraph.getGraph().contains( new ArrayList<String> () {{ add("1"); add("2"); }}) );
     }
 
     @Test
     void RemoveEdge_Throws_WhenEdgeDoesNotExist() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) ) );
                 put( "2", new Node("2", new ArrayList<String>( ) ) );
             }});
         }};
 
-        assertThrows( IllegalArgumentException.class, () -> { testGraph.RemoveEdge("1", "2"); } );
+        assertThrows( IllegalArgumentException.class, () -> { testGraph.removeEdge("1", "2"); } );
     }
 
     @Test
     void RemoveEdge_DoesNotThrow_WhenEdgeExists() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) {{ add( "2" ); }} ) );
                 put( "2", new Node("2", new ArrayList<String>( ) {{ add( "1" ); }} ) );
             }});
         }};
 
-        testGraph.RemoveEdge( "1", "2" );
+        testGraph.removeEdge( "1", "2" );
     }
 
     @Test
     void RemoveEdge_RemovesEdge() {
         IGraph testGraph = new Graph() {{
-            SetGraph(new HashMap<String, Node>() {{
+            setGraph(new HashMap<String, Node>() {{
                 put( "1", new Node( "1", new ArrayList<String>( ) {{ add( "2" ); }} ) );
                 put( "2", new Node("2", new ArrayList<String>( ) {{ add( "1" ); }} ) );
             }});
         }};
 
-        testGraph.RemoveEdge( "1", "2" );
+        testGraph.removeEdge( "1", "2" );
 
         assertFalse( 
-            testGraph.GetGraph().contains( new ArrayList<String> () {{ add("1"); add("2"); }} )
+            testGraph.getGraph().contains( new ArrayList<String> () {{ add("1"); add("2"); }} )
             || 
-            testGraph.GetGraph().contains( new ArrayList<String> () {{ add("2"); add("1"); }} )
+            testGraph.getGraph().contains( new ArrayList<String> () {{ add("2"); add("1"); }} )
         );
     }
 }

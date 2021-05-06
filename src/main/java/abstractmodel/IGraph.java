@@ -12,7 +12,7 @@ public interface IGraph {
      * first element of each list is the Node identifier and the following 
      * elements are the neighbors of the node.
      */
-    public ArrayList<ArrayList<String>> GetGraph();
+    public ArrayList<ArrayList<String>> getGraph();
 
     /**
      * This method adds a node with no neighbors
@@ -22,7 +22,7 @@ public interface IGraph {
      * @throws IllegalArgumentException 
      *          If the {@code id} already exists in the graph
      */
-    public void AddIsolatedNode( String id ) throws IllegalArgumentException;
+    public void addIsolatedNode( String id ) throws IllegalArgumentException;
 
     /**
      * Adds a node to the graph with a specified list of neighbors.
@@ -30,7 +30,7 @@ public interface IGraph {
      * @param neighbors The list of neighbors
      * @throws IllegalArgumentException If the id already exists or if one of the neighbors does not exist.
      */
-    public void AddSpecificNode( String id, ArrayList<String> neighbors ) throws IllegalArgumentException;
+    public void addSpecificNode( String id, ArrayList<String> neighbors ) throws IllegalArgumentException;
 
     /**
      * Returns true if the specified identifier exists in the graph.
@@ -40,7 +40,7 @@ public interface IGraph {
      * @return 
      *          True if {@code id} exists in the graph
      */
-    public boolean ContainsNode( String node_id );
+    public boolean containsNode( String node_id );
 
     /** 
      * This method creates an edge between the specified vertices.
@@ -52,7 +52,7 @@ public interface IGraph {
      * @throws IllegalArgumentException 
      *          If either node does not exist in the graph.
      */
-    public void AddEdge( String node_one, String node_two ) throws IllegalArgumentException;
+    public void addEdge( String node_one, String node_two ) throws IllegalArgumentException;
 
     /**
      * Determines if an edge exists between two speficied vertices 
@@ -64,7 +64,7 @@ public interface IGraph {
      * @throws IllegalArgumentException 
      *          if either {@code node_one} or {@code node_two} does not exist in the graph
      */
-    public boolean ContainsEdge( String node_one, String node_two ) throws IllegalArgumentException;
+    public boolean containsEdge( String node_one, String node_two ) throws IllegalArgumentException;
 
     /**
      * Removes a node from the graph
@@ -75,7 +75,7 @@ public interface IGraph {
      * @throws IllegalArgumentException
      *          If the specified node does not exist in the graph
      */
-    public void RemoveNode( String id ) throws IllegalArgumentException;
+    public void removeNode( String id ) throws IllegalArgumentException;
 
     /**
      * Removes an edge from the graph
@@ -86,5 +86,5 @@ public interface IGraph {
      * @throws IllegalArgumentException
      *          If the specified edge does not exist or either node does not exist.
      */
-    public void RemoveEdge( String node_one, String node_two ) throws IllegalArgumentException;
+    public void removeEdge( String node_one, String node_two ) throws IllegalArgumentException;
 }

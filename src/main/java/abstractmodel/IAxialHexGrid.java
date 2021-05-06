@@ -12,7 +12,7 @@ public interface IAxialHexGrid {
      *          An {@code ArrayList} of {@code AxialHexCoord} objects
      *          representing the neighbors which exist in the grid.
      */
-    public ArrayList<AxialHexCoord> GetNeighbors( AxialHexCoord coordinate );
+    public ArrayList<AxialHexCoord> getNeighbors( AxialHexCoord coordinate );
 
     /**
      * Determines if two coordinates are neighbors
@@ -26,5 +26,5 @@ public interface IAxialHexGrid {
      * @return
      *          True if the coordinate are neighbors, otherwise false.
      */
-    public boolean IsNeighbor( AxialHexCoord coordinate_one, AxialHexCoord coordinate_two );
+    public boolean isNeighbor( AxialHexCoord coordinate_one, AxialHexCoord coordinate_two );
 }

@@ -29,20 +29,20 @@ public class AxialHexGridSquare implements IAxialHexGrid{
         put( "downleft",  new AxialHexCoord( -1,  1 ) );
     }};
 
-    public AxialHexGridSquare(int columns, int rows) {
-        int square_root = nextGreatestPerfectSquare( columns * rows );
-        int deadzone_number = (int) Math.abs( Math.pow(square_root, 2) - columns*rows );
+    public AxialHexGridSquare( int targetSize ) {
+        int square_root = nextGreatestPerfectSquare( targetSize );
+        int deadzone_number = (int) Math.abs( Math.pow(square_root, 2) - targetSize );
         this.Grid = new Hashtable<Integer, AxialHexCoord>();
         this.DeadZones = new HashSet<AxialHexCoord>();
 
-        MakeSquareGrid( square_root, deadzone_number );
+        makeSquareGrid( square_root, deadzone_number );
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public ArrayList<AxialHexCoord> GetNeighbors(AxialHexCoord coordinate) {
+    public ArrayList<AxialHexCoord> getNeighbors(AxialHexCoord coordinate) {
         ArrayList<AxialHexCoord> neighbors = new ArrayList<AxialHexCoord>();
         for( AxialHexCoord direction : UnitDirections.values() ) {
             AxialHexCoord potentialNeighbor = new AxialHexCoord( direction.q() + coordinate.q(), direction.r() + coordinate.r() );
@@ -57,7 +57,7 @@ public class AxialHexGridSquare implements IAxialHexGrid{
      * {@inheritDoc}
      */
     @Override
-    public boolean IsNeighbor(AxialHexCoord coordinate_one, AxialHexCoord coordinate_two) {
+    public boolean isNeighbor(AxialHexCoord coordinate_one, AxialHexCoord coordinate_two) {
         for( AxialHexCoord direction : UnitDirections.values() ) {
             AxialHexCoord result = new AxialHexCoord( direction.q() + coordinate_one.q(), direction.r() + coordinate_one.r() );
             if ( result.equals( coordinate_two ) ) {
@@ -68,7 +68,7 @@ public class AxialHexGridSquare implements IAxialHexGrid{
     }
 
 
-    public void MakeSquareGrid(int side, int deadzones) {
+    public void makeSquareGrid(int side, int deadzones) {
         for( int r = 0; r < side; r++ ) {
             for( int q = 0 - Math.floorDiv(r, 2); q < side - Math.floorDiv(r, 2); q++) {
                 AxialHexCoord temp = new AxialHexCoord(q,r);
@@ -76,10 +76,10 @@ public class AxialHexGridSquare implements IAxialHexGrid{
             }
         }
 
-        CreateDeadZones(deadzones);
+        createDeadZones(deadzones);
     }
 
-    public void CreateDeadZones(int number_of_deadzones) {
+    public void createDeadZones(int number_of_deadzones) {
         Object[] keys = Grid.keySet().toArray();
         Random rand = new Random();
         rand.setSeed( System.currentTimeMillis() );
@@ -101,7 +101,7 @@ public class AxialHexGridSquare implements IAxialHexGrid{
         ArrayList<Integer> discoveredKeys = new ArrayList<Integer>();
         AxialHexCoord start = new AxialHexCoord(0,0);
 
-        DepthFirstSearch(discoveredKeys, start);
+        depthFirstSearch(discoveredKeys, start);
 
         for( Integer key : Grid.keySet() ) {
             if( DeadZones.contains( Grid.get(key) ) ) {
@@ -114,14 +114,14 @@ public class AxialHexGridSquare implements IAxialHexGrid{
         return true;
     }
 
-    private void DepthFirstSearch(ArrayList<Integer> discoveredKeys, AxialHexCoord position) {
+    private void depthFirstSearch(ArrayList<Integer> discoveredKeys, AxialHexCoord position) {
         discoveredKeys.add( position.hashCode() );
-        for( AxialHexCoord neighbor : this.GetNeighbors( position ) ) {
+        for( AxialHexCoord neighbor : this.getNeighbors( position ) ) {
             if( DeadZones.contains( neighbor) ) {
                 continue;
             }
             if( !discoveredKeys.contains( neighbor.hashCode() ) ) {
-                DepthFirstSearch(discoveredKeys, neighbor);
+                depthFirstSearch(discoveredKeys, neighbor);
             }
         }
     }

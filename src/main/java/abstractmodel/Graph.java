@@ -18,11 +18,11 @@ public class Graph implements IGraph {
         ArrayList<String> neighbors;
     
         /* public facing accessors */
-        public String identifier() {
+        public String getId() {
             return this.identifier;
         }
     
-        public ArrayList<String> GetNeighbors() {
+        public ArrayList<String> getNeighbors() {
             return this.neighbors;
         }
     
@@ -38,17 +38,17 @@ public class Graph implements IGraph {
                 return false;
             }
             Node cast = (Node) o;
-            return this.identifier() == cast.identifier();
+            return this.getId() == cast.getId();
         }
     
         @Override
         public int compare(Node o1, Node o2) {
-            return o1.identifier().compareTo( o2.identifier() );
+            return o1.getId().compareTo( o2.getId() );
         }
     
         @Override
         public int compareTo(Node o) {
-            return this.identifier().compareTo( o.identifier() );
+            return this.getId().compareTo( o.getId() );
         }
     
         /**
@@ -59,7 +59,7 @@ public class Graph implements IGraph {
          * @throws IllegalArgumentException
          *          If the id is already a neighbor
          */
-        public void AddNeighbor(String id) throws IllegalArgumentException {
+        public void addNeighbor(String id) throws IllegalArgumentException {
             if( this.neighbors.contains(id) ) {
                 throw new IllegalArgumentException(id + " already is a neighbor.");
             }
@@ -76,7 +76,7 @@ public class Graph implements IGraph {
          * @throws IllegalArgumentException 
          *          If the id is not a neighbor
          */
-        public void RemoveNeighbor( String id ) throws IllegalArgumentException {
+        public void removeNeighbor( String id ) throws IllegalArgumentException {
             if( !this.neighbors.contains( id ) ) {
                 throw new IllegalArgumentException( id + " is not a neighbor of " + this.identifier );
             }
@@ -94,18 +94,18 @@ public class Graph implements IGraph {
     /**
      * (@inheritDoc)
      */
-    public ArrayList<ArrayList<String>> GetGraph() {
+    public ArrayList<ArrayList<String>> getGraph() {
         ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
         for( Node n : this.graph.values() )  {
             ArrayList<String> temp = new ArrayList<String>();
-            temp.add( n.identifier() );
-            temp.addAll(n.GetNeighbors());
+            temp.add( n.getId() );
+            temp.addAll(n.getNeighbors());
             result.add(temp);
         }
         return result;
     }
 
-    public void SetGraph(Map<String, Node> g) {
+    public void setGraph(Map<String, Node> g) {
         this.graph = g;
     }
 
@@ -113,13 +113,22 @@ public class Graph implements IGraph {
         this.graph = new HashMap<String, Node>();
     }
 
+    public Graph( int nodeQuantity ) {
+        this.graph = new HashMap<String, Node>();
+        int inc = 1;
+        while( graph.size() < nodeQuantity ) {
+            this.addIsolatedNode( String.valueOf( inc ) );
+            inc++;
+        }
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public void AddIsolatedNode(String id) throws IllegalArgumentException {
+    public void addIsolatedNode(String id) throws IllegalArgumentException {
         Node toAdd = new Node(id, new ArrayList<String>());
-        if( this.ContainsNode(id) ) {
+        if( this.containsNode(id) ) {
             throw new IllegalArgumentException( "The graph already contains a Node with identifier " + id );
         }
         else {
@@ -131,19 +140,19 @@ public class Graph implements IGraph {
      * {@inheritDoc}
      */
     @Override
-    public void AddSpecificNode(String id, ArrayList<String> neighbors) throws IllegalArgumentException {
+    public void addSpecificNode(String id, ArrayList<String> neighbors) throws IllegalArgumentException {
         Node toAdd = new Node(id, neighbors);
-        if( this.ContainsNode(id) ) {
+        if( this.containsNode(id) ) {
             throw new IllegalArgumentException(id + " already exists in graph.");
         }
-        else if ( !neighbors.stream().allMatch( (String s) -> {return this.ContainsNode(s);} ) ) {
+        else if ( !neighbors.stream().allMatch( (String s) -> {return this.containsNode(s);} ) ) {
             throw new IllegalArgumentException( "The graph does not contain one of the specified neighbors " + neighbors.toString() );
         }
         else {
             this.graph.put(id, toAdd);
             for( String neighbor : neighbors ) {
                 Node alteredNeighbor = this.graph.get(neighbor);
-                alteredNeighbor.AddNeighbor(id);
+                alteredNeighbor.addNeighbor(id);
                 this.graph.replace(neighbor, alteredNeighbor);
             }
         }
@@ -153,7 +162,7 @@ public class Graph implements IGraph {
      * {@inheritDoc}
      */
     @Override
-    public boolean ContainsNode(String Node_id) {
+    public boolean containsNode(String Node_id) {
         return this.graph.containsKey(Node_id);
     }
 
@@ -161,36 +170,36 @@ public class Graph implements IGraph {
      * {@inheritDoc}
      */
     @Override
-    public void AddEdge( String Node_one, String Node_two ) throws IllegalArgumentException {
-        if( !this.ContainsNode(Node_one) ) {
+    public void addEdge( String Node_one, String Node_two ) throws IllegalArgumentException {
+        if( !this.containsNode(Node_one) ) {
             throw new IllegalArgumentException("Node " + Node_one + " does not exist in graph.");
         }
-        if( !this.ContainsNode(Node_two) ) {
+        if( !this.containsNode(Node_two) ) {
             throw new IllegalArgumentException("Node " + Node_two + " does not exist in graph.");
         }
         Node v1 = this.graph.get(Node_one);
         Node v2 = this.graph.get(Node_two);
-        v1.AddNeighbor(Node_two);
-        v2.AddNeighbor(Node_one);
+        v1.addNeighbor(Node_two);
+        v2.addNeighbor(Node_one);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean ContainsEdge(String Node_one, String Node_two) throws IllegalArgumentException {
-        if( !this.ContainsNode(Node_one) ) {
+    public boolean containsEdge(String Node_one, String Node_two) throws IllegalArgumentException {
+        if( !this.containsNode(Node_one) ) {
             throw new IllegalArgumentException("Node " + Node_one + " does not exist in graph.");
         }
-        if( !this.ContainsNode(Node_two) ) {
+        if( !this.containsNode(Node_two) ) {
             throw new IllegalArgumentException("Node " + Node_two + " does not exist in graph.");
         }
 
         Node v1 = this.graph.get(Node_one);
         Node v2 = this.graph.get(Node_two);
 
-        boolean v2ExistsinNeighborsofv1 = v1.GetNeighbors().contains(Node_two);
-        boolean v1ExistsinNeighborsofv2 = v2.GetNeighbors().contains(Node_one);
+        boolean v2ExistsinNeighborsofv1 = v1.getNeighbors().contains(Node_two);
+        boolean v1ExistsinNeighborsofv2 = v2.getNeighbors().contains(Node_one);
 
         return v2ExistsinNeighborsofv1 && v1ExistsinNeighborsofv2;
     }
@@ -199,15 +208,15 @@ public class Graph implements IGraph {
      * {@inheritDoc}
      */
     @Override
-    public void RemoveNode( String id ) throws IllegalArgumentException {
-        if( !this.ContainsNode( id ) ) {
+    public void removeNode( String id ) throws IllegalArgumentException {
+        if( !this.containsNode( id ) ) {
             throw new IllegalArgumentException( "Node " + id + " does not exist in graph." );
         }
         Node toRemove = this.graph.get( id );
         this.graph.remove( id );
-        for( String neighbor : toRemove.GetNeighbors() ) {
+        for( String neighbor : toRemove.getNeighbors() ) {
             Node temp = this.graph.get( neighbor );
-            temp.RemoveNeighbor( id );
+            temp.removeNeighbor( id );
             this.graph.replace( neighbor, temp );
         }
     }
@@ -216,21 +225,21 @@ public class Graph implements IGraph {
      * {@inheritDoc}
      */
     @Override
-    public void RemoveEdge( String Node_one, String Node_two ) throws IllegalArgumentException {
-        if( !this.ContainsNode( Node_one ) ) {
+    public void removeEdge( String Node_one, String Node_two ) throws IllegalArgumentException {
+        if( !this.containsNode( Node_one ) ) {
             throw new IllegalArgumentException( "Node " + Node_one + " does not exist in graph." );
         }
-        if( !this.ContainsNode( Node_two ) ) {
+        if( !this.containsNode( Node_two ) ) {
             throw new IllegalArgumentException( "Node " + Node_two + " does not exist in graph." );
         }
-        if( !this.ContainsEdge( Node_one, Node_two) ) {
+        if( !this.containsEdge( Node_one, Node_two) ) {
             throw new IllegalArgumentException( "The specified edge (" + Node_one + "," + Node_two + ") does not exist.");
         }
         Node n1 = this.graph.get( Node_one );
         Node n2 = this.graph.get( Node_two );
 
-        n1.RemoveNeighbor( Node_two );
-        n2.RemoveNeighbor( Node_one );
+        n1.removeNeighbor( Node_two );
+        n2.removeNeighbor( Node_one );
 
         this.graph.replace( Node_one, n1 );
         this.graph.replace( Node_two, n2 );

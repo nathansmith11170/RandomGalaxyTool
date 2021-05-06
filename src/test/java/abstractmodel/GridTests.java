@@ -15,7 +15,7 @@ public class GridTests {
 
     @Test
     public void PopulateRectangularGrid_DoesNotThrow() {
-        new AxialHexGridSquare( 1, 1 );
+        new AxialHexGridSquare( 1 );
     }
 
     @Test
@@ -39,21 +39,21 @@ public class GridTests {
             put( new AxialHexCoord(2,3).hashCode(), new AxialHexCoord(2,3) );
     }};
 
-        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare(3,3);
+        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare( 9 );
 
         assertTrue( Objects.deepEquals(unitUnderTest.Grid, reference) );
     }
 
     @Test
     public void GetNeighbors_WithValidParameters_DoesNotThrow() {
-        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare(4,4);
+        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare( 16 );
 
-        unitUnderTest.GetNeighbors( new AxialHexCoord(0,0) );
+        unitUnderTest.getNeighbors( new AxialHexCoord(0,0) );
     }
 
     @Test
     public void GetNeighbors_WithOneOneAndLargeGrid_ReturnsProperNeighbors() {
-        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare(4,4);
+        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare( 16 );
         ArrayList<AxialHexCoord> reference = new ArrayList<AxialHexCoord>() {{
             add( new AxialHexCoord(1,0) );
             add( new AxialHexCoord(0,1) );
@@ -63,7 +63,7 @@ public class GridTests {
             add( new AxialHexCoord(0,2) );
         }};
 
-        ArrayList<AxialHexCoord> result = unitUnderTest.GetNeighbors( new AxialHexCoord(1,1) );
+        ArrayList<AxialHexCoord> result = unitUnderTest.getNeighbors( new AxialHexCoord(1,1) );
 
         boolean allCoordsInReference = true;
         for ( AxialHexCoord coord : result ) {
@@ -76,14 +76,14 @@ public class GridTests {
     
     @Test
     public void GetNeighbors_WithEdgeCoord_OmitsNonexistentNeighbors() {
-        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare(4,4);
+        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare( 16 );
         ArrayList<AxialHexCoord> reference = new ArrayList<AxialHexCoord>() {{
             add( new AxialHexCoord(0,1) );
             add( new AxialHexCoord(0,2) );
             add( new AxialHexCoord(-1, 3) );
         }};
 
-        ArrayList<AxialHexCoord> result = unitUnderTest.GetNeighbors( new AxialHexCoord(-1,2) );
+        ArrayList<AxialHexCoord> result = unitUnderTest.getNeighbors( new AxialHexCoord(-1,2) );
 
         boolean allCoordsInReference = true;
         for ( AxialHexCoord coord : result ) {
@@ -96,22 +96,22 @@ public class GridTests {
 
     @Test
     public void IsNeighbor_WithValidParams_DoesNotThrow() {
-        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare(4,4);
+        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare( 16 );
 
-        unitUnderTest.IsNeighbor( new AxialHexCoord(0,0), new AxialHexCoord(1,1) );
+        unitUnderTest.isNeighbor( new AxialHexCoord(0,0), new AxialHexCoord(1,1) );
     }
 
     @Test
     public void IsNeighbor_WithNeighbors_ReturnsTrue() {
-        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare(4,4);
+        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare( 16 );
 
-        assertTrue( unitUnderTest.IsNeighbor( new AxialHexCoord(0,0), new AxialHexCoord(0,1) ) );
+        assertTrue( unitUnderTest.isNeighbor( new AxialHexCoord(0,0), new AxialHexCoord(0,1) ) );
     }
 
     @Test
     public void IsNeighbor_WithNonNeighbors_ReturnsFalse() {
-        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare(4,4);
+        AxialHexGridSquare unitUnderTest = new AxialHexGridSquare( 16 );
 
-        assertFalse( unitUnderTest.IsNeighbor( new AxialHexCoord(0,0), new AxialHexCoord(1,1) ) );
+        assertFalse( unitUnderTest.isNeighbor( new AxialHexCoord(0,0), new AxialHexCoord(1,1) ) );
     }
 }
