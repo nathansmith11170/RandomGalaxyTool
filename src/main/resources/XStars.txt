@@ -1,0 +1,112 @@
+Macro, Name, Cluster
+cluster_409_sector001_macro, Tharka's Ravine XXIV, Tharka's Ravine
+cluster_43_sector001_macro, Hewa's Twin V, Hewa's Twin
+cluster_42_sector002_macro, Hewa's Twin IV The Cove, Hewa's Twin
+cluster_42_sector001_macro, Hewa's Twin III, Hewa's Twin
+cluster_18_sector001_macro, Trinity Sanctum III, Trinity Sanctum
+cluster_417_sector001_macro, Eleventh Hour, Eleventh Hour
+cluster_05_sector001_macro, Path to Profit, Path to Profit
+cluster_37_sector001_macro, Pious Mists IV, Pious Mists
+cluster_33_sector001_macro, Matrix #79B, Matrix #79B
+cluster_410_sector001_macro, Tharka's Ravine XVI, Tharka's Ravine
+cluster_08_sector001_macro, Silent Witness I, Silent Witness
+cluster_50_sector002_macro, Turquoise Sea X, Turquoise Sea
+cluster_50_sector001_macro, Turquoise Sea IX, Turquoise Sea
+cluster_12_sector001_macro, True Sight, True Sight
+cluster_49_sector001_macro, Frontier Edge, Frontier Edge
+cluster_415_sector001_macro, Matrix #598, Matrix #598
+cluster_423_sector001_macro, Litany of Fury IX, Litany of Fury
+cluster_423_sector002_macro, Litany of Fury XII, Litany of Fury
+cluster_02_sector001_macro, Eighteen Billion, Eighteen Billion
+cluster_40_sector001_macro, Second Contact VII, Second Contact
+cluster_408_sector001_macro, Thuruk's Demise III, Thuruk's Demise
+cluster_408_sector002_macro, Thuruk's Demise II First Impact, Thuruk's Demise
+cluster_30_sector001_macro, Morning Star III, Morning Star
+cluster_405_sector001_macro, Zyarth's Dominion IV, Zyarth's Dominion
+cluster_406_sector001_macro, Zyarth's Dominion X, Zyarth's Dominion
+cluster_404_sector001_macro, Zyarth's Dominion I, Zyarth's Dominion
+cluster_416_sector001_macro, Guiding Star V, Guiding Star
+cluster_416_sector002_macro, Guiding Star VII, Guiding Star
+cluster_41_sector001_macro, Second Contact XI, Second Contact
+cluster_111_sector001_macro, Pluto, Sol
+cluster_110_sector001_macro, Neptune, Sol
+cluster_112_sector002_macro, Savage Spur II, Savage Spur
+cluster_112_sector001_macro, Savage Spur I, Savage Spur
+cluster_104_sector001_macro, Earth, Sol
+cluster_104_sector002_macro, The Moon, Sol
+cluster_19_sector001_macro, Hewa's Twin I, Hewa's Twin
+cluster_19_sector002_macro, Hewa's Twin II, Hewa's Twin
+cluster_31_sector001_macro, Heretic's End, Heretic's End
+cluster_420_sector001_macro, Two Grand, Two Grand
+cluster_48_sector001_macro, Getsu Fune, Getsu Fune
+cluster_403_sector001_macro, Wretched Skies V Family Phi, Wretched Skies
+cluster_102_sector001_macro, Venus, Sol
+cluster_113_sector001_macro, Segaris, Segaris
+cluster_101_sector001_macro, Mars, Sol
+cluster_27_sector001_macro, The Void, The Void
+cluster_418_sector001_macro, Family Nhuut, Family Nhuut
+cluster_419_sector001_macro, Open Market, Open Market
+cluster_01_sector002_macro, Grand Exchange III, Grand Exchange
+cluster_01_sector003_macro, Grand Exchange IV, Grand Exchange
+cluster_01_sector001_macro, Grand Exchange I, Grand Exchange
+cluster_26_sector001_macro, Atiya's Misfortune I, Atiya's Misfortune
+cluster_26_sector002_macro, Atiya's Misfortune III, Atiya's Misfortune
+cluster_108_sector002_macro, Titan, Sol
+cluster_108_sector001_macro, Saturn, Sol
+cluster_25_sector002_macro, Faulty Logic VII, Faulty Logic
+cluster_25_sector001_macro, Faulty Logic I, Faulty Logic
+cluster_03_sector001_macro, Memory of Profit IX, Memory of Profit
+cluster_20_sector001_macro, Company Regard, Company Regard
+cluster_114_sector001_macro, Gaian Prophecy, Gaian Prophecy
+cluster_425_sector001_macro, Heart of Acrimony I The Boneyard, Heart of Acrimony
+cluster_412_sector001_macro, Tharka's Ravine VIII, Tharka's Ravine
+cluster_17_sector001_macro, Matrix #9, Matrix #9
+cluster_424_sector002_macro, Emperor's Pride VI, Emperor's Pride
+cluster_424_sector001_macro, Emperor's Pride IV, Emperor's Pride
+cluster_407_sector001_macro, Family Tkr, Family Tkr
+cluster_44_sector001_macro, Silent Witness XI, Silent Witness
+cluster_24_sector001_macro, Holy Vision, Holy Vision
+cluster_16_sector001_macro, Matrix #451, Matrix #451
+cluster_116_sector001_macro, Oort Cloud, Sol
+cluster_106_sector001_macro, Mercury, Sol
+cluster_22_sector001_macro, Pious Mists II, Pious Mists
+cluster_422_sector001_macro, Wretched Skies X, Wretched Skies
+cluster_421_sector001_macro, Fires of Defeat, Fires of Defeat
+cluster_107_sector001_macro, Jupiter, Sol
+cluster_34_sector001_macro, Profit Center Alpha, Profit Center Alpha
+cluster_411_sector001_macro, Heart of Acrimony II, Heart of Acrimony
+cluster_13_sector001_macro, Second Contact II Flashpoint, Second Contact
+cluster_46_sector001_macro, Morning Star IV, Morning Star
+cluster_23_sector001_macro, Sacred Relic, Sacred Relic
+cluster_413_sector001_macro, Tharka's Ravine IV Tharka's Fall, Tharka's Ravine
+cluster_14_sector001_macro, Argon Prime, Argon Prime
+cluster_100_sector001_macro, Asteroid Belt, Sol
+cluster_115_sector001_macro, Brennan's Triumph, Brennan's Triumph
+cluster_11_sector001_macro, Pontifex's Claim, Pontifex's Claim
+cluster_29_sector002_macro, Hatikvah's Choice III, Hatikvah's Choice
+cluster_29_sector001_macro, Hatikvah's Choice I, Hatikvah's Choice
+cluster_28_sector001_macro, Antigone Memorial, Antigone Memorial
+cluster_32_sector002_macro, Tharka's Cascade XVII, Tharka's Cascade
+cluster_32_sector001_macro, Tharka's Cascade XV, Tharka's Cascade
+cluster_35_sector001_macro, Lasting Vengeance, Lasting Vengeance
+cluster_414_sector001_macro, Rhy's Defiance, Rhy's Defiance
+cluster_09_sector001_macro, Bright Promise, Bright Promise
+cluster_401_sector001_macro, Family Zhin, Family Zhin
+cluster_38_sector001_macro, Pious Mists XI, Pious Mists
+cluster_47_sector001_macro, Trinity Sanctum VII, Trinity Sanctum
+cluster_39_sector001_macro, Memory of Profit X, Memory of Profit
+cluster_10_sector001_macro, Unholy Retribution, Unholy Retribution
+cluster_36_sector001_macro, Cardinal's Redress, Cardinal's Redress
+cluster_21_sector001_macro, Scale Plate Green I, Scale Plate Green
+cluster_21_sector002_macro, Scale Plate Green VII, Scale Plate Green
+cluster_45_sector001_macro, Silent Witness XII, Silent Witness
+cluster_07_sector001_macro, The Reach, The Reach
+cluster_06_sector001_macro, Black Hole Sun IV, Black Hole Sun
+cluster_06_sector002_macro, Black Hole Sun V, Black Hole Sun
+cluster_402_sector001_macro, Family Kritt, Family Kritt
+cluster_04_sector001_macro, Nopileos' Fortune II, Nopileos' Fortune
+cluster_04_sector002_macro, Nopileos' Fortune VI, Nopileos' Fortune
+cluster_109_sector001_macro, Uranus, Sol
+cluster_400_sector001_macro, Wretched Skies IV Family Valka, Wretched Skies
+cluster_15_sector001_macro, Ianamus Zura IV, Ianamus Zura
+cluster_15_sector002_macro, Ianamus Zura VII, Ianamus Zura
