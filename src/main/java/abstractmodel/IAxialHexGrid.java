@@ -1,6 +1,8 @@
 package abstractmodel;
 
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.Map;
 
 public interface IAxialHexGrid {
     /**
@@ -27,4 +29,19 @@ public interface IAxialHexGrid {
      *          True if the coordinate are neighbors, otherwise false.
      */
     public boolean isNeighbor( AxialHexCoord coordinate_one, AxialHexCoord coordinate_two );
+
+    /**
+     * 
+     * @return
+     *      The coordinate members of the grid.
+     */
+    public Set<AxialHexCoord> members();
+
+    /**
+     * 
+     * @return
+     *      the actual map representation of the grid.
+     */
+    public Map<AxialHexCoord, ArrayList<AxialHexCoord>> grid();
+
 }

@@ -2,16 +2,11 @@ package application.views.generator;
 
 import java.util.Iterator;
 
-import javax.swing.plaf.PanelUI;
-
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.login.LoginI18n.Form;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.component.splitlayout.SplitLayout.Orientation;
@@ -46,8 +41,6 @@ public class GeneratorView extends Div {
         Label previewLabel = new Label();
         previewLabel.setWidth( "75%" );
         previewLabel.add( "Preview" );
-        
-        Image previewImage = new Image();
         
         layout.setOrientation( Orientation.HORIZONTAL );
 

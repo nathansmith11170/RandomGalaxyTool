@@ -3,19 +3,19 @@ package abstractmodel;
 import java.util.Objects;
 
 public class AxialHexCoord {
-    final int q;
-    final int r;
+    private final int q;
+    private final int r;
 
     public AxialHexCoord( int q, int r ) {
         this.q = q;
         this.r = r;
     }
 
-    int q() {
+    public int q() {
         return this.q;
     }
 
-    int r() {
+    public int r() {
         return this.r;
     }
 
@@ -38,5 +38,9 @@ public class AxialHexCoord {
     @Override
     public String toString() {
         return "AxialHexCoord{" + this.q + "," + this.r + "}";
+    }
+
+    public AxialHexCoord add(AxialHexCoord n2) {
+        return new AxialHexCoord( this.q() + n2.q(), this.r() + n2.r() );
     }
 }
