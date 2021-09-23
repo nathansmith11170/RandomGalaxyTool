@@ -8,7 +8,7 @@ import java.awt.geom.Line2D;
 import java.util.Vector;
 
 public class MazeBitmap {
-    private HexagonalMaze maze;
+    private HexagonalMaze HexMaze;
     private Graphics2D g2;
 
     public BufferedImage img;
@@ -18,8 +18,8 @@ public class MazeBitmap {
 
     public MazeBitmap(HexagonalMaze maze) {
         this.size = 50;
-        this.maze = maze;
-        this.width = (int) Math.sqrt( this.maze.members.size() ) * 50;
+        this.HexMaze = maze;
+        this.width = (int) Math.sqrt( this.HexMaze.members.size() ) * 50;
         this.height = this.width;
         this.img = new BufferedImage( this.width, this.height, BufferedImage.TYPE_INT_RGB );
 
@@ -34,16 +34,16 @@ public class MazeBitmap {
 
         g2.setColor( Color.BLACK );
         // Draw ellipses
-        this.maze.maze.keySet().stream().forEach( (n) -> {
+        this.HexMaze.maze.keySet().forEach( (n) -> {
             Vector2D node = new Vector2D(n);
             Ellipse2D sector = new Ellipse2D.Double(node.x, node.y, this.size, this.size);
             g2.draw(sector);
         });
 
         // Connect ellipses
-        this.maze.maze.keySet().stream().forEach( (n) -> {
+        this.HexMaze.maze.keySet().forEach( (n) -> {
             Vector2D node = new Vector2D(n);
-            this.maze.maze.get(n).stream().forEach( (m) -> {
+            this.HexMaze.maze.get(n).forEach( (m) -> {
                 Vector2D node2 = new Vector2D(m);
                 Line2D link = new Line2D.Double( node.x + this.size/2, node.y + this.size/2, node2.x + this.size/2, node2.y + this.size/2 );
                 g2.draw(link);
