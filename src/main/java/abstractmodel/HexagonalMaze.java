@@ -18,14 +18,27 @@ public class HexagonalMaze {
 
     public Set<AxialHexCoord> members;
 
+    private Set<AxialHexCoord> deadZones;
+    private Random rand;
+
     /**
      * This constructor takes an existing hexagonal grid and generates a maze from it. 
      * 
      * @param grid
      *      The grid which will be used for the maze.
      */
-    public HexagonalMaze( IAxialHexGrid grid, int passes ) {
+    public HexagonalMaze( IAxialHexGrid grid, int passes, double deadPercent ) {
+        this.rand = new Random();
+        this.rand.setSeed( System.currentTimeMillis() );
         this.AxialHexGrid = grid;
+        this.deadZones = new HashSet<>();
+
+        // Deaden a percent of the grid
+        int numDeadZones = (int) Math.floor( grid.members().size() * deadPercent );
+        for ( int i = 0; i < numDeadZones; i++ ) {
+            deadZones.add( grid.grid().keySet().stream().skip( (int) (grid.members().size() * this.rand.nextDouble()) ).findFirst().get() );
+        }
+
         this.maze = new HashMap<>();
         this.members = new HashSet<>();
 
@@ -35,9 +48,6 @@ public class HexagonalMaze {
     }
 
     private void generateMaze() {
-        Random rand = new Random();
-        rand.setSeed( System.currentTimeMillis() );
-
         Stack<AxialHexCoord> workingStack = new Stack<>();
         Set<AxialHexCoord> visited = new HashSet<>();
 
@@ -62,9 +72,9 @@ public class HexagonalMaze {
 
             // Pop top node, get neighbors
             AxialHexCoord current = workingStack.pop();
-            ArrayList<AxialHexCoord> neighbors = this.AxialHexGrid.grid().get( current );
+            ArrayList<AxialHexCoord> neighbors = getNeighborsWithoutDeadZones( current );
 
-            // If any neighbor is unvisited, push current onto stack
+            // If any neighbor is unvisited and not a deadzone, push current onto stack
             if ( neighbors.stream().anyMatch( (n) -> !visited.contains( n ) ) ) {
                 workingStack.push( current );
 
@@ -89,5 +99,11 @@ public class HexagonalMaze {
                 workingStack.push( neighbor.get() );
             }
         }
+    }
+
+    private ArrayList<AxialHexCoord> getNeighborsWithoutDeadZones( AxialHexCoord current ) {
+        ArrayList<AxialHexCoord> temp = this.AxialHexGrid.grid().get( current );
+        ArrayList<AxialHexCoord> result = new ArrayList<>( temp.stream().filter( (n) -> !this.deadZones.contains( n ) ).collect(Collectors.toList()) );
+        return result;
     }
 }

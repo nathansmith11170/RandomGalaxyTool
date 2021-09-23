@@ -56,11 +56,11 @@ public class GeneratorView extends Div {
         TextField sectorsTextField = new TextField();
         sectorsTextField.setId("clusters");
         sectorsTextField.setLabel( "Sectors:" );
-        sectorsTextField.setHelperText("Integer value less than 100, but greater than 4.");
+        sectorsTextField.setHelperText("Integer value less than 256, but greater than 4.");
         sectorsTextField.addValueChangeListener( event -> { 
             try { 
                 int sectors = Integer.parseInt( sectorsTextField.getValue() );
-                if ( sectors > 100 ) {
+                if ( sectors > 256 ) {
                     sectorsTextField.setHelperText( "Value too large, enter smaller value." );
                 }
                 else if ( sectors < 4 ) {
@@ -97,6 +97,29 @@ public class GeneratorView extends Div {
             
         });
 
+        TextField deadZonePercent = new TextField();
+        deadZonePercent.setId("deadPercent");
+        deadZonePercent.setLabel( "Percent of Grid That is Empty" );
+        deadZonePercent.setHelperText("Integer value between 0 and 50.");
+        deadZonePercent.addValueChangeListener( event -> { 
+            try { 
+                int passes = Integer.parseInt( deadZonePercent.getValue() );
+                if ( passes > 50 ) {
+                    deadZonePercent.setHelperText( "Value too large, enter smaller value." );
+                }
+                else if ( passes < 0 ) {
+                    deadZonePercent.setHelperText( "Value too small, enter larger value." );
+                }
+                else {
+                    deadZonePercent.setHelperText("Value accepted.");
+                }
+            } catch(NumberFormatException e) {
+                generatorPasses.setHelperText( "Invalid contents, enter integer value" );
+            }
+            
+        });
+
+        configForm.add(deadZonePercent);
         configForm.add(sectorsTextField);
         configForm.add(generatorPasses);
 
@@ -122,10 +145,15 @@ public class GeneratorView extends Div {
                     case "passes":
                         TextField text2 = (TextField) item;
                         generatorConfig.passes = Integer.parseInt( text2.getValue() );
+                        break;
+                    case "deadPercent":
+                        TextField text3 = (TextField) item;
+                        generatorConfig.deadPercent = Integer.parseInt( text3.getValue() ) / 100.0;
+                        break;
                 }
             }
             AxialHexMapSquare grid = new AxialHexMapSquare(generatorConfig.clusters);
-            HexagonalMaze map = new HexagonalMaze( grid, generatorConfig.passes );
+            HexagonalMaze map = new HexagonalMaze( grid, generatorConfig.passes, generatorConfig.deadPercent );
             MazeBitmap mapImg = new MazeBitmap(map);
 
             StreamResource previewResource = new StreamResource( "preview.png", () -> mapImg.getStream());
