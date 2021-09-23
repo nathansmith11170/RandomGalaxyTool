@@ -7,6 +7,6 @@ public class HexagonalMazeTest {
     public void HexagonalMaze_WithValidGrid_DoesNotThrow() {
         IAxialHexGrid grid = new AxialHexMapSquare(25);
 
-        new HexagonalMaze( grid );
+        new HexagonalMaze( grid, 1 );
     }
 }

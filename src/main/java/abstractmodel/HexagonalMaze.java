@@ -24,12 +24,14 @@ public class HexagonalMaze {
      * @param grid
      *      The grid which will be used for the maze.
      */
-    public HexagonalMaze( IAxialHexGrid grid ) {
+    public HexagonalMaze( IAxialHexGrid grid, int passes ) {
         this.AxialHexGrid = grid;
         this.maze = new HashMap<>();
         this.members = new HashSet<>();
 
-        generateMaze();
+        for (int i = 0; i < passes; i++) {
+            generateMaze();
+        }
     }
 
     private void generateMaze() {
@@ -37,13 +39,18 @@ public class HexagonalMaze {
         rand.setSeed( System.currentTimeMillis() );
 
         Stack<AxialHexCoord> workingStack = new Stack<>();
+        Set<AxialHexCoord> visited = new HashSet<>();
 
         // Random starting node
         Optional<AxialHexCoord> start = this.AxialHexGrid.members().stream()
                                                 .skip( (int) (this.AxialHexGrid.members().size() * rand.nextDouble()) )
                                                 .findFirst();
         if ( !start.isEmpty() ) {
-            this.maze.put( start.get(), new ArrayList<AxialHexCoord>() );
+            if( !this.maze.keySet().contains( start.get() ) ) {
+                this.maze.put( start.get(), new ArrayList<AxialHexCoord>() );
+            }
+            visited.add( start.get() );
+            this.members.add( start.get() );
             workingStack.push( start.get() );
         }
         else {
@@ -58,17 +65,25 @@ public class HexagonalMaze {
             ArrayList<AxialHexCoord> neighbors = this.AxialHexGrid.grid().get( current );
 
             // If any neighbor is unvisited, push current onto stack
-            if ( neighbors.stream().anyMatch( (n) -> !this.maze.keySet().contains( n ) ) ) {
+            if ( neighbors.stream().anyMatch( (n) -> !visited.contains( n ) ) ) {
                 workingStack.push( current );
 
                 //Choose random unvisited neighbor
-                ArrayList<AxialHexCoord> unvisitedNeighbors = new ArrayList<>(neighbors.stream().filter( (n) -> !this.maze.keySet().contains(n) ).collect(Collectors.toList()));
+                ArrayList<AxialHexCoord> unvisitedNeighbors = new ArrayList<>(neighbors.stream().filter( (n) -> !visited.contains(n) ).collect(Collectors.toList()));
                 Optional<AxialHexCoord> neighbor = unvisitedNeighbors.stream().skip( (int) (unvisitedNeighbors.size() * rand.nextDouble()) ).findFirst();
                 
-                // Add edge between current and chosen neighbor
-                this.maze.put( neighbor.get(), new ArrayList<AxialHexCoord>() );
-                this.maze.get( neighbor.get() ).add( current );
-                this.maze.get( current ).add( neighbor.get() );
+                // if edge doesn't exist, add edge between current and chosen neighbor
+                if( !this.maze.keySet().contains( neighbor.get() ) ) {
+                    this.maze.put( neighbor.get(), new ArrayList<AxialHexCoord>() );
+                }
+                visited.add( neighbor.get() );
+                
+                this.members.add( neighbor.get() );
+                
+                if( !this.maze.get( neighbor.get() ).contains( current ) ) {
+                    this.maze.get( neighbor.get() ).add( current );
+                    this.maze.get( current ).add( neighbor.get() );
+                }
 
                 // place neigbor onto stack
                 workingStack.push( neighbor.get() );
