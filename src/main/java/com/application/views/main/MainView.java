@@ -1,7 +1,10 @@
-package application.views.main;
+package com.application.views.main;
 
 import java.util.Optional;
 
+import com.application.views.about.AboutView;
+import com.application.views.generator.GeneratorView;
+import com.application.views.main.MainView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -15,11 +18,6 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.router.RouterLink;
-
-import application.views.about.AboutView;
-import application.views.generator.GeneratorView;
-import application.views.main.MainView;
-
 import com.vaadin.flow.router.PageTitle;
 
 /**
