@@ -43,4 +43,8 @@ public class OddQHexCoord {
     public OddQHexCoord add(OddQHexCoord n2) {
         return new OddQHexCoord( this.col() + n2.col(), this.row() + n2.row() );
     }
+
+    public OddQHexCoord diff(OddQHexCoord n2) {
+        return new OddQHexCoord( this.col() - n2.col(), this.row() - n2.row() );
+    }
 }

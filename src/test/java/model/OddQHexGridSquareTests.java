@@ -9,34 +9,34 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AxialHexMapSquareTests {
+public class OddQHexGridSquareTests {
 
 
     @Test
-    public void AxialHexMapSquare_GeneratesCorrectSizeOfGrid_OnConstructorWith4DesiredSize() {
+    public void OddQHexGridSquare_GeneratesCorrectSizeOfGrid_OnConstructorWith4DesiredSize() {
         int expected = 4;
 
-        AxialHexMapSquare test = new AxialHexMapSquare(4);
+        OddQHexGridSquare test = new OddQHexGridSquare(4);
 
         assertEquals( expected, test.members.size() );
         assertEquals( expected, test.grid.values().size() );
     }
 
     @Test
-    public void AxialHexMapSquare_GeneratesCorrectSizeOfGrid_OnConstructorWith9DesiredSize() {
+    public void OddQHexGridSquare_GeneratesCorrectSizeOfGrid_OnConstructorWith9DesiredSize() {
         int expected = 9;
 
-        AxialHexMapSquare test = new AxialHexMapSquare(9);
+        OddQHexGridSquare test = new OddQHexGridSquare(9);
 
         assertEquals( expected, test.members.size() );
         assertEquals( expected, test.grid.values().size() );
     }
 
     @Test
-    public void AxialHexMapSquare_GeneratesCorrectSizeOfGrid_OnConstructorWith16DesiredSize() {
+    public void OddQHexGridSquare_GeneratesCorrectSizeOfGrid_OnConstructorWith16DesiredSize() {
         int expected = 16;
 
-        AxialHexMapSquare test = new AxialHexMapSquare(16);
+        OddQHexGridSquare test = new OddQHexGridSquare(16);
 
         assertEquals( expected, test.members.size() );
         assertEquals( expected, test.grid.values().size() );
@@ -44,58 +44,58 @@ public class AxialHexMapSquareTests {
 
 
     @Test
-    public void AxialHexMapSquare_GeneratesCorrectSizeOfGrid_OnConstructorWith25DesiredSize() {
+    public void OddQHexGridSquare_GeneratesCorrectSizeOfGrid_OnConstructorWith25DesiredSize() {
         int expected = 25;
 
-        AxialHexMapSquare test = new AxialHexMapSquare(25);
+        OddQHexGridSquare test = new OddQHexGridSquare(25);
 
         assertEquals( expected, test.members.size() );
         assertEquals( expected, test.grid.values().size() );
     }
 
     @Test
-    public void AxialHexMapSquare_GeneratesVeryLargeGridWithoutErrors_OnConstructorWith2500DesiredSize() {
+    public void OddQHexGridSquare_GeneratesVeryLargeGridWithoutErrors_OnConstructorWith2500DesiredSize() {
         int expected = 2500;
 
-        AxialHexMapSquare test = new AxialHexMapSquare(2500);
+        OddQHexGridSquare test = new OddQHexGridSquare(2500);
 
         assertEquals( expected, test.members.size() );
         assertEquals( expected, test.grid.values().size() );
     }
     
     @Test
-    public void AxialHexMapSquare_CreatesValidGrid_OnConstructor() {
-        Map<Integer, ArrayList<AxialHexCoord>> expected = new HashMap<Integer, ArrayList<AxialHexCoord>>();
+    public void OddQHexGridSquare_CreatesValidGrid_OnConstructor() {
+        Map<Integer, ArrayList<OddQHexCoord>> expected = new HashMap<Integer, ArrayList<OddQHexCoord>>();
         
-        AxialHexCoord one = new AxialHexCoord(0, 0);
-        AxialHexCoord two = new AxialHexCoord(1, 0);
-        AxialHexCoord three = new AxialHexCoord(2, 0);
-        AxialHexCoord four = new AxialHexCoord(0, 1);
-        AxialHexCoord five = new AxialHexCoord(1, 1);
-        AxialHexCoord six = new AxialHexCoord(2, 1);
-        AxialHexCoord seven = new AxialHexCoord(-1, 2);
-        AxialHexCoord eight = new AxialHexCoord(0, 2);
-        AxialHexCoord nine = new AxialHexCoord(1, 2);
+        OddQHexCoord one = new OddQHexCoord(0, 0);
+        OddQHexCoord two = new OddQHexCoord(0, 1);
+        OddQHexCoord three = new OddQHexCoord(0, 2);
+        OddQHexCoord four = new OddQHexCoord(1, 0);
+        OddQHexCoord five = new OddQHexCoord(1, 1);
+        OddQHexCoord six = new OddQHexCoord(1, 2);
+        OddQHexCoord seven = new OddQHexCoord(2, 0);
+        OddQHexCoord eight = new OddQHexCoord(2, 1);
+        OddQHexCoord nine = new OddQHexCoord(2, 2);
 
-        ArrayList<AxialHexCoord> oneNeighbors = new ArrayList<AxialHexCoord>();
+        ArrayList<OddQHexCoord> oneNeighbors = new ArrayList<OddQHexCoord>();
         oneNeighbors.add(two);
         oneNeighbors.add(four);
         expected.put( one.hashCode(), oneNeighbors);
 
-        ArrayList<AxialHexCoord> twoNeighbors = new ArrayList<AxialHexCoord>();
+        ArrayList<OddQHexCoord> twoNeighbors = new ArrayList<OddQHexCoord>();
         twoNeighbors.add(one);
         twoNeighbors.add(three);
-        twoNeighbors.add(four);
         twoNeighbors.add(five);
+        twoNeighbors.add(four);
         expected.put( two.hashCode(), twoNeighbors);
 
-        ArrayList<AxialHexCoord> threeNeighbors = new ArrayList<AxialHexCoord>();
+        ArrayList<OddQHexCoord> threeNeighbors = new ArrayList<OddQHexCoord>();
         threeNeighbors.add(two);
-        threeNeighbors.add(five);
         threeNeighbors.add(six);
+        threeNeighbors.add(five);
         expected.put( three.hashCode(), threeNeighbors);
 
-        ArrayList<AxialHexCoord> fourNeighbors = new ArrayList<AxialHexCoord>();
+        ArrayList<OddQHexCoord> fourNeighbors = new ArrayList<OddQHexCoord>();
         fourNeighbors.add(one);
         fourNeighbors.add(two);
         fourNeighbors.add(five);
@@ -103,42 +103,42 @@ public class AxialHexMapSquareTests {
         fourNeighbors.add(eight);
         expected.put( four.hashCode(), fourNeighbors);
 
-        ArrayList<AxialHexCoord> fiveNeighbors = new ArrayList<AxialHexCoord>();
+        ArrayList<OddQHexCoord> fiveNeighbors = new ArrayList<OddQHexCoord>();
         fiveNeighbors.add(two);
-        fiveNeighbors.add(three);
         fiveNeighbors.add(four);
+        fiveNeighbors.add(three);
+        fiveNeighbors.add(nine);
         fiveNeighbors.add(six);
         fiveNeighbors.add(eight);
-        fiveNeighbors.add(nine);
         expected.put( five.hashCode(), fiveNeighbors);
 
-        ArrayList<AxialHexCoord> sixNeighbors = new ArrayList<AxialHexCoord>();
+        ArrayList<OddQHexCoord> sixNeighbors = new ArrayList<OddQHexCoord>();
         sixNeighbors.add(three);
         sixNeighbors.add(five);
         sixNeighbors.add(nine);
         expected.put( six.hashCode(), sixNeighbors );
 
-        ArrayList<AxialHexCoord> sevenNeighbors = new ArrayList<AxialHexCoord>();
+        ArrayList<OddQHexCoord> sevenNeighbors = new ArrayList<OddQHexCoord>();
         sevenNeighbors.add(four);
         sevenNeighbors.add(eight);
         expected.put( seven.hashCode(), sevenNeighbors );
 
-        ArrayList<AxialHexCoord> eightNeighbors = new ArrayList<AxialHexCoord>();
+        ArrayList<OddQHexCoord> eightNeighbors = new ArrayList<OddQHexCoord>();
         eightNeighbors.add(seven);
         eightNeighbors.add(four);
         eightNeighbors.add(five);
         eightNeighbors.add(nine);
         expected.put( eight.hashCode(), eightNeighbors );
 
-        ArrayList<AxialHexCoord> nineNeighbors = new ArrayList<AxialHexCoord>();
+        ArrayList<OddQHexCoord> nineNeighbors = new ArrayList<OddQHexCoord>();
         nineNeighbors.add(eight);
         nineNeighbors.add(six);
         nineNeighbors.add(five);
         expected.put( nine.hashCode(), nineNeighbors );
 
-        AxialHexMapSquare test = new AxialHexMapSquare(9);
+        OddQHexGridSquare test = new OddQHexGridSquare(9);
 
-        Map<AxialHexCoord, ArrayList<AxialHexCoord>> mapOfArrays = new HashMap<AxialHexCoord, ArrayList<AxialHexCoord>>();
+        Map<OddQHexCoord, ArrayList<OddQHexCoord>> mapOfArrays = new HashMap<OddQHexCoord, ArrayList<OddQHexCoord>>();
         mapOfArrays.put(one, oneNeighbors);
         mapOfArrays.put(two, twoNeighbors);
         mapOfArrays.put(three, threeNeighbors);
@@ -150,7 +150,7 @@ public class AxialHexMapSquareTests {
         mapOfArrays.put(nine, nineNeighbors);
 
         boolean allArraysEqual = true;
-        for(Map.Entry<AxialHexCoord, ArrayList<AxialHexCoord>> entry : test.grid.entrySet()) {
+        for(Map.Entry<OddQHexCoord, ArrayList<OddQHexCoord>> entry : test.grid.entrySet()) {
             if( ! ( mapOfArrays.get( entry.getKey() ).containsAll( entry.getValue() ) && entry.getValue().containsAll( mapOfArrays.get( entry.getKey() ) ) ) ) {
                 allArraysEqual = false;
                 break;

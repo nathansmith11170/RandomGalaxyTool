@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Map;
 
-public interface IAxialHexGrid {
+public interface IOddQHexGrid {
     /**
      * Return a list of the neighbors of {@code coordinate} that exist in the grid.
      * 
@@ -14,7 +14,7 @@ public interface IAxialHexGrid {
      *          An {@code ArrayList} of {@code AxialHexCoord} objects
      *          representing the neighbors which exist in the grid.
      */
-    public ArrayList<AxialHexCoord> getNeighbors( AxialHexCoord coordinate );
+    public ArrayList<OddQHexCoord> getNeighbors( OddQHexCoord coordinate );
 
     /**
      * Determines if two coordinates are neighbors
@@ -28,20 +28,20 @@ public interface IAxialHexGrid {
      * @return
      *          True if the coordinate are neighbors, otherwise false.
      */
-    public boolean isNeighbor( AxialHexCoord coordinate_one, AxialHexCoord coordinate_two );
+    public boolean isNeighbor( OddQHexCoord coordinate_one, OddQHexCoord coordinate_two );
 
     /**
      * 
      * @return
      *      The coordinate members of the grid.
      */
-    public Set<AxialHexCoord> members();
+    public Set<OddQHexCoord> members();
 
     /**
      * 
      * @return
      *      the actual map representation of the grid.
      */
-    public Map<AxialHexCoord, ArrayList<AxialHexCoord>> grid();
+    public Map<OddQHexCoord, ArrayList<OddQHexCoord>> grid();
 
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 import java.util.Stack;
@@ -22,22 +23,26 @@ import org.json.JSONObject;
 
 public class HexagonalMaze {
 
-    private static Map<String, AxialHexCoord> UnitDirections = new HashMap<String, AxialHexCoord>() {{
-        put( "left",      new AxialHexCoord( -1,  0 ) );
-        put( "right",     new AxialHexCoord(  1,  0 ) );
-        put( "upright",   new AxialHexCoord(  1, -1 ) );
-        put( "downright", new AxialHexCoord(  0,  1 ) );
-        put( "upleft",    new AxialHexCoord(  0, -1 ) );
-        put( "downleft",  new AxialHexCoord( -1,  1 ) );
-    } };
+    private static Map<String, OddQHexCoord> UnitDirections = new HashMap<String, OddQHexCoord>() {{
+        put( "N",   new OddQHexCoord(  0,  1 ) );
+        put( "S",   new OddQHexCoord(  0, -1 ) );
+        put( "even-NE",  new OddQHexCoord(  1,  1 ) );
+        put( "even-NW",  new OddQHexCoord( -1,  1 ) );
+        put( "even-SE",  new OddQHexCoord(  1,  0 ) );
+        put( "even-SW",  new OddQHexCoord( -1,  0 ) );
+        put( "odd-NE",  new OddQHexCoord(  1,  0 ) );
+        put( "odd-NW",  new OddQHexCoord( -1,  0 ) );
+        put( "odd-SE",  new OddQHexCoord(  1,  -1 ) );
+        put( "odd-SW",  new OddQHexCoord( -1,  -1 ) );
+    }};
     
-    public IAxialHexGrid AxialHexGrid;
+    public IOddQHexGrid OddQHexGrid;
 
-    public Map<AxialHexCoord, ArrayList<AxialHexCoord>> maze;
+    public Map<OddQHexCoord, ArrayList<OddQHexCoord>> maze;
 
-    public Set<AxialHexCoord> members;
+    public Set<OddQHexCoord> members;
 
-    private Set<AxialHexCoord> deadZones;
+    private Set<OddQHexCoord> deadZones;
     private Random rand;
 
     /**
@@ -45,11 +50,15 @@ public class HexagonalMaze {
      * 
      * @param grid
      *      The grid which will be used for the maze.
+     * @param passes
+     *      The number of times the recursive backtracker will run, adding edges that don't already exist
+     * @Param deadPercent
+     *      The percent of the grid that will be marked impassable before the recursive backtracker runs
      */
-    public HexagonalMaze( IAxialHexGrid grid, int passes, double deadPercent ) {
+    public HexagonalMaze( IOddQHexGrid grid, int passes, double deadPercent ) {
         this.rand = new Random();
         this.rand.setSeed( System.currentTimeMillis() );
-        this.AxialHexGrid = grid;
+        this.OddQHexGrid = grid;
         this.deadZones = new HashSet<>();
 
         // Deaden a percent of the grid
@@ -67,16 +76,16 @@ public class HexagonalMaze {
     }
 
     private void generateMaze() {
-        Stack<AxialHexCoord> workingStack = new Stack<>();
-        Set<AxialHexCoord> visited = new HashSet<>();
+        Stack<OddQHexCoord> workingStack = new Stack<>();
+        Set<OddQHexCoord> visited = new HashSet<>();
 
         // Random starting node
-        Optional<AxialHexCoord> start = this.AxialHexGrid.members().stream()
-                                                .skip( (int) (this.AxialHexGrid.members().size() * rand.nextDouble()) )
+        Optional<OddQHexCoord> start = this.OddQHexGrid.members().stream()
+                                                .skip( (int) (this.OddQHexGrid.members().size() * rand.nextDouble()) )
                                                 .findFirst();
         if ( !start.isEmpty() ) {
             if( !this.maze.keySet().contains( start.get() ) ) {
-                this.maze.put( start.get(), new ArrayList<AxialHexCoord>() );
+                this.maze.put( start.get(), new ArrayList<OddQHexCoord>() );
             }
             visited.add( start.get() );
             this.members.add( start.get() );
@@ -90,20 +99,20 @@ public class HexagonalMaze {
         while ( !workingStack.isEmpty() ) {
 
             // Pop top node, get neighbors
-            AxialHexCoord current = workingStack.pop();
-            ArrayList<AxialHexCoord> neighbors = getNeighborsWithoutDeadZones( current );
+            OddQHexCoord current = workingStack.pop();
+            ArrayList<OddQHexCoord> neighbors = getNeighborsWithoutDeadZones( current );
 
             // If any neighbor is unvisited and not a deadzone, push current onto stack
             if ( neighbors.stream().anyMatch( (n) -> !visited.contains( n ) ) ) {
                 workingStack.push( current );
 
                 //Choose random unvisited neighbor
-                ArrayList<AxialHexCoord> unvisitedNeighbors = new ArrayList<>(neighbors.stream().filter( (n) -> !visited.contains(n) ).collect(Collectors.toList()));
-                Optional<AxialHexCoord> neighbor = unvisitedNeighbors.stream().skip( (int) (unvisitedNeighbors.size() * rand.nextDouble()) ).findFirst();
+                ArrayList<OddQHexCoord> unvisitedNeighbors = new ArrayList<>(neighbors.stream().filter( (n) -> !visited.contains(n) ).collect(Collectors.toList()));
+                Optional<OddQHexCoord> neighbor = unvisitedNeighbors.stream().skip( (int) (unvisitedNeighbors.size() * rand.nextDouble()) ).findFirst();
                 
                 // if edge doesn't exist, add edge between current and chosen neighbor
                 if( !this.maze.keySet().contains( neighbor.get() ) ) {
-                    this.maze.put( neighbor.get(), new ArrayList<AxialHexCoord>() );
+                    this.maze.put( neighbor.get(), new ArrayList<OddQHexCoord>() );
                 }
                 visited.add( neighbor.get() );
                 
@@ -120,9 +129,9 @@ public class HexagonalMaze {
         }
     }
 
-    private ArrayList<AxialHexCoord> getNeighborsWithoutDeadZones( AxialHexCoord current ) {
-        ArrayList<AxialHexCoord> temp = this.AxialHexGrid.grid().get( current );
-        ArrayList<AxialHexCoord> result = new ArrayList<>( temp.stream().filter( (n) -> !this.deadZones.contains( n ) ).collect(Collectors.toList()) );
+    private ArrayList<OddQHexCoord> getNeighborsWithoutDeadZones( OddQHexCoord current ) {
+        ArrayList<OddQHexCoord> temp = this.OddQHexGrid.grid().get( current );
+        ArrayList<OddQHexCoord> result = new ArrayList<>( temp.stream().filter( (n) -> !this.deadZones.contains( n ) ).collect(Collectors.toList()) );
         return result;
     }
 
@@ -132,7 +141,7 @@ public class HexagonalMaze {
         // Get the names and descriptions from resources
         Stack<Sector> namesAndDescriptions = new Stack<>();
         try{
-            String obj = Files.readString( Path.of("..\\..\\resources\\XStars.json") );
+            String obj = Files.readString( Path.of("./src/main/java/model/XStars.json") );
 
             JSONObject jsonObject = new JSONObject( new JSONTokener(obj) );
 
@@ -159,13 +168,13 @@ public class HexagonalMaze {
         // Set connections for each cluster
         // Set name and description
         this.maze.entrySet().stream().forEach( (node) -> {
-            Cluster temp = axialCoordToCluster( node.getKey() );
+            Cluster temp = oddQCoordToCluster( node.getKey() );
             List<Connection> connectionList = new ArrayList<>();
-            temp.setId( String.valueOf( node.getKey().q() ) + " " + String.valueOf( node.getKey().r() ) );
+            temp.setId( String.valueOf( node.getKey().col() ) + " " + String.valueOf( node.getKey().row() ) );
 
             node.getValue().forEach( neighbor -> {
                 Connection conn = new Connection();
-                conn.setTargetClusterId( String.valueOf( neighbor.q() ) + " " + String.valueOf( neighbor.r() ) );
+                conn.setTargetClusterId( String.valueOf( neighbor.col() ) + " " + String.valueOf( neighbor.row() ) );
                 conn.setConnectionType( getConnectionType( node.getKey(), neighbor ) );
                 connectionList.add( conn );
             } );
@@ -188,43 +197,42 @@ public class HexagonalMaze {
         return result;
     }
 
-    private Cluster axialCoordToCluster( AxialHexCoord axial ) {
+    private Cluster oddQCoordToCluster( OddQHexCoord oddQ ) {
         Cluster result = new Cluster();
-        OddQHexCoord coordinates = cubeToOddQHexCoord( axialToCubeHexCoord(axial) );
-        result.setX( coordinates.col() );
-        result.setY( -1 * coordinates.row() );
+        result.setX( oddQ.col() );
+        result.setY( oddQ.row() );
         return result;
     }
 
-    private CubeHexCoord axialToCubeHexCoord( AxialHexCoord axial) {
-        int x = axial.q();
-        int z = axial.r();
-        int y = -x-z;
-        return new CubeHexCoord( x, y, z );
-    }
-
-    private OddQHexCoord cubeToOddQHexCoord( CubeHexCoord cube ) {
-        int col = cube.x();
-        int row = cube.z() + Math.floorDiv( ( cube.x() - (cube.x()&1 ) ) , 2 );
-        return new OddQHexCoord( col, row ); 
-    }
-
-    private ConnectionType getConnectionType( AxialHexCoord source, AxialHexCoord dest ) {
-        AxialHexCoord unit = dest.diff( source );
-        Map.Entry<String, AxialHexCoord> entry = UnitDirections.entrySet().stream().filter( (dir) -> dir.getValue().equals(unit) ).findFirst().orElseThrow();
+    private ConnectionType getConnectionType( OddQHexCoord source, OddQHexCoord dest ) {
+        Cluster sourceX4Offset = oddQCoordToCluster( source );
+        Cluster destX4Offset = oddQCoordToCluster( dest );
+        
+        int unitX = destX4Offset.getX() - sourceX4Offset.getX();
+        int unitY = destX4Offset.getY() - sourceX4Offset.getY();
+        OddQHexCoord x4UnitDirection = new OddQHexCoord( unitX, unitY );
+        Map.Entry<String, OddQHexCoord> entry = UnitDirections.entrySet().stream().filter( (dir) -> dir.getValue().equals( x4UnitDirection ) ).findFirst().orElseThrow( () -> { throw new NoSuchElementException( x4UnitDirection.toString() + " from " + sourceX4Offset.toString() + destX4Offset.toString() ); } );
         switch( entry.getKey() ) {
-            case "up":
+            case "N":
                 return ConnectionType.N;
-            case "down":
+            case "S":
                 return ConnectionType.S;
-            case "upright":
+            case "odd-NE":
                 return ConnectionType.NE;
-            case "upleft":
-                return ConnectionType.NW;
-            case "downright":
-                return ConnectionType.SE;
-            case "downleft":
+            case "odd-SW":
                 return ConnectionType.SW;
+            case "odd-SE":
+                return ConnectionType.SE;
+            case "odd-NW":
+                return ConnectionType.SE;
+            case "even-NE":
+                return ConnectionType.NE;
+            case "even-SW":
+                return ConnectionType.SW;
+            case "even-SE":
+                return ConnectionType.SE;
+            case "even-NW":
+                return ConnectionType.SE;
             default:
                 return ConnectionType.CUSTOM;
         }
