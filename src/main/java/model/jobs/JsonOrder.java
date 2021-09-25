@@ -1,9 +1,9 @@
 package model.jobs;
 
-import model.AbstractJson;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import model.AbstractJson;
 
 public class JsonOrder extends AbstractJson {
 

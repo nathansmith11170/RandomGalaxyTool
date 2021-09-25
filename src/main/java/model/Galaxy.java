@@ -1,9 +1,10 @@
 package model;
 
-import model.jobs.JsonJob;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import model.jobs.JsonJob;
 
 import java.util.ArrayList;
 import java.util.List;

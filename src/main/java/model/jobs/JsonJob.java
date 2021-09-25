@@ -1,9 +1,9 @@
 package model.jobs;
 
-import model.AbstractJson;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import model.AbstractJson;
 
 public class JsonJob extends AbstractJson {
 

@@ -2,10 +2,10 @@ package com.application.controllers;
 
 import com.vaadin.flow.server.StreamResource;
 
-import abstractmodel.AxialHexMapSquare;
-import abstractmodel.HexagonalMaze;
-import abstractmodel.MazeBitmap;
 import configurationmodel.GeneratorConfig;
+import model.AxialHexMapSquare;
+import model.HexagonalMaze;
+import model.MazeBitmap;
 
 public class GeneratorController {
     private AxialHexMapSquare grid;

@@ -1,0 +1,404 @@
+{
+    "Sectors": [
+        {
+            "Name": "Tharka's Ravine",
+            "Description": "The Split, Tharka, spent many years trapped in this sector during a prolonged campaign against the Boron. After the gate shutdown, this sector was thought to be lost."
+        },
+        {
+            "Name": "Hewa's Twin",
+            "Description": "Hewa's Twin is considered to be a profitable venture by the Teladi Company, who rediscovered this sector after the gate shudown."
+        },
+        {
+            "Name": "Trinity Sanctum",
+            "Description": "Trinity Sanctum is an important holy site for the Paranid, and the stronghold of the Godrealm of the Paranid."
+        },
+        {
+            "Name": "Eleventh Hour",
+            "Description": "This sector was named after a shipping captain got stranded here without alcoohol for a very long time, only to be discovered in the eleventh hour by a passerby."
+        },
+        {
+            "Name": "Path to Profit",
+            "Description": "The Teladi company named this sector either because it was on a shipping lane that they thought was profitable, or because it contained resources that they thought would bring wealth. Only time will tell which is true."
+        },
+        {
+            "Name": "Pious Mists",
+            "Description": "This portion of a wider nebula was dubbed Pious Mists after a Paranid explorer miraculously emerged unscathed from an electrical storm. It has become a minor pilgrimage site."
+        },
+        {
+            "Name": "Matrix #79B",
+            "Description": "Once a powerful Xenon holdout, this sector may yet reveal itself to be hazardous."
+        },
+        {
+            "Name": "Silent Witness",
+            "Description": "Great atrocities occurred here in times long past."
+        },
+        {
+            "Name": "Turquoise Sea",
+            "Description": "Once a boron colony, no one can be quite certain about the history of this sector after the gate shutdown."
+        },
+        {
+            "Name": "True Sight",
+            "Description": "A sector that was once the home to a monastery of the Goner, but after the gate shutdown the whereabouts of its previous inhabitants are unknown."
+        },
+        {
+            "Name": "Frontier Edge",
+            "Description": "This sector was once on the frontier of civilized space, but after the gate shutdown who can say if that is true any longer?"
+        },
+        {
+            "Name": "Matrix #598",
+            "Description": "Once a powerful Xenon holdout, this sector may yet reveal itself to be hazardous."
+        },
+        {
+            "Name": "Litany of Fury",
+            "Description": "A sector plagued by warfare and devastation, prior to the gate shutdown. And perhaps it will yet live up to its title."
+        },
+        {
+            "Name": "Eighteen Billion",
+            "Description": "Contrary to official statements by the Teladi Company, the name of the system refers to a historical and, to them, very embarrassing charitable donation by one Isemados Sibasomos Nopileos IV. Some Teladi still hold her idealistic motives dear, though, and try to live by her example.\nThey are currently looking to enlist a like-minded, charitable person to establish affordable living conditions on the planet. They can't offer much in the way of payment, but is a good deed not its own reward?"
+        },
+        {
+            "Name": "Second Contact",
+            "Description": "This sector was named after the first reactivation of the gate network, but subsequently the border between the Argon and the Antigone was changed."
+        },
+        {
+            "Name": "Thuruk's Demise",
+            "Description": "May he rest in peace, Thuruk the Mighty, who choked on a pitted olive while sampling exotic human cuisine."
+        },
+        {
+            "Name": "Morning Star",
+            "Description": "One of the dozen Argon outposts destroyed during the First Xenon Conflict, Morning Star was only rediscovered after the most recent Jump Gate realignment, with archaeologists still uncovering many of the homes and factories laid to waste by the Terraformers during that conflict."
+        },
+        {
+            "Name": "Zyarth's Dominion",
+            "Description": "Home to the venerable Family Zyarth, the most recent in a long line of conquering warlords."
+        },
+        {
+            "Name": "Guiding Star",
+            "Description": "Initially, the Argon Federation rushed to claim this system for its resources in anticipation of a potential conflict with the Terran Navy. At first, the colonists were weary of the vulnerability their remote position brought with it, but since those early stages of settlement, they managed to developed a sizeable industry, capable of sustaining and defending the system despite the distance to the heart of the Federation.\n\nThis self-reliance would prove critical when the Jump Gates disrupted the exchange of supplies between Guiding Star and the rest of the Federation. It also gave the colonists a fighting chance against Split families looking to gain a foothold in the system and enslaving its inhabitants."
+        },
+        {
+            "Name": "Sol",
+            "Description": "The home of the human race, a world of varied terrain with a long history of conflict and struggle. Now the bastion of the Terran Protectorate."
+        },
+        {
+            "Name": "Savage Spur",
+            "Description": "This system was once heavily infested by Kha'ak, and so remained mostly uninhabited apart from the occasional Paranid explorer who dared to encroach. Due to its secluded nature, the system was also rumoured to be a haven for ruthless pirates who tried to avoid outside scrutiny. Shortly before the Jump Gates shut down, a sizeable Xenon fleet entered the system and began decimating the Kha'ak presence. It is entirely plausible that unsuspecting pirates were caught in the crossfire and found themselves trapped in close proximity to the Xenon, unable to escape. One can only wonder how long they held out before they perished."
+        },
+        {
+            "Name": "Heretic's End",
+            "Description": "Originally discovered and claimed by the Paranid, Heretic's End became one of the most famous systems in the Jump Gate network after the building and activation of the Earth Gate and the massive battle between the Kha'ak and combined Terran and Commonwealth forces. While Sol remained connected to the Jump Gate network, Heretic's End remained under heavy Terran protection, but when it became obvious that Jump Gates were failing too quickly for the connection to possibly remain stable, the system was swiftly abandoned, fading back into obscurity."
+        },
+        {
+            "Name": "Two Grand",
+            "Description": "This bustling system used to be crucial to the Teladi Company's expansionist efforts. It supported the passing Teladi ships on their way to more remote systems. However, after the Gates shut down and colonisation efforts took a back seat to survival."
+        },
+        {
+            "Name": "Getsu Fune",
+            "Description": "Before the shutdown of the Jump Gates, Getsu Fune was widely regarded as the crown jewel of the Community of Planets' newfound cooperation. After the shutdown, however, the isolated sector became the site of a fiery turf war as populations of different races fought for resources."
+        },
+        {
+            "Name": "Wretched Skies",
+            "Description": "Once a lawless system inhabited by lesser Split families and Paranid colonists, this sector received its name from the lamentable weather effects on the surface of its predominant world. Ghastly."
+        },
+        {
+            "Name": "Segaris",
+            "Description": "During the Second Terraformer war, the people of Terranova fled their planet after the Xenon wreaked havoc on the ecosystem and made it unable to sustain life. Oddly, the Xenon attacks did little damage to the man-made structures there, and much of New Portsmouth, Terranova's principle settlement, was preserved. Many artefacts of daily life were left behind by those fleeing the planet at short notice."
+        },
+        {
+            "Name": "The Void",
+            "Description": "I fear sleep as one fears a deep hole, full of vague terror. Where to, who knows? I see only infinity at every window... - Charles Baudelaire"
+        },
+        {
+            "Name": "Family Nhuut",
+            "Description": "This sector was once the home to Family Nhuut, a very powerful family that has risen to prominence only recently. They are notable for displaying a very militaristic and expansionist attitude, even for Split standards. After the second gate realignment, their fate remains unknown."
+        },
+        {
+            "Name": "Open Market",
+            "Description": "Once a lucrative trading sector in Teladi control, after the recent gate realignment the future of this sector has yet to be decided."
+        },
+        {
+            "Name": "Grand Exchange",
+            "Description": "Another testimony to the great profitability of Teladi enterprises, this mega exchange was at one time the center of all things monetary in the galaxy. After the recent gate realignment the future profits in this sector are less certain."
+        },
+        {
+            "Name": "Atiya's Misfortune",
+            "Description": "In the Terrans' attempts to expand beyond their borders in the latter days of the Terran Conflict, systems such as Toride and Atiya's Misfortune became beacons of hope for a race that was lost and broken. However, scared and on the run, the Terrans did not properly scout their colony locations. While Toride's fate is still unknown, Atiya's Misfortune was quickly discovered to contain a heavy Xenon presence, forcing the Terrans to flee once more."
+        },
+        {
+            "Name": "Faulty Logic",
+            "Description": "Having had less direct contact with the Xenon than other races, and with their superior understanding of mathematics, the Paranid have always tolerated artificial intelligence more than other races. However, after the loss of several sectors during the first gate realignment, they also know the risks that come with it, having seen one of their most secure systems overrun through a Xenon logic bomb. While every Paranid ship lay paralysed in space, the Xenon wiped them out. Many Paranid have since begun to wonder whether their tolerance for the machines has made them susceptible to further assault."
+        },
+        {
+            "Name": "Memory of Profit",
+            "Description": "Savaged by the same incursion that saw Scale Plate Green occupied by the Xenon during the first gate realignment, Memory of Profit was once an economic stronghold of the Teladi Company, even housing the headquarters of Nividium Mining and Manufacturing Corporation (PTNI)."
+        },
+        {
+            "Name": "Company Regard",
+            "Description": "A new star system discovered after the first gate realignment, Company Regard remains mostly unmolested territory."
+        },
+        {
+            "Name": "Gaian Prophecy",
+            "Description": "This sector was discovered by Pioneer Initiative explorers venturing out of Brennan's Triumph in times past."
+        },
+        {
+            "Name": "Heart of Acrimony",
+            "Description": "A system of great significance to the Free Families. While they have made an effort to distance themselves from the imperialist patriarchal structures of old, the Free Families still hold with the tradition of honouring their fallen Patriarchs. In a show of deference, they host a funeral procession, which is usually only attended by family members and most distinguished guests. At the culmination of the ceremony, a funeral ship is sent through an otherwise deactivated accelerator.\n\nDue to its relative distance to the Zyarth Patriarchy, this system is also a gathering place for various factions opposed to Zyarth's patriarchal rule."
+        },
+        {
+            "Name": "Tharka's Ravine",
+            "Description": "This system was first explored by the Split Patriarch Tharka, whose family were venturing into the unknown after the Argon Federation denied them access to the Boron territories. Tharka was once a powerful family, but conflicts with Patriarch Rhonkar and dwindling resources pushed them further and further into remote space. They were driven by the need to locate and settle planets rich in resources in order to repair their standing.\n\nTharka's Ravine represents the furthest family Tharka have come in their ambitious pursuit. However, the further they travelled, the more vulnerable they made themselves, and trailblazers can only endeavour so far before coming into contact with Xenon fleets. The Gate Shutdown only accelerated the decline of the Tharka family when they found themselves stretched thin, cut off from any outside aid, and trapped with a Xenon presence."
+        },
+        {
+            "Name": "Matrix #9",
+            "Description": "Once a powerful Xenon holdout, this sector may yet reveal itself to be hazardous."
+        },
+        {
+            "Name": "Emperor's Pride",
+            "Description": "Once, this system was known as a shining example of the Split civilisation's determination and wealth. It used to be the most remote frontier of Emperor Thuruk's domain. Despite its considerable distance from the rest of the Split systems, the Split colonising this space were able to build up a truly special and impressively wealthy community, in which they shared their riches freely. They made Emperor's Pride's lush, green planet their home. Perhaps it was the great distance to Thuruk's Empire that made them grow peaceful and complacent. Eventually they made an effort to keep out of the other families' petty conflicts. \n\nTheir dropped guard, and distance to the greater Split realm, would ultimately be their undoing, when Paranid hard-line religious fanatics invaded the system in pursuit of its abundant resources. They drove out or killed all of the Split colonists. But, as is so often the case, these invaders, too, were not meant to last. Shortly before the Gate Shutdown, they were unexpectedly besieged by Xenon forces, and when the Godrealm of the Paranid was finally able to re-establish a connection, the scouts found the system devoid of their brethren."
+        },
+        {
+            "Name": "Family Tkr",
+            "Description": "Home of the Family Tkr, who have long been held in low esteem by other Split families. They were held responsible for an incident on their shipyard, which left over five hundred Split dead in its wake. This caused a loss of honor, and the other families quickly turned their backs. Additionally, the destruction of the shipyard left their economy crippled. They would have faded away, were it not for the Patriarch of all Split at the time recognising the value of an indebted and fragile family in close proximity to Teladi systems. The Family Tkr was offered protection from the other families by the Patriarch as long as they supplied him with slaves and resources from outside Split space. Split politics are a chaotic affair, and the historic records are muddled, but some scholars have proposed theories that the shipyard incident might not have been an accident, but targeted sabotage, to keep an ambitious family in line.\n\nMore recently, Patriarch Zyarth has made significant efforts to fold Family Tkr back into his empire. He recognised that despite their lowly status they are a still an important factor in the Split hierarchy, and losing their support would shake up the fragile dynamics of power."
+        },
+        {
+            "Name": "Holy Vision",
+            "Description": "Holy Vision has become the heart of the Holy Order of the Pontifex. It supplies the Holy Order with the means to defend itself against the Xenon threat, and a significant amount of resources to promote their Paranid faith. The system derives its name from the vision of a united Paranid announced by the Pontifex Maximus Haereticus (name not supported by Holy Order). It was in this system that the Pontifex broadcast his presence and intentions to the wider Paranid society, decreed that all Paranid are welcome to convert and join the Holy Order of the Pontifex, and declared the crusade against the Godrealm of the Paranid."
+        },
+        {
+            "Name": "Matrix #451",
+            "Description": "Once a powerful Xenon holdout, this sector may yet reveal itself to be hazardous."
+        },
+        {
+            "Name": "Fires of Defeat",
+            "Description": "A sector plagued by warfare and devastation, prior to the gate shutdown. And perhaps it will yet live up to its title."
+        },
+        {
+            "Name": "Profit Center Alpha",
+            "Description": "Situated between two uninhabitable dust planets, this Teladi system once produced raw materials and light weapons for military and exploration ships. It was earmarked by the Profit Guild before the Jump Gate shutdown for priority expansion and investment.\n\nAs chance would have it, after the first realignment, this sector became ideally situated for such investment, finding itself placed on The Ring after the Jump Gate fluctuation stabilised. The Teladi Company were only too happy to allow such a highway construction to be built through the system in order to allow quicker and more efficient profit. After the more recent realignment, this sector remains the headquarters of the Teladi Company."
+        },
+        {
+            "Name": "Sacred Relic",
+            "Description": "Long the heart of the Paranid scientific community, with its mysterious planet and one lone relic of a distant past, Sacred Relic quickly became the home of the Alliance of the Word during the Jump Gate shutdown, and has since remained a place of discovery and exploration for all across the Jump Gate network.\n\nIt was from here that the first AoW drones were launched to Argon Prime and Kingdom End, and also the location of the Alliance's single shipyard, where they aim to launch generation ships to send aid to systems still thought disconnected from any Jump Gates."
+        },
+        {
+            "Name": "Argon Prime",
+            "Description": "Colonised by the survivors of the First Terraformer War, the Sonra system is seen by many as the birthplace of modern Argon civilization and culture. Renamed from Sonra to R. Gunne to commemorate the hero of the First Terraformer War, then to Argon Prime, the system has served as the capital of the Federation for all of its five hundred and eighty-four years. As such, the fourth planet, is steeped in history, and even despite the Jump Gate shutdown, the system once again thrives."
+        },
+        {
+            "Name": "Brennan's Triumph",
+            "Description": "Originally connected to Earth via a Jump Gate, Brennan's Triumph's most significant planet, Taurus, was the first planet outside the Sol system to be colonised by human explorers."
+        },
+        {
+            "Name": "Pontifex's Claim",
+            "Description": "Though the Holy Order of the Pontifex does not yet have an officially recognised capital, it was from Pontifex's Claim that the Pontifex Maximus Haereticus (name not supported by Holy Order) was hatched and so has been claimed as the Order's capital once the Paranid Civil War has been concluded. Despite the interruption of the second gate realignment, this sector is still supposedly claimed by the Holy Order of the Pontifex." 
+        },
+        {
+            "Name": "Hatikvah's Choice",
+            "Description": "Once situated on the Ring, the second gate realignment threw all the plans made by the Federation and the Hatikvah Free Trade League into disarray. The future and even the recent history of this sector remain unknown."
+        },
+        {
+            "Name": "Antigone Memorial",
+            "Description": "Once an Argon Federation border system that survived one of the worst Xenon incursions in Argon history, Antigone Memorial made it through the shutdown through the sheer willpower of its people, who banded together and unified in order to make sure their beloved home did not once again become crippled by such dark times.\n\nIt now serves as the capital of the fledgling Antigone Republic and has seen a long stretch of peace and growth due to its distance from both major Xenon threats and the Holy Order of the Pontifex."
+        },
+        {
+            "Name": "Tharka's Cascade",
+            "Description": "The uncovered passages of She t'Tharka tell that it was in this sector that the Split ships - mostly civilian transporters and supply ships - desperately attempting to flee 'The Fade' were systematically cut down, destroyed one by one until none remained. It is unknown if any of the Split, including She, survived, as her final passages have not yet been found." 
+        },
+        {
+            "Name": "Lasting Vengeance",
+            "Description": "Once situated on the uncharted outskirts of the New Duchy sectors, Lasting Vengeance became known as a safe haven for smugglers, marauders and other entrepreneurial types who wished to do business in Paranid and Split territory. Behind the various pirate leaders was a guiding hand, the self-proclaimed Pirate Duke who, faced with the sudden collapse of all outside communication, harnessed the indomitable spirit of his followers and led them towards colonisation. As the years passed by after the shutdown, the once-warlike Buccaneers became content with their new purpose, while Lasting Vengeance similarly flourished in an era of relative peace and prosperity. Few remember when the dreaded armaments of Duke's Haven and its fleet fell silent for the last time.\n\nWhat happened to the pirate operation in the years that followed remains unknown. It is said that when the Holy Order prospectors traversed the sector's Gate on the day of its realignment, desperate for new resources for their starving empire, all they encountered was a sea of ruin."
+        },
+        {
+            "Name": "Rhy's Defiance",
+            "Description": "This system used to be the home of the venerable Family Rhy. Patriarch Rhy was a proud and respected ruler who kept his subjects in line throughout the isolation brought upon them by the Gates shutting down. He maintained a tight network of allies, the most notable of which was the Patriarch of all Split, Rhonkar, whom Rhy served as a spymaster in his expansionist campaigns. Rhy could trust his patron to keep the other Split families from making moves against him. This secure situation changed considerably when the Gates reactivated again, and Rhy found himself in close proximity to Xenon territory.\n\nHe reached out to Rhonkar for help, but he soon realised that he was on his own. Patriarch Zyarth had overthrown Rhonkar and was looking to establish himself as the uncontested ruler of Split society. He offered Patriarch Rhy a helping hand, but only under the condition that he subject himself to Zyarth rule. The proud Patriarch refused the offer. Instead, he mounted a final defence against the encroaching Xenon invaders. Some Split subjects fled the system, looking to join the newly established Free Families, but most stood their ground until the very end."
+        },
+        {
+            "Name": "Bright Promise",
+            "Description": "The Teladi invested much into making this sector a trade hub after the first gate realignment, but only time will tell if that was a wise decision in light of the second."
+        },
+        {
+            "Name": "Family Zhin",
+            "Description": "Ruled at the time by the Patriarch Dhiok, this sector was plunged into a state of perpetual turmoil during the Jump Gate shutdown."
+        },
+        {
+            "Name": "Unholy Retribution",
+            "Description": "The Paranid priests of this sector accused its early colonists of not adhering to key tenets of the Paranid religion. These accusations were accompanied by severe punishments to the point where the colonists fought back and, in what became known as the Unholy Retribution, killed all of their priests. This uprising was not tolerated by the Paranid, and the rebels, despite defending their new homeland with all the ships they could muster, were defeated. While the Paranid officially claimed that there were no rebel survivors, a small Paranid task force still catalogues genetic markers in this area to identify descendants of the heretics and trace heretic cells."
+        },
+        {
+            "Name": "Cardinal's Redress",
+            "Description": "This system used to be the capital of the Second Duchy of the Paranid."
+        },
+        {
+            "Name": "Scale Plate Green",
+            "Description": "Survivor of a significant Xenon incursion, this sector was once a central part of the Teladi Company's expansion strategy."
+        },
+        {
+            "Name": "The Reach",
+            "Description": "Another recent discovery which was unearthed from the fathomless depths of space during the gate realignments, this sector remains of contested ownership."
+        },
+        {
+            "Name": "Black Hole Sun",
+            "Description": "Its history as a technological hub has certainly come in useful for ihabitants and refugees from this sector during the extended periods of turmoil brought on by the gate realignments."
+        },
+        {
+            "Name": "Family Kritt",
+            "Description": "This system was once home to the ferocious family Njy, allies to the Patriarch of all Split, Rhonkar. Family Njy had a reputation of using ruthlessly ambitious tactics to gain any advantage over their adversaries. They often rigged their ships' engines with explosive devices to inflict coordinated damage on their opponents' carriers when they came into range. It was not uncommon for the crews stationed on the rigged ships to be oblivious to their strategies. Incredibly successful at first, their conduct eventually alienated them from their fellow Split families. When Patriarch Zyarth's fleet approached their Gate, Family Njy realised too late that they stood alone. They were succeeded by the family Kritt, who were careful to not repeat their predecessors' mistake. They swore fealty to the new Patriarch of all Split, Zyarth, and made an effort to reach out to other families residing in the system."
+        },
+        {
+            "Name": "Nopileos' Fortune",
+            "Description": "Named after the patron of Teladi adventurousness, this system is where a majority of the refugees from the Xenon-ravaged found their new home. Its proximity to some of the network's main trading nodes proved vital for the survival of the pilgrim community in the early days following their arduous journey. Nopileos' Fortune has since become a neutral ground between traders and adventure-seekers of all factions and races, guaranteeing a wide range of individual freedoms.\n\nIn remembrance of the terrors that had been forever ingrained in their collective memory, an unwritten agreement was struck between the various syndicates, outfits and corporations of this region: in the face of external threats, all internal conflict is to be forgotten. Though at first this pact garnered little attention from the rest of the post-realignment Community, its more recent profit-oriented amendments have certainly begun to raise concerns."
+        },
+        {
+            "Name": "Ianamus Zura",
+            "Description": "The once long-lost home system of the Teladi race, this system remains as dear as can be for the coldblooded lizard species. That is to say, it would probably cost more than two credits to purchase."
+        },
+        {
+            "Name": "Temple Home",
+            "Description": "This sector was once a place of worship, but the cult which once utilized it has been forgotten by time, even if the sector's name remains on every modern starmap, except for those made by Paranid, who feared that the name would mislead honest pilgrims."
+        },
+        {
+            "Name": "Dawn's Retreat",
+            "Description": "This sector was unknown the the galactic community prior to the second gate realignment, after which it was quickly added to the maps under this name due to the sponsorship of a billionaire whose daughter's name is Dawnn."
+        },
+        {
+            "Name": "Vague Remembrance",
+            "Description": "When this sector turned up after the second realignment, the astronomer that noticed it thought that he had seen it before, and ignored it. When his rival at a neighboring university claimed the discover for himself, he chose this name to rub salt in the wound."
+        },
+        {
+            "Name": "Bitter Loss",
+            "Description": "When the second gate realignment seemed to have settled, there was a prize offered for the first explorer to submit information regarding valuable resources. This sector was flagged as potentially profitable, but the explorer who surveyed it didn't receive the reward, hence the name."
+        },
+        {
+            "Name": "Two Tides",
+            "Description": "A displaced Boron named this sector when it was discovered, out of nostalgia and because the planet in this sector is composed of many oceans, with two moons."
+        },
+        {
+            "Name": "Honor Lost",
+            "Description": "In times of turmoil, it is best not to depend upon honor. The Split explorers who discovered this sector can attest to that, when they became stranded on the surface of the planet and resorted to cannabilism in order to survive. When a rescue team arrived, they executed the survivors as honorless cretins."
+        },
+        {
+            "Name": "Broken Faith",
+            "Description": "Paranid caught up in the Civil War attempted to flee to this sector after the gate realignment, but a fanatic was hidden amongst them, and they reported their location to the Holy Order. THe resulting slaughter made many Paranid with weak stomachs in the Holy Order defect to the Godrealm."
+        },
+        {
+            "Name": "Shadow Trench",
+            "Description": "Yea though I walk through the valley..." 
+        },
+        {
+            "Name": "Farnham's Legend",
+            "Description": "The stars may have never been meant for humanity, but humanity isn't very good at following directions."
+        },
+        {
+            "Name": "Olmancketslat's Treaty",
+            "Description": "Lost after the first gate realignment, this sector reemerged mostly abandoned, and its future remains uncertain."
+        },
+        {
+            "Name": "Hatikvah's Faith",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Freedom's Reach",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Credits Received",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Farpoint Relay",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Treasure Chest",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Thyn's Abyss",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Thuruk's Beard",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Mandalay",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Spring of Belief",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Unseen Domain",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Redemption",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Menelaus' Oasis",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Perpetual Sin",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Weaver's Tempest",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Shining Currents",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Mists of Elysium",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Belt of Aguilar",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Cathedral of Xaar",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Patriarch's Keep",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Circle of Labor",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Harmony of Perpetuity",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Home of Opportunity",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Lehan's Legacy",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Split Fires",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Atreus' Clouds",
+            "Description": "No description available."
+        },
+        {
+            "Name": "Blue Profit",
+            "Description": "No description available."
+        },
+        {
+            "Name": "SpaceWeed Drift",
+            "Description": "No description available."
+        }
+    ]
+}

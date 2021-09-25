@@ -1,4 +1,4 @@
-package abstractmodel;
+package model;
 
 import java.util.Objects;
 
@@ -42,5 +42,9 @@ public class AxialHexCoord {
 
     public AxialHexCoord add(AxialHexCoord n2) {
         return new AxialHexCoord( this.q() + n2.q(), this.r() + n2.r() );
+    }
+
+    public AxialHexCoord diff(AxialHexCoord n2) {
+        return new AxialHexCoord( this.q() - n2.q(), this.r() - n2.r() );
     }
 }
