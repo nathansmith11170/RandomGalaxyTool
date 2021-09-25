@@ -12,8 +12,8 @@ public class GeneratorController {
     private HexagonalMaze map;
 
     public StreamResource generateMap( GeneratorConfig generatorConfig ) {
-        grid = new AxialHexMapSquare(generatorConfig.clusters);
-        map = new HexagonalMaze( grid, generatorConfig.passes, generatorConfig.deadPercent );
+        grid = new AxialHexMapSquare( generatorConfig.getClusters() );
+        map = new HexagonalMaze( grid, generatorConfig.getPasses(), generatorConfig.getDeadPercent().doubleValue() );
         MazeBitmap mapImg = new MazeBitmap(map);
 
         StreamResource previewResource = new StreamResource( "preview.png", () -> mapImg.getStream());

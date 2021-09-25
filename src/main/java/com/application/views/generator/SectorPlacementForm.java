@@ -1,31 +1,34 @@
 package com.application.views.generator;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import com.application.views.generator.events.GenerateEvent;
 import com.application.views.generator.events.NextEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.Key;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.details.Details;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.converter.StringToBigDecimalConverter;
+import com.vaadin.flow.data.converter.StringToIntegerConverter;
 import com.vaadin.flow.shared.Registration;
 
+import configurationmodel.DecimalMagnitudeValidator;
 import configurationmodel.GeneratorConfig;
+import configurationmodel.IntegerMagnitudeValidator;
 
-public class SectorPlacementForm extends FormLayout {
-    TextField sectorCount = new TextField( "Sector Count" );
-    TextField connectionDensity = new TextField( "Connection Density" );
-    TextField percentDeadZones = new TextField( "Percent of the Grid Which is Empty" );
+public class SectorPlacementForm extends FormLayout {  
+    Binder<GeneratorConfig> binder = new Binder<>(GeneratorConfig.class);
+    
+    TextField txtClusters = new TextField( "Sector Count" );
+
+    TextField txtPasses = new TextField( "Connection Density" );
+
+    TextField txtDeadPercent = new TextField( "Percent of the Grid Which is Empty" );
 
     GeneratorConfig generatorConfig = new GeneratorConfig();
-
-    Details edits = new Details();
 
     Button generate = new Button( "Generate" );
     Button next = new Button( "Next" );
@@ -33,18 +36,39 @@ public class SectorPlacementForm extends FormLayout {
     public SectorPlacementForm() {
         addClassName( "sector-placement-form" );
 
-        edits.setVisible( false );
-        edits.setOpened( false );
-        edits.setSummaryText( "Form Errors" );
+        binder.forField(txtClusters)
+            .withConverter(new StringToIntegerConverter("Enter a number"))
+            .asRequired()
+            .withValidator(new IntegerMagnitudeValidator(4, 256))
+            .bind(GeneratorConfig::getClusters, GeneratorConfig::setClusters);
+        binder.forField(txtPasses)
+            .withConverter(new StringToIntegerConverter("Enter a number"))
+            .asRequired()
+            .withValidator(new IntegerMagnitudeValidator(1, 5))
+            .bind(GeneratorConfig::getPasses, GeneratorConfig::setPasses);
+        binder.forField(txtDeadPercent)
+            .withConverter(new StringToBigDecimalConverter("Enter a decimal number"))
+            .asRequired()
+            .withValidator(new DecimalMagnitudeValidator("0", "0.50"))
+            .bind(GeneratorConfig::getDeadPercent, GeneratorConfig::setDeadPercent);
+        binder.setBean(generatorConfig);
 
-        sectorCount.setHelperText( "Enter an integer between 4 and 256." );
-        connectionDensity.setHelperText( "Enter an integer between 1 and 5, 5 is densest." );
-        percentDeadZones.setHelperText( "Enter an integer between 0 and 50." );
+        binder.addValueChangeListener( (event) -> {
+            if(binder.isValid()) {
+                generate.setEnabled(true);
+            }
+            else {
+                generate.setEnabled(false);
+            }
+        } );
 
-        add( edits,
-            sectorCount,
-            connectionDensity,
-            percentDeadZones,
+        txtClusters.setHelperText( "Enter an integer between 4 and 256." );
+        txtPasses.setHelperText( "Enter an integer between 1 and 5, 5 is densest." );
+        txtDeadPercent.setHelperText( "Enter an decimal between 0 and 0.50." );
+
+        add(txtClusters,
+            txtPasses,
+            txtDeadPercent,
             createButtonsLayout() );
     }
 
@@ -55,72 +79,16 @@ public class SectorPlacementForm extends FormLayout {
 
     private HorizontalLayout createButtonsLayout() {
         generate.addClickShortcut( Key.ENTER );
-
+        generate.setEnabled( false );
         next.setEnabled( false );
 
         generate.addClickListener( ( event ) -> {
-            List<String> editList = validate();
-            if ( editList.size() == 0 ) {
-                edits.setVisible( false );
-                next.setEnabled( true );
-                generatorConfig.clusters = Integer.parseInt( sectorCount.getValue() );
-                generatorConfig.passes = Integer.parseInt( connectionDensity.getValue() );
-                generatorConfig.deadPercent = Integer.parseInt( percentDeadZones.getValue() ) / 100.0;
-                fireEvent( new GenerateEvent( this, generatorConfig ) );
-            }
-            else {
-                edits.setVisible( true );
-                editList.forEach( ( m ) -> {
-                    edits.addContent( new Text( String.format( "%s\n", m ) ) );
-                } );
-            }
+            next.setEnabled( true );
+            fireEvent( new GenerateEvent( this, generatorConfig ) );
         } );
 
         next.addClickListener( event -> fireEvent( new NextEvent( this, generatorConfig ) ) );
 
         return new HorizontalLayout( generate, next );
-    }
-
-    private List<String> validate() {
-        List<String> edits = new ArrayList<>();
-
-        try { 
-            int sectors = Integer.parseInt( sectorCount.getValue() );
-            if ( sectors > 256 ) {
-                edits.add( "Sector count is too large." );
-            }
-            else if ( sectors < 4 ) {
-                edits.add( "Sector count is too small." );
-            }
-        } catch(NumberFormatException e) {
-            sectorCount.setHelperText( "Invalid contents, enter integer value" );
-            edits.add( "Sector count is not a number." );
-        }
-
-        try { 
-            int passes = Integer.parseInt( connectionDensity.getValue() );
-            if ( passes > 5 ) {
-                edits.add( "Connection density is too large." );
-            }
-            else if ( passes < 1 ) {
-                edits.add( "Connection density cannot be 0 or negative." );
-            }
-        } catch(NumberFormatException e) {
-            edits.add( "Connection density is not a number." );
-        }
-
-        try { 
-            int passes = Integer.parseInt( percentDeadZones.getValue() );
-            if ( passes > 50 ) {
-                edits.add( "The percent of the grid which is empty cannot be more than 50%" );
-            }
-            else if ( passes < 0 ) {
-                edits.add( "The percent of the grid which is empty cannot be negative." );
-            }
-        } catch(NumberFormatException e) {
-            edits.add( "The percent of the grid which is empty must be a number." );
-        }
-
-        return edits;
     }
 }
