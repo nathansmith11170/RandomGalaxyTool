@@ -58,4 +58,33 @@ public enum Faction {
         this.raceAbbreviation = raceAbbreviation;
         this.managerName = managerName;
     }
+
+    public static Faction getEnum( String n ) {
+        switch( n ) {
+            case "argon":
+                return ARGON;
+            case "terran":
+                return TERRAN;
+            case "paranid":
+                return PARANID;
+            case "teladi":
+                return TELADI;
+            case "split":
+                return SPLIT;
+            case "xenon":
+                return XENON;
+            case "freesplit":
+                return FREESPLIT;
+            case "pioneers":
+                return PIONEER;
+            case "ministry":
+                return MINISTRY;
+            case "antigone":
+                return ANTIGONE;
+            case "holyorder":
+                return HOLYORDER;
+            default:
+                return null;
+        }
+    }
 }

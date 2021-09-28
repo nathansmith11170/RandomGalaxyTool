@@ -60,7 +60,9 @@ public class GeneratorView extends Div {
     }
 
     private void updateMapPreview( PopulateEvent event ) {
-
+        pageLayout.remove( mapPreview );
+        mapPreview.populateMap( event.getGeneratorConfig() );
+        pageLayout.addToSecondary( mapPreview );
     }
 
     private void factionPlacementToFinalStepsTransition( NextEvent event ) {

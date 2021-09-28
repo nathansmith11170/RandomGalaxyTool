@@ -7,6 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Optional;
 import java.util.Set;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
@@ -76,12 +77,57 @@ public class MazeBitmap {
         // Draw ellipses
         this.HexMaze.maze.keySet().forEach( (n) -> {
             Vector2D node = new Vector2D( n, this.size );
+            Optional<Pair<String, OddQHexCoord>> potentialSector = ownedSectors.stream().filter( sector -> sector.getValue1().equals( n ) ).findFirst();
+            if( potentialSector.isPresent() ) {
+                switch( potentialSector.get().getValue0() ) {
+                    case "argon":
+                        g2.setColor( Color.BLUE );
+                        break;
+                    case "antigone":
+                        g2.setColor( Color.cyan);
+                        break;
+                    case "holyorder":
+                        g2.setColor( Color.pink );
+                        break;
+                    case "paranid":
+                        g2.setColor( Color.magenta );
+                        break;
+                    case "teladi":
+                        g2.setColor( Color.yellow );
+                        break;
+                    case "ministry":
+                        g2.setColor( Color.green );
+                        break;
+                    case "split":
+                        g2.setColor( Color.ORANGE );
+                        break;
+                    case "freesplit":
+                        g2.setColor( new Color( 239, 150, 0) );
+                        break;
+                    case "terran":
+                        g2.setColor( Color.GRAY );
+                        break;
+                    case "pioneers":
+                        g2.setColor( new Color( 32, 85, 77 ) );
+                        break;
+                    case "xenon":
+                        g2.setColor( Color.RED );
+                        break;
+                    default:
+                        g2.setColor( Color.LIGHT_GRAY );
+                        break;
+                }
+            }
+            else {
+                g2.setColor( Color.BLACK );
+            }
             Ellipse2D sector = new Ellipse2D.Double(node.x, node.y, this.size, this.size);
-            g2.draw(sector);
+            g2.fill(sector);
         });
 
         // Connect ellipses
         this.HexMaze.maze.keySet().forEach( (n) -> {
+            g2.setColor( Color.BLACK );
             Vector2D node = new Vector2D( n, this.size );
             this.HexMaze.maze.get(n).forEach( (m) -> {
                 Vector2D node2 = new Vector2D( m, this.size );

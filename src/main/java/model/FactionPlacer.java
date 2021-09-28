@@ -4,13 +4,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Optional;
 import java.util.Random;
 
-import org.apache.tomcat.jni.Time;
 import org.javatuples.Pair;
 
 import configurationmodel.GeneratorConfig;
@@ -18,7 +18,7 @@ import configurationmodel.GeneratorConfig;
 public class FactionPlacer {
 
     private Set<Pair<String, OddQHexCoord>> ownedSectors = new HashSet<>();
-    private Random rand = new Random( Time.now() );
+    private Random rand = new Random( new Date().getTime() );
     private List<Cluster> clusters;
     private Map<String, Integer> factionToSectorCountMap = new HashMap<>();
     private boolean generateConnectedTerritory;
@@ -112,43 +112,43 @@ public class FactionPlacer {
         boolean notAllFactionsPlaced = true;
         while( notAllFactionsPlaced ) {
             boolean addedASector = false;
-            if( factionToSectorCountMap.get( "argon" ) < config.getArgonSectors() ) {
+            if( factionToSectorCountMap.getOrDefault( "argon", 0 ) < config.getArgonSectors() ) {
                 addSector( "argon" );
                 addedASector = true;
             }
-            if( factionToSectorCountMap.get( "antigone" ) < config.getArgonSectors() ) {
+            if( factionToSectorCountMap.getOrDefault( "antigone", 0 ) < config.getAntigoneSectors() ) {
                 addSector( "antigone" );
                 addedASector = true;
             }
-            if( factionToSectorCountMap.get( "holyorder" ) < config.getArgonSectors() ) {
+            if( factionToSectorCountMap.getOrDefault( "holyorder", 0 ) < config.getHolyOrderSectors() ) {
                 addSector( "holyorder" );
                 addedASector = true;
             }
-            if( factionToSectorCountMap.get( "paranid" ) < config.getArgonSectors() ) {
+            if( factionToSectorCountMap.getOrDefault( "paranid", 0 ) < config.getGodrealmSectors() ) {
                 addSector( "paranid" );
                 addedASector = true;
             }
-            if( factionToSectorCountMap.get( "teladi" ) < config.getArgonSectors() ) {
+            if( factionToSectorCountMap.getOrDefault( "teladi", 0 ) < config.getTeladiSectors() ) {
                 addSector( "teladi" );
                 addedASector = true;
             }
-            if( factionToSectorCountMap.get( "ministry" ) < config.getArgonSectors() ) {
+            if( factionToSectorCountMap.getOrDefault( "ministry", 0 ) < config.getMinistrySectors() ) {
                 addSector( "ministry" );
                 addedASector = true;
             }
-            if( factionToSectorCountMap.get( "split" ) < config.getArgonSectors() ) {
+            if( factionToSectorCountMap.getOrDefault( "split", 0 ) < config.getZyarthSectors() ) {
                 addSector( "split" );
                 addedASector = true;
             }
-            if( factionToSectorCountMap.get( "freesplit" ) < config.getArgonSectors() ) {
+            if( factionToSectorCountMap.getOrDefault( "freesplit", 0 ) < config.getFreeFamiliesSectors() ) {
                 addSector( "freesplit" );
                 addedASector = true;
             }
-            if( factionToSectorCountMap.get( "terran" ) < config.getArgonSectors() ) {
+            if( factionToSectorCountMap.getOrDefault( "terran", 0 ) < config.getTerranSectors() ) {
                 addSector( "terran" );
                 addedASector = true;
             }
-            if( factionToSectorCountMap.get( "pioneers" ) < config.getArgonSectors() ) {
+            if( factionToSectorCountMap.getOrDefault( "pioneers", 0 ) < config.getSegarisSectors() ) {
                 addSector( "pioneers" );
                 addedASector = true;
             }
@@ -169,8 +169,8 @@ public class FactionPlacer {
     }
 
     private void addFactionHq( String factionName, Cluster deJureCapitol ) {
-        deJureCapitol.setFactionHq( Faction.valueOf( factionName ) );
-        String[] coordinates = deJureCapitol.getName().split(" ");
+        deJureCapitol.setFactionHq( Faction.getEnum( factionName ) );
+        String[] coordinates = deJureCapitol.getId().split(" ");
         ownedSectors.add( new Pair<>( factionName, new OddQHexCoord(Integer.parseInt( coordinates[0] ), Integer.parseInt( coordinates[1] ) ) ) );
         factionToSectorCountMap.put( factionName, 1 );
 
@@ -180,12 +180,12 @@ public class FactionPlacer {
 
     private void addFactionHq( String factionName ) {
         Cluster factionCapitol = getRandomNonOwnedCluster(clusters);
-        factionCapitol.setFactionHq( Faction.valueOf( factionName ) );
+        factionCapitol.setFactionHq( Faction.getEnum( factionName ) );
 
         List<Station> stationList = new ArrayList<>();
 
         Race stationRace;
-        switch( Faction.valueOf( factionName ).getRaceAbbreviation() ) {
+        switch( Faction.getEnum( factionName ).getRaceAbbreviation() ) {
             case "arg":
                 stationRace = Race.ARGON;
                 break;
@@ -209,20 +209,20 @@ public class FactionPlacer {
         }
 
         Station shipyard = new Station();
-        shipyard.setFaction( Faction.valueOf( factionName ) );
-        shipyard.setOwner( Faction.valueOf( factionName ) );
+        shipyard.setFaction( Faction.getEnum( factionName ) );
+        shipyard.setOwner( Faction.getEnum( factionName ) );
         shipyard.setRace( stationRace );
         shipyard.setType( StationType.SHIPYARD );
 
         Station wharf = new Station();
-        wharf.setFaction( Faction.valueOf( factionName ) );
-        wharf.setOwner( Faction.valueOf( factionName ) );
+        wharf.setFaction( Faction.getEnum( factionName ) );
+        wharf.setOwner( Faction.getEnum( factionName ) );
         wharf.setRace( stationRace );
         wharf.setType( StationType.SHIPYARD );
 
         Station defense = new Station();
-        defense.setFaction( Faction.valueOf( factionName ) );
-        defense.setOwner( Faction.valueOf( factionName ) );
+        defense.setFaction( Faction.getEnum( factionName ) );
+        defense.setOwner( Faction.getEnum( factionName ) );
         defense.setRace( stationRace );
         defense.setType( StationType.SHIPYARD );
 
@@ -230,12 +230,20 @@ public class FactionPlacer {
         stationList.add( wharf );
         stationList.add( defense );
 
-        String[] coordinates = factionCapitol.getName().split(" ");
+        String[] coordinates = factionCapitol.getId().split(" ");
         ownedSectors.add( new Pair<>( factionName, new OddQHexCoord(Integer.parseInt( coordinates[0] ), Integer.parseInt( coordinates[1] ) ) ) );
-        factionToSectorCountMap.put( factionName, 1 );
+        
 
         clusters.removeIf( sector -> sector.getName().equals( factionCapitol.getName() ) );
         clusters.add( factionCapitol );
+
+        if( factionToSectorCountMap.containsKey( factionName ) ) {
+            factionToSectorCountMap.replace( factionName, factionToSectorCountMap.get( factionName ) + 1 );
+        }
+        else {
+            factionToSectorCountMap.put( factionName, 1 );
+        }
+
     }
 
     private void addSector( String factionName )  {
@@ -243,8 +251,8 @@ public class FactionPlacer {
                 
         List<Station> stations = new ArrayList<>();
         Station defenseStation = new Station();
-        defenseStation.setFaction( Faction.valueOf( factionName ) );
-        switch( Faction.valueOf( factionName ).getRaceAbbreviation() ) {
+        defenseStation.setFaction( Faction.getEnum( factionName ) );
+        switch( Faction.getEnum( factionName ).getRaceAbbreviation() ) {
             case "arg":
                 defenseStation.setRace( Race.ARGON );
                 break;
@@ -261,7 +269,7 @@ public class FactionPlacer {
                 defenseStation.setRace( Race.SPLIT );
                 break;
         }
-        defenseStation.setOwner( Faction.valueOf( factionName ) );
+        defenseStation.setOwner( Faction.getEnum( factionName ) );
         defenseStation.setType( StationType.DEFENCE );
         stations.add( defenseStation );
 
@@ -270,6 +278,9 @@ public class FactionPlacer {
 
             clusters.removeIf( cluster -> cluster.getId().equals( prospect.get().getId() ) );
             clusters.add( prospect.get() );
+            
+            String[] coordinates = prospect.get().getId().split(" ");
+            ownedSectors.add( new Pair<>( factionName, new OddQHexCoord(Integer.parseInt( coordinates[0] ), Integer.parseInt( coordinates[1] ) ) ) );
         }
         else {
             Cluster otherProspect = getRandomNonOwnedCluster(clusters);
@@ -277,7 +288,13 @@ public class FactionPlacer {
 
             clusters.removeIf( cluster -> cluster.getId().equals( otherProspect.getId() ) );
             clusters.add( otherProspect );
+
+            String[] coordinates = otherProspect.getId().split(" ");
+            ownedSectors.add( new Pair<>( factionName, new OddQHexCoord(Integer.parseInt( coordinates[0] ), Integer.parseInt( coordinates[1] ) ) ) );
         }
+
+
+        factionToSectorCountMap.replace( factionName, factionToSectorCountMap.get( factionName ) + 1 );
     }
 
     private Cluster getRandomNonOwnedCluster( List<Cluster> clusters ) {
@@ -310,7 +327,13 @@ public class FactionPlacer {
     }
 
     private Pair<String, OddQHexCoord> clusterToPair( Cluster cluster ) {
-        String name = cluster.getStations().get(0).getFaction().getName();
+        String name;
+        if( cluster.getStations().size() == 0 ) {
+            name = Faction.OWNERLESS.toString();
+        }
+        else {
+            name = cluster.getStations().get(0).getFaction().getName();
+        } 
         String[] idSplitBySpace = cluster.getId().split( " " );
         OddQHexCoord coord = new OddQHexCoord( Integer.parseInt( idSplitBySpace[0] ), Integer.parseInt( idSplitBySpace[1] ) );
         return new Pair<>( name, coord );

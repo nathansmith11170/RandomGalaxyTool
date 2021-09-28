@@ -43,7 +43,7 @@ public class GeneratorController {
 
         MazeBitmap mapImg = new MazeBitmap( map );
 
-        StreamResource previewResource = new StreamResource( "preview.png", () -> mapImg.getStream( ownedSectors ) );
+        StreamResource previewResource = new StreamResource( "preview2.png", () -> mapImg.getStream( ownedSectors ) );
 
         return previewResource;
     }
