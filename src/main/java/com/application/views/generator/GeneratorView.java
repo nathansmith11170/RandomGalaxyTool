@@ -1,5 +1,6 @@
 package com.application.views.generator;
 
+import com.application.controllers.GeneratorController;
 import com.application.views.generator.events.GenerateEvent;
 import com.application.views.generator.events.NextEvent;
 import com.application.views.generator.events.PopulateEvent;
@@ -20,8 +21,11 @@ public class GeneratorView extends Div {
     MapPreview mapPreview;
     SplitLayout pageLayout;
 
+    GeneratorController controller;
+
     public GeneratorView() {
         addClassName( "generator-view" );
+        controller = new GeneratorController();
 
         pageLayout = new SplitLayout();
     
@@ -40,13 +44,13 @@ public class GeneratorView extends Div {
     }
 
     private void generateMapPreview(GenerateEvent event) {
-        mapPreview = new MapPreview();
+        mapPreview = new MapPreview( controller );
         mapPreview.generatePreview( event.getGeneratorConfig() );
         pageLayout.addToSecondary( mapPreview );
     }
 
     private void sectorToFactionPlacementTransition( NextEvent event ) {
-        factionPlacementForm = new FactionPlacementForm();
+        factionPlacementForm = new FactionPlacementForm( controller );
 
         factionPlacementForm.addListener( PopulateEvent.class, this::updateMapPreview );
         factionPlacementForm.addListener( NextEvent.class, this::factionPlacementToFinalStepsTransition );

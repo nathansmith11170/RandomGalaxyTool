@@ -13,7 +13,11 @@ public class MapPreview extends VerticalLayout {
     Image img;
     Scroller container = new Scroller( ScrollDirection.BOTH );
 
-    public MapPreview() {
+    GeneratorController controller;
+
+    public MapPreview( GeneratorController controller) {
+        this.controller = controller;
+
         Text previewLabel = new Text( "Map Preview" );
         container.setContent( previewLabel );
 
@@ -21,9 +25,9 @@ public class MapPreview extends VerticalLayout {
     }
 
     public void generatePreview( GeneratorConfig generatorConfig ) {
-        GeneratorController genController = new GeneratorController();
+        
         img = new Image();
-        img.setSrc( genController.generateMap(generatorConfig) );
+        img.setSrc( controller.generateMap(generatorConfig) );
         container.setContent( img );
     }
 }

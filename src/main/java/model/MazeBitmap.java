@@ -7,10 +7,13 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Set;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 
 import javax.imageio.ImageIO;
+
+import org.javatuples.Pair;
 
 public class MazeBitmap {
     private HexagonalMaze HexMaze;
@@ -65,11 +68,11 @@ public class MazeBitmap {
         }
     }
 
-    public InputStream getStream(Galaxy outputObj) {
+    public InputStream getStream( Set<Pair<String, OddQHexCoord>> ownedSectors ) {
         g2.setColor( Color.WHITE );
         g2.fillRect( 0, 0, this.width, this.height );
 
-        g2.setColor( Color.BLACK );
+        g2.setColor( Color.BLACK ); 
         // Draw ellipses
         this.HexMaze.maze.keySet().forEach( (n) -> {
             Vector2D node = new Vector2D( n, this.size );

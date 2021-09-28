@@ -16,11 +16,12 @@ public class AboutView extends Div {
             setValue("This application is in development. The development roadmap is:\n"
                     +"Generate a psuedorandom strongly connected graph with up to 6 neighbors for each node -> completed\n"
                     +"Map the graph generated to the coordinate system used in X4 and construct the Cluster array in Galaxy from Celludriel's model -> Complete\n"
-                    +"Get user input on factions, minor factions - In Progress\n"
+                    +"Get user input on factions - In Progress\n"
                     +"Assign faction locations, place stations\n"
-                    +"Assign sector resources, populations, zones\n"
-                    +"Potentially generate faction jobs for the generated map (may be impossible or inordinately difficult)\n"
-                    +"Supply resulting JSON to Celludriel's tool, get game files, offer download\n");
+                    +"Get user input on pirates\n"
+                    +"Place pirate stations\n"
+                    +"Supply resulting JSON to Celludriel's tool, get game files, offer download\n"
+                    +"Potentially generate faction jobs for the generated map (may be impossible or inordinately difficult)\n");
             setWidth("80%");
             setEnabled(false); 
         }} );
