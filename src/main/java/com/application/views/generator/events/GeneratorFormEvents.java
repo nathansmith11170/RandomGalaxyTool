@@ -1,14 +1,14 @@
 package com.application.views.generator.events;
 
-import com.application.views.generator.SectorPlacementForm;
 import com.vaadin.flow.component.ComponentEvent;
+import com.vaadin.flow.component.formlayout.FormLayout;
 
 import configurationmodel.GeneratorConfig;
 
-public abstract class SectorPlacementFormEvents extends ComponentEvent<SectorPlacementForm> {
+public abstract class GeneratorFormEvents extends ComponentEvent<FormLayout> {
     private GeneratorConfig generatorConfig;
 
-    protected SectorPlacementFormEvents( SectorPlacementForm source, GeneratorConfig generatorConfig ) {
+    protected GeneratorFormEvents( FormLayout source, GeneratorConfig generatorConfig ) {
         super( source, false );
         this.generatorConfig = generatorConfig;
     }

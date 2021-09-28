@@ -1,6 +1,8 @@
 package com.application.views.generator;
 
 import com.application.views.generator.events.GenerateEvent;
+import com.application.views.generator.events.NextEvent;
+import com.application.views.generator.events.PopulateEvent;
 import com.application.views.main.MainView;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
@@ -13,26 +15,51 @@ import com.vaadin.flow.router.RouteAlias;
 @PageTitle("Generator")
 public class GeneratorView extends Div {
     SectorPlacementForm sectorPlacementForm;
+    FactionPlacementForm factionPlacementForm;
 
     MapPreview mapPreview;
+    SplitLayout pageLayout;
 
     public GeneratorView() {
         addClassName( "generator-view" );
 
-        SplitLayout pageLayout = new SplitLayout();
+        pageLayout = new SplitLayout();
     
-        sectorPlacementForm = new SectorPlacementForm();
-        pageLayout.addToPrimary( sectorPlacementForm );
-
-        mapPreview = new MapPreview();
-        pageLayout.addToSecondary( mapPreview );
-
-        sectorPlacementForm.addListener( GenerateEvent.class, this::generateMapPreview );
+        setupSectorPlacementForm();
 
         add( pageLayout );
     }
 
+    private void setupSectorPlacementForm() {
+        sectorPlacementForm = new SectorPlacementForm();
+
+        sectorPlacementForm.addListener( GenerateEvent.class, this::generateMapPreview );
+        sectorPlacementForm.addListener( NextEvent.class, this::sectorToFactionPlacementTransition );
+
+        pageLayout.addToPrimary( sectorPlacementForm );
+    }
+
     private void generateMapPreview(GenerateEvent event) {
+        mapPreview = new MapPreview();
         mapPreview.generatePreview( event.getGeneratorConfig() );
+        pageLayout.addToSecondary( mapPreview );
+    }
+
+    private void sectorToFactionPlacementTransition( NextEvent event ) {
+        factionPlacementForm = new FactionPlacementForm();
+
+        factionPlacementForm.addListener( PopulateEvent.class, this::updateMapPreview );
+        factionPlacementForm.addListener( NextEvent.class, this::factionPlacementToFinalStepsTransition );
+
+        pageLayout.remove( sectorPlacementForm );
+        pageLayout.addToPrimary( factionPlacementForm );
+    }
+
+    private void updateMapPreview( PopulateEvent event ) {
+
+    }
+
+    private void factionPlacementToFinalStepsTransition( NextEvent event ) {
+
     }
 }

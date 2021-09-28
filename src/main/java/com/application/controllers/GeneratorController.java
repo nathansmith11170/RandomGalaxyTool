@@ -1,5 +1,8 @@
 package com.application.controllers;
 
+import java.time.Instant;
+import java.util.Date;
+
 import com.vaadin.flow.server.StreamResource;
 
 import configurationmodel.GeneratorConfig;
@@ -17,6 +20,12 @@ public class GeneratorController {
         grid = new OddQHexGridSquare( generatorConfig.getClusters() );
         map = new HexagonalMaze( grid, generatorConfig.getPasses(), generatorConfig.getDeadPercent().doubleValue() );
         outputObject.setClusters( map.toClusterList() );
+        
+        outputObject.setGalaxyName( "X4SecondRealignment" );
+        outputObject.setDate( Date.from( Instant.now() ).toString() );
+        outputObject.setSave( "0" );
+        outputObject.setSeed( Instant.now().getEpochSecond() );
+        outputObject.setVersion( "1.0.0" );
         MazeBitmap mapImg = new MazeBitmap(map);
 
         StreamResource previewResource = new StreamResource( "preview.png", () -> mapImg.getStream());

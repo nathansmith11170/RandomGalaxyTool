@@ -10,7 +10,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <vaadin.version>19.0.6</vaadin.version>
+        <vaadin.version>20.0.7</vaadin.version>
     </properties>
 
     <parent>
@@ -76,6 +76,11 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>org.javatuples</groupId>
+            <artifactId>javatuples</artifactId>
+            <version>1.2</version>
+        </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
             <!-- Replace artifactId with vaadin-core to use only free components -->
