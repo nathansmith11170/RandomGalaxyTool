@@ -2,6 +2,7 @@ package com.application.views.randomizer;
 
 import com.application.controllers.GeneratorController;
 import com.application.views.main.MainView;
+import com.application.views.randomizer.events.BackEvent;
 import com.application.views.randomizer.events.NextEvent;
 import com.application.views.randomizer.events.PopulateEvent;
 import com.application.views.randomizer.events.RandomizeEvent;
@@ -54,6 +55,7 @@ public class RandomizerView extends Div {
 
         factionPlacementForm.addListener( PopulateEvent.class, this::updateMapPreview );
         factionPlacementForm.addListener( NextEvent.class, this::factionPlacementToFinalStepsTransition );
+        factionPlacementForm.addListener( BackEvent.class, this::factionPlacementToSectorPlacementTransition );
 
         pageLayout.remove( sectorPlacementForm );
         pageLayout.addToPrimary( factionPlacementForm );
@@ -65,6 +67,11 @@ public class RandomizerView extends Div {
         pageLayout.addToSecondary( mapPreview );
     }
 
+    private void factionPlacementToSectorPlacementTransition( BackEvent event ) {
+        pageLayout.remove( factionPlacementForm );
+        pageLayout.addToPrimary( sectorPlacementForm );
+    }
+    
     private void factionPlacementToFinalStepsTransition( NextEvent event ) {
 
     }

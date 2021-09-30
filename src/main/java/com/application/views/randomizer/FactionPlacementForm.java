@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import com.application.controllers.GeneratorController;
 import com.application.views.randomizer.components.FactionSelectField;
+import com.application.views.randomizer.events.BackEvent;
 import com.application.views.randomizer.events.NextEvent;
 import com.application.views.randomizer.events.PopulateEvent;
 import com.vaadin.flow.component.ComponentEvent;
@@ -43,6 +44,7 @@ public class FactionPlacementForm extends FormLayout {
 
     RandomizerConfig config = new RandomizerConfig();
 
+    Button back = new Button( "Back" );
     Button populate = new Button("Populate");
     Button next = new Button("Next");
 
@@ -135,8 +137,9 @@ public class FactionPlacementForm extends FormLayout {
         } );
 
         next.addClickListener( event -> fireEvent( new NextEvent( this, this.config ) ) );
+        back.addClickListener( event -> fireEvent( new BackEvent( this, this.config ) ) );
 
-        return new HorizontalLayout( populate, next );
+        return new HorizontalLayout( back, populate, next );
     }
     
 }

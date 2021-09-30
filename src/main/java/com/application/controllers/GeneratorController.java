@@ -2,6 +2,7 @@ package com.application.controllers;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import model.OddQHexCoord;
 
@@ -11,6 +12,7 @@ import org.javatuples.Pair;
 
 import configurationmodel.RandomizerConfig;
 import model.OddQHexGridSquare;
+import model.Cluster;
 import model.FactionPlacer;
 import model.Galaxy;
 import model.HexagonalMaze;
@@ -24,7 +26,6 @@ public class GeneratorController {
     public StreamResource randomizeMap( RandomizerConfig randomizerConfig ) {
         grid = new OddQHexGridSquare( randomizerConfig.getClusters() );
         map = new HexagonalMaze( grid, randomizerConfig.getPasses(), randomizerConfig.getDeadPercent().doubleValue() );
-        outputObject.setClusters( map.toClusterList() );
         
         outputObject.setGalaxyName( "X4SecondRealignment" );
         outputObject.setDate( Date.from( Instant.now() ).toString() );
@@ -39,7 +40,12 @@ public class GeneratorController {
     }
 
     public StreamResource populateMap( RandomizerConfig generatorConfig ) {
-        Set<Pair<String, OddQHexCoord>> ownedSectors = new FactionPlacer().placeFactions( outputObject, generatorConfig );
+        FactionPlacer placer = new FactionPlacer();
+        List<Cluster> clusterList = placer.setClusters( this.map );
+        Set<Pair<String, OddQHexCoord>> ownedSectors = placer.placeFactions( this.map, generatorConfig );
+
+        outputObject.setClusters( clusterList );
+
 
         MazeBitmap mapImg = new MazeBitmap( map );
 
@@ -49,6 +55,6 @@ public class GeneratorController {
     }
 
     public int getClusterCount() {
-        return this.outputObject.getClusters().size();
+        return this.map.members.size();
     }
 }

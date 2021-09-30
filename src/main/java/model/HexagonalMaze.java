@@ -1,46 +1,18 @@
 package model;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 import java.util.Stack;
-import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Random;
 
-import org.json.JSONTokener;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class HexagonalMaze {
-
-    private static Map<String, OddQHexCoord> OddColUnitDirections = new HashMap<String, OddQHexCoord>() {{
-        put( "N",   new OddQHexCoord(  0,  1 ) );
-        put( "S",   new OddQHexCoord(  0, -1 ) );
-        put( "NE",  new OddQHexCoord(  1,  1 ) );
-        put( "NW",  new OddQHexCoord( -1,  1 ) );
-        put( "SE",  new OddQHexCoord(  1,  0 ) );
-        put( "SW",  new OddQHexCoord( -1,  0 ) );
-    }};
-
-    private static Map<String, OddQHexCoord> EvenColUnitDirections = new HashMap<String, OddQHexCoord>() {{
-        put( "N",   new OddQHexCoord(  0,  1 ) );
-        put( "S",   new OddQHexCoord(  0, -1 ) );
-        put( "NE",  new OddQHexCoord(  1,  0 ) );
-        put( "NW",  new OddQHexCoord( -1,  0 ) );
-        put( "SE",  new OddQHexCoord(  1, -1 ) );
-        put( "SW",  new OddQHexCoord( -1, -1 ) );
-    }};
     
     public IOddQHexGrid OddQHexGrid;
 
@@ -141,146 +113,4 @@ public class HexagonalMaze {
         return result;
     }
 
-    public List<Cluster> toClusterList() {
-        List<Cluster> result = new ArrayList<>();
-
-        // Get the names and descriptions from resources
-        Stack<Sector> namesAndDescriptions = new Stack<>();
-        try{
-            String obj = Files.readString( Path.of("./src/main/java/model/XStars.json") );
-
-            JSONObject jsonObject = new JSONObject( new JSONTokener(obj) );
-
-            JSONArray rawSectors = (JSONArray) jsonObject.get("Sectors");
-
-            List<Sector> sectors = new ArrayList<>();
-            rawSectors.forEach( (jObj) -> {
-                JSONObject item = (JSONObject) jObj;
-                sectors.add( new Sector( item.get("Name").toString(), item.get("Description").toString() ) );
-            } );
-
-            Collections.shuffle(sectors );
-            Iterator<Sector> iterator = sectors.iterator();
-
-            while( iterator.hasNext() ) {
-                namesAndDescriptions.push(  iterator.next() );
-            }
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        // Add each node to cluster list with an id
-        // Set connections for each cluster
-        // Set name and description
-
-        for( Entry<OddQHexCoord, ArrayList<OddQHexCoord>> entry : this.maze.entrySet() ) {
-            Cluster temp = oddQCoordToCluster( entry.getKey() );
-            List<Connection> connectionList = new ArrayList<>();
-            temp.setId( String.valueOf( entry.getKey().col() ) + " " + String.valueOf( entry.getKey().row() ) );
-
-            entry.getValue().forEach( neighbor -> {
-                Connection conn = new Connection();
-                conn.setTargetClusterId( String.valueOf( neighbor.col() ) + " " + String.valueOf( neighbor.row() ) );
-                conn.setConnectionType( getConnectionType( entry.getKey(), neighbor ) );
-                connectionList.add( conn );
-            } );
-
-            temp.setConnections( connectionList );
-
-            if( namesAndDescriptions.size() != 0) {
-                Sector name = namesAndDescriptions.pop();
-                temp.setName( name.Name );
-                temp.setDescription( name.Description );
-            }
-            else {
-                temp.setName( String.format("Unknown Sector %s", temp.getId().replace(' ', '-') ) );
-                temp.setDescription( "No description available." );
-            }
-
-            result.add( temp );
-        }
-
-        return result;
-    }
-
-    private Cluster oddQCoordToCluster( OddQHexCoord oddQ ) {
-        Cluster result = new Cluster();
-        result.setX( oddQ.col() );
-        result.setY( oddQ.row() );
-        return result;
-    }
-
-    private ConnectionType getConnectionType( OddQHexCoord source, OddQHexCoord dest ) {
-        Cluster sourceX4Offset = oddQCoordToCluster( source );
-        Cluster destX4Offset = oddQCoordToCluster( dest );
-        
-        int unitX = destX4Offset.getX() - sourceX4Offset.getX();
-        int unitY = destX4Offset.getY() - sourceX4Offset.getY();
-        OddQHexCoord x4UnitDirection = new OddQHexCoord( unitX, unitY );
-        Map.Entry<String, OddQHexCoord> entry;
-        if( (source.col()&1) != 1 ) {
-            entry = EvenColUnitDirections.entrySet().stream()
-                .filter( (dir) -> dir.getValue().equals( x4UnitDirection ) )
-                .findFirst().orElseThrow( () -> { 
-                    throw new NoSuchElementException( 
-                        String.format( "Unit direction %s from (%s,%s) to (%s,%s)", 
-                            x4UnitDirection.toString(), 
-                            sourceX4Offset.getX(), 
-                            sourceX4Offset.getY(), 
-                            destX4Offset.getX(), 
-                            destX4Offset.getY() 
-                        ) );
-                } );
-        }
-        else {
-            entry = OddColUnitDirections.entrySet().stream()
-            .filter( (dir) -> dir.getValue().equals( x4UnitDirection ) )
-            .findFirst().orElseThrow( () -> { 
-                throw new NoSuchElementException( 
-                    String.format( "Unit direction %s from (%s,%s) to (%s,%s)", 
-                        x4UnitDirection.toString(), 
-                        sourceX4Offset.getX(), 
-                        sourceX4Offset.getY(), 
-                        destX4Offset.getX(), 
-                        destX4Offset.getY() 
-                    ) );
-            } );
-        }
-        
-        switch( entry.getKey() ) {
-            case "N":
-                return ConnectionType.N;
-            case "S":
-                return ConnectionType.S;
-            case "NE":
-                return ConnectionType.NE;
-            case "SW":
-                return ConnectionType.SW;
-            case "SE":
-                return ConnectionType.SE;
-            case "NW":
-                return ConnectionType.NW;
-            default:
-                return ConnectionType.CUSTOM;
-        }
-    }
-}
-
-class Sector {
-    final String Name;
-    final String Description;
-
-    Sector( String name, String desc ) {
-        this.Name = name;
-        this.Description = desc;
-    }
-
-    public String getName() {
-        return this.Name;
-    }
-
-    public String getDescription() {
-        return this.Description;
-    }
 }

@@ -1,5 +1,7 @@
 package com.application.views.randomizer;
 
-public class FinalStepForm {
+import com.vaadin.flow.component.formlayout.FormLayout;
+
+public class FinalStepForm extends FormLayout {
     
 }
