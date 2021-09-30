@@ -13,6 +13,5 @@ To run from the command line, use `mvn` and open http://localhost:8080 in your b
 
 - `MainView.java` in `src/main/java/com/application` contains the navigation setup. It uses [App Layout](https://vaadin.com/components/vaadin-app-layout).
 - `views` package in `src/main/java/com/application` contains the server-side Java views of your application.
-- `abstractmodel` package in `src/main/java/abstractmodel` contains the mathematical models for generation
-- `model` package in `src/main/java/model` contains Celludriel's model for the X4 galaxy in plain java objects 
+- `model` package in `src/main/java/model` contains Celludriel's model for the X4 galaxy in plain java objects, also the mathematical model for a hex graph, and logic for randomizing the map 
 - `views` folder in `frontend/` contains the client-side JavaScript views of your application.s
