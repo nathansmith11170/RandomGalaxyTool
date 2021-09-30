@@ -219,8 +219,8 @@ public class MazeBitmap {
                     g2.drawString( "Ownerless", x, y );
                     break;
             }
-            if( y < this.height ) {
-                y += 20;
+            if( y+30 < this.height ) {
+                y += 25;
             }
             else {
                 x += 150;
