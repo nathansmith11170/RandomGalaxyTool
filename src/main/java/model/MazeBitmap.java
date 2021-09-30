@@ -7,10 +7,13 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
 
 import javax.imageio.ImageIO;
 
@@ -30,7 +33,7 @@ public class MazeBitmap {
         this.size = 50;
 
         this.width = (int) Math.sqrt(this.HexMaze.OddQHexGrid.members().size()) * this.size * 3/2;
-        this.height = (int) Math.round(this.size * Math.sqrt(3) * (Math.sqrt(this.HexMaze.OddQHexGrid.members().size()) + 0.5 * (Math.round(Math.sqrt(this.HexMaze.OddQHexGrid.members().size()))&1))) + this.size/3;
+        this.height = (int) Math.round(this.size * Math.sqrt(3) * (Math.sqrt(this.HexMaze.OddQHexGrid.members().size()) + 0.5 * (Math.round(Math.sqrt(this.HexMaze.OddQHexGrid.members().size()))&1))) + this.size*2;
         this.img = new BufferedImage( this.width, this.height, BufferedImage.TYPE_INT_RGB );
 
         this.g2 = (Graphics2D) this.img.getGraphics();
@@ -99,10 +102,10 @@ public class MazeBitmap {
                         g2.setColor( Color.green );
                         break;
                     case "split":
-                        g2.setColor( Color.ORANGE );
+                        g2.setColor( new Color( 124, 41, 0 ) );
                         break;
                     case "freesplit":
-                        g2.setColor( new Color( 239, 150, 0) );
+                        g2.setColor( new Color( 239, 150, 0 ) );
                         break;
                     case "terran":
                         g2.setColor( Color.GRAY );
@@ -119,7 +122,7 @@ public class MazeBitmap {
                 }
             }
             else {
-                g2.setColor( Color.BLACK );
+                g2.setColor( Color.LIGHT_GRAY );
             }
             Ellipse2D sector = new Ellipse2D.Double(node.x, node.y, this.size, this.size);
             g2.fill(sector);
@@ -136,6 +139,95 @@ public class MazeBitmap {
             });
         });
 
+        // Draw Legend
+        List<String> distinctFactions = ownedSectors.stream().map( Pair::getValue0 ).distinct().collect( Collectors.toList() );
+        distinctFactions.add( "Ownerless" );
+        int x = 50;
+        int y = (int) Math.round(this.size * Math.sqrt(3) * (Math.sqrt(this.HexMaze.OddQHexGrid.members().size()) + 0.5 * (Math.round(Math.sqrt(this.HexMaze.OddQHexGrid.members().size()))&1))) + this.size/3;
+        for( String faction : distinctFactions ) {
+            switch( faction ) {
+                case "argon":
+                    g2.setColor( Color.BLUE );
+                    g2.fill( new Rectangle2D.Double( x, y, this.size, 10 ) );
+                    g2.setColor( Color.BLACK );
+                    g2.drawString( "Argon Federation", x, y );
+                    break;
+                case "antigone":
+                    g2.setColor( Color.cyan);
+                    g2.fill( new Rectangle2D.Double( x, y, this.size, 10 ) );
+                    g2.setColor( Color.BLACK );
+                    g2.drawString( "Antigone Republic", x, y );
+                    break;
+                case "holyorder":
+                    g2.setColor( Color.pink );
+                    g2.fill( new Rectangle2D.Double( x, y, this.size, 10 ) );
+                    g2.setColor( Color.BLACK );
+                    g2.drawString( "Holy Order of the Pontifex", x, y );
+                    break;
+                case "paranid":
+                    g2.setColor( Color.magenta );
+                    g2.fill( new Rectangle2D.Double( x, y, this.size, 10 ) );
+                    g2.setColor( Color.BLACK );
+                    g2.drawString( "Godrealm of the Paranid", x, y );
+                    break;
+                case "teladi":
+                    g2.setColor( Color.yellow );
+                    g2.fill( new Rectangle2D.Double( x, y, this.size, 10 ) );
+                    g2.setColor( Color.BLACK );
+                    g2.drawString( "Teladi Company", x, y );
+                    break;
+                case "ministry":
+                    g2.setColor( Color.green );
+                    g2.fill( new Rectangle2D.Double( x, y, this.size, 10 ) );
+                    g2.setColor( Color.BLACK );
+                    g2.drawString( "Ministry of Finance", x, y );
+                    break;
+                case "split":
+                    g2.setColor( new Color( 124, 41, 0 ) );
+                    g2.fill( new Rectangle2D.Double( x, y, this.size, 10 ) );
+                    g2.setColor( Color.BLACK );
+                    g2.drawString( "Zyarth Patriarchy", x, y );
+                    break;
+                case "freesplit":
+                    g2.setColor( new Color( 239, 150, 0 ) );
+                    g2.fill( new Rectangle2D.Double( x, y, this.size, 10 ) );
+                    g2.setColor( Color.BLACK );
+                    g2.drawString( "Free Families", x, y );
+                    break;
+                case "terran":
+                    g2.setColor( Color.GRAY );
+                    g2.fill( new Rectangle2D.Double( x, y, this.size, 10 ) );
+                    g2.setColor( Color.BLACK );
+                    g2.drawString( "Terran Protectorate", x, y );
+                    break;
+                case "pioneers":
+                    g2.setColor( new Color( 32, 85, 77 ) );
+                    g2.fill( new Rectangle2D.Double( x, y, this.size, 10 ) );
+                    g2.setColor( Color.BLACK );
+                    g2.drawString( "Segaris Pioneers", x, y );
+                    break;
+                case "xenon":
+                    g2.setColor( Color.RED );
+                    g2.fill( new Rectangle2D.Double( x, y, this.size, 10 ) );
+                    g2.setColor( Color.BLACK );
+                    g2.drawString( "Xenon", x, y );
+                    break;
+                default:
+                    g2.setColor( Color.LIGHT_GRAY );
+                    g2.fill( new Rectangle2D.Double( x, y, this.size, 10 ) );
+                    g2.setColor( Color.BLACK );
+                    g2.drawString( "Ownerless", x, y );
+                    break;
+            }
+            if( y < this.height ) {
+                y += 20;
+            }
+            else {
+                x += 150;
+                y = (int) Math.round(this.size * Math.sqrt(3) * (Math.sqrt(this.HexMaze.OddQHexGrid.members().size()) + 0.5 * (Math.round(Math.sqrt(this.HexMaze.OddQHexGrid.members().size()))&1))) + this.size/3;
+            }
+
+        }
         try {
             ByteArrayOutputStream imgBuffer = new ByteArrayOutputStream();
             ImageIO.write( this.img, "png", imgBuffer );
