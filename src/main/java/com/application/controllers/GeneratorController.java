@@ -9,7 +9,7 @@ import com.vaadin.flow.server.StreamResource;
 
 import org.javatuples.Pair;
 
-import configurationmodel.GeneratorConfig;
+import configurationmodel.RandomizerConfig;
 import model.OddQHexGridSquare;
 import model.FactionPlacer;
 import model.Galaxy;
@@ -21,9 +21,9 @@ public class GeneratorController {
     private HexagonalMaze map;
     private Galaxy outputObject = new Galaxy();
 
-    public StreamResource generateMap( GeneratorConfig generatorConfig ) {
-        grid = new OddQHexGridSquare( generatorConfig.getClusters() );
-        map = new HexagonalMaze( grid, generatorConfig.getPasses(), generatorConfig.getDeadPercent().doubleValue() );
+    public StreamResource randomizeMap( RandomizerConfig randomizerConfig ) {
+        grid = new OddQHexGridSquare( randomizerConfig.getClusters() );
+        map = new HexagonalMaze( grid, randomizerConfig.getPasses(), randomizerConfig.getDeadPercent().doubleValue() );
         outputObject.setClusters( map.toClusterList() );
         
         outputObject.setGalaxyName( "X4SecondRealignment" );
@@ -38,7 +38,7 @@ public class GeneratorController {
         return previewResource;
     }
 
-    public StreamResource populateMap( GeneratorConfig generatorConfig ) {
+    public StreamResource populateMap( RandomizerConfig generatorConfig ) {
         Set<Pair<String, OddQHexCoord>> ownedSectors = new FactionPlacer().placeFactions( outputObject, generatorConfig );
 
         MazeBitmap mapImg = new MazeBitmap( map );

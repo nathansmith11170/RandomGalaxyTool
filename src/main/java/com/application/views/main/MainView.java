@@ -3,8 +3,8 @@ package com.application.views.main;
 import java.util.Optional;
 
 import com.application.views.about.AboutView;
-import com.application.views.generator.GeneratorView;
 import com.application.views.main.MainView;
+import com.application.views.randomizer.RandomizerView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -74,7 +74,7 @@ public class MainView extends AppLayout {
     }
 
     private Component[] createMenuItems() {
-        return new Tab[]{createTab("Generator", GeneratorView.class), createTab("About", AboutView.class)};
+        return new Tab[]{createTab("Generator", RandomizerView.class), createTab("About", AboutView.class)};
     }
 
     private static Tab createTab(String text, Class<? extends Component> navigationTarget) {

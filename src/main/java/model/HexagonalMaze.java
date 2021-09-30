@@ -10,6 +10,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 import java.util.Stack;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import java.util.HashSet;
@@ -23,17 +24,22 @@ import org.json.JSONObject;
 
 public class HexagonalMaze {
 
-    private static Map<String, OddQHexCoord> UnitDirections = new HashMap<String, OddQHexCoord>() {{
+    private static Map<String, OddQHexCoord> OddColUnitDirections = new HashMap<String, OddQHexCoord>() {{
         put( "N",   new OddQHexCoord(  0,  1 ) );
         put( "S",   new OddQHexCoord(  0, -1 ) );
-        put( "even-NE",  new OddQHexCoord(  1,  1 ) );
-        put( "even-NW",  new OddQHexCoord( -1,  1 ) );
-        put( "even-SE",  new OddQHexCoord(  1,  0 ) );
-        put( "even-SW",  new OddQHexCoord( -1,  0 ) );
-        put( "odd-NE",  new OddQHexCoord(  1,  0 ) );
-        put( "odd-NW",  new OddQHexCoord( -1,  0 ) );
-        put( "odd-SE",  new OddQHexCoord(  1,  -1 ) );
-        put( "odd-SW",  new OddQHexCoord( -1,  -1 ) );
+        put( "NE",  new OddQHexCoord(  1,  1 ) );
+        put( "NW",  new OddQHexCoord( -1,  1 ) );
+        put( "SE",  new OddQHexCoord(  1,  0 ) );
+        put( "SW",  new OddQHexCoord( -1,  0 ) );
+    }};
+
+    private static Map<String, OddQHexCoord> EvenColUnitDirections = new HashMap<String, OddQHexCoord>() {{
+        put( "N",   new OddQHexCoord(  0,  1 ) );
+        put( "S",   new OddQHexCoord(  0, -1 ) );
+        put( "NE",  new OddQHexCoord(  1,  0 ) );
+        put( "NW",  new OddQHexCoord( -1,  0 ) );
+        put( "SE",  new OddQHexCoord(  1, -1 ) );
+        put( "SW",  new OddQHexCoord( -1, -1 ) );
     }};
     
     public IOddQHexGrid OddQHexGrid;
@@ -167,15 +173,16 @@ public class HexagonalMaze {
         // Add each node to cluster list with an id
         // Set connections for each cluster
         // Set name and description
-        this.maze.entrySet().stream().forEach( (node) -> {
-            Cluster temp = oddQCoordToCluster( node.getKey() );
-            List<Connection> connectionList = new ArrayList<>();
-            temp.setId( String.valueOf( node.getKey().col() ) + " " + String.valueOf( node.getKey().row() ) );
 
-            node.getValue().forEach( neighbor -> {
+        for( Entry<OddQHexCoord, ArrayList<OddQHexCoord>> entry : this.maze.entrySet() ) {
+            Cluster temp = oddQCoordToCluster( entry.getKey() );
+            List<Connection> connectionList = new ArrayList<>();
+            temp.setId( String.valueOf( entry.getKey().col() ) + " " + String.valueOf( entry.getKey().row() ) );
+
+            entry.getValue().forEach( neighbor -> {
                 Connection conn = new Connection();
                 conn.setTargetClusterId( String.valueOf( neighbor.col() ) + " " + String.valueOf( neighbor.row() ) );
-                conn.setConnectionType( getConnectionType( node.getKey(), neighbor ) );
+                conn.setConnectionType( getConnectionType( entry.getKey(), neighbor ) );
                 connectionList.add( conn );
             } );
 
@@ -192,7 +199,7 @@ public class HexagonalMaze {
             }
 
             result.add( temp );
-        } );
+        }
 
         return result;
     }
@@ -211,28 +218,49 @@ public class HexagonalMaze {
         int unitX = destX4Offset.getX() - sourceX4Offset.getX();
         int unitY = destX4Offset.getY() - sourceX4Offset.getY();
         OddQHexCoord x4UnitDirection = new OddQHexCoord( unitX, unitY );
-        Map.Entry<String, OddQHexCoord> entry = UnitDirections.entrySet().stream().filter( (dir) -> dir.getValue().equals( x4UnitDirection ) ).findFirst().orElseThrow( () -> { throw new NoSuchElementException( x4UnitDirection.toString() + " from " + sourceX4Offset.toString() + destX4Offset.toString() ); } );
+        Map.Entry<String, OddQHexCoord> entry;
+        if( (source.col()&1) != 1 ) {
+            entry = EvenColUnitDirections.entrySet().stream()
+                .filter( (dir) -> dir.getValue().equals( x4UnitDirection ) )
+                .findFirst().orElseThrow( () -> { 
+                    throw new NoSuchElementException( 
+                        String.format( "Unit direction %s from (%s,%s) to (%s,%s)", 
+                            x4UnitDirection.toString(), 
+                            sourceX4Offset.getX(), 
+                            sourceX4Offset.getY(), 
+                            destX4Offset.getX(), 
+                            destX4Offset.getY() 
+                        ) );
+                } );
+        }
+        else {
+            entry = OddColUnitDirections.entrySet().stream()
+            .filter( (dir) -> dir.getValue().equals( x4UnitDirection ) )
+            .findFirst().orElseThrow( () -> { 
+                throw new NoSuchElementException( 
+                    String.format( "Unit direction %s from (%s,%s) to (%s,%s)", 
+                        x4UnitDirection.toString(), 
+                        sourceX4Offset.getX(), 
+                        sourceX4Offset.getY(), 
+                        destX4Offset.getX(), 
+                        destX4Offset.getY() 
+                    ) );
+            } );
+        }
+        
         switch( entry.getKey() ) {
             case "N":
                 return ConnectionType.N;
             case "S":
                 return ConnectionType.S;
-            case "odd-NE":
+            case "NE":
                 return ConnectionType.NE;
-            case "odd-SW":
+            case "SW":
                 return ConnectionType.SW;
-            case "odd-SE":
+            case "SE":
                 return ConnectionType.SE;
-            case "odd-NW":
-                return ConnectionType.SE;
-            case "even-NE":
-                return ConnectionType.NE;
-            case "even-SW":
-                return ConnectionType.SW;
-            case "even-SE":
-                return ConnectionType.SE;
-            case "even-NW":
-                return ConnectionType.SE;
+            case "NW":
+                return ConnectionType.NW;
             default:
                 return ConnectionType.CUSTOM;
         }

@@ -13,7 +13,7 @@ import java.util.Random;
 
 import org.javatuples.Pair;
 
-import configurationmodel.GeneratorConfig;
+import configurationmodel.RandomizerConfig;
 
 public class FactionPlacer {
 
@@ -23,76 +23,76 @@ public class FactionPlacer {
     private Map<String, Integer> factionToSectorCountMap = new HashMap<>();
     private boolean generateConnectedTerritory;
 
-    public Set<Pair<String, OddQHexCoord>> placeFactions( Galaxy gal, GeneratorConfig config ) {
+    public Set<Pair<String, OddQHexCoord>> placeFactions( Galaxy gal, RandomizerConfig config ) {
         clusters = gal.getClusters();
         generateConnectedTerritory = config.getGenerateConnectedTerritory();
 
         // For each faction, check for 'de jure' capitols
         // if found, claim for faction
-        if( config.getArgonSectors() != 0 ) {
+        if( config.getArgonSectors() != 0 && config.getEnabledFactions().contains( "argon" ) ) {
             Optional<Cluster> factionCapitol = clusters.stream().filter( (cluster) -> cluster.getName().equals( "Argon Prime" ) ).findFirst();
 
             if( factionCapitol.isPresent() ) {
                 addFactionHq( "argon", factionCapitol.get() );
             }
         }
-        if( config.getAntigoneSectors() != 0 ) {
+        if( config.getAntigoneSectors() != 0 && config.getEnabledFactions().contains( "antigone" ) ) {
             Optional<Cluster> factionCapitol = clusters.stream().filter( (cluster) -> cluster.getName().equals( "Antigone Memorial" ) ).findFirst();
 
             if( factionCapitol.isPresent() ) {
                 addFactionHq( "antigone", factionCapitol.get() );
             }
         }
-        if( config.getHolyOrderSectors() != 0 ) {
+        if( config.getHolyOrderSectors() != 0 && config.getEnabledFactions().contains( "holyorder" ) ) {
             Optional<Cluster> factionCapitol = clusters.stream().filter( (cluster) -> cluster.getName().equals( "Holy Vision" ) ).findFirst();
 
             if( factionCapitol.isPresent() ) {
                 addFactionHq( "holyorder", factionCapitol.get() );
             }
         }
-        if( config.getGodrealmSectors() != 0 ) {
+        if( config.getGodrealmSectors() != 0 && config.getEnabledFactions().contains( "paranid" ) ) {
             Optional<Cluster> factionCapitol = clusters.stream().filter( (cluster) -> cluster.getName().equals( "Trinity Sanctum" ) ).findFirst();
 
             if( factionCapitol.isPresent() ) {
                 addFactionHq( "paranid", factionCapitol.get() );
             }
         }
-        if( config.getTeladiSectors() != 0 ) {
+        if( config.getTeladiSectors() != 0 && config.getEnabledFactions().contains( "teladi" ) ) {
             Optional<Cluster> factionCapitol = clusters.stream().filter( (cluster) -> cluster.getName().equals( "Profit Center Alpha" ) ).findFirst();
 
             if( factionCapitol.isPresent() ) {
                 addFactionHq( "teladi", factionCapitol.get() );
             }
         }
-        if( config.getMinistrySectors() != 0 ) {
+        if( config.getMinistrySectors() != 0 && config.getEnabledFactions().contains( "ministry" ) ) {
             Optional<Cluster> factionCapitol = clusters.stream().filter( (cluster) -> cluster.getName().equals( "Eighteen Billion" ) ).findFirst();
 
             if( factionCapitol.isPresent() ) {
                 addFactionHq( "ministry", factionCapitol.get() );
             }
         }
-        if( config.getZyarthSectors() != 0 ) {
+        if( config.getZyarthSectors() != 0 && config.getEnabledFactions().contains( "split" ) ) {
             Optional<Cluster> factionCapitol = clusters.stream().filter( (cluster) -> cluster.getName().equals( "Zyarth's Dominion" ) ).findFirst();
 
             if( factionCapitol.isPresent() ) {
                 addFactionHq( "split", factionCapitol.get() );
             }
         }
-        if( config.getFreeFamiliesSectors() != 0 ) {
+        if( config.getFreeFamiliesSectors() != 0 && config.getEnabledFactions().contains( "freesplit" ) ) {
             Optional<Cluster> factionCapitol = clusters.stream().filter( (cluster) -> cluster.getName().equals( "Heart of Acrimony" ) ).findFirst();
 
             if( factionCapitol.isPresent() ) {
                 addFactionHq( "freesplit", factionCapitol.get() );
             }
         }
-        if( config.getTerranSectors() != 0 ) {
+        if( config.getTerranSectors() != 0 && config.getEnabledFactions().contains( "terran" ) ) {
             Optional<Cluster> factionCapitol = clusters.stream().filter( (cluster) -> cluster.getName().equals( "Sol" ) ).findFirst();
 
             if( factionCapitol.isPresent() ) {
                 addFactionHq( "terran", factionCapitol.get() );
             }
         }
-        if( config.getSegarisSectors() != 0 ) {
+        if( config.getSegarisSectors() != 0 && config.getEnabledFactions().contains( "pioneers" ) ) {
             Optional<Cluster> factionCapitol = clusters.stream().filter( (cluster) -> cluster.getName().equals( "Segaris" ) ).findFirst();
 
             if( factionCapitol.isPresent() ) {
@@ -109,63 +109,70 @@ public class FactionPlacer {
 
         // while any sector has less than the assigned number of sectors, add a defence station
         // If the user chose a connected map, prioritize adding to clusters adjacent to current territory
-        boolean notAllFactionsPlaced = true;
-        while( notAllFactionsPlaced ) {
-            boolean addedASector = false;
-            if( factionToSectorCountMap.getOrDefault( "argon", 0 ) < config.getArgonSectors() ) {
-                addSector( "argon" );
-                addedASector = true;
-            }
-            if( factionToSectorCountMap.getOrDefault( "antigone", 0 ) < config.getAntigoneSectors() ) {
-                addSector( "antigone" );
-                addedASector = true;
-            }
-            if( factionToSectorCountMap.getOrDefault( "holyorder", 0 ) < config.getHolyOrderSectors() ) {
-                addSector( "holyorder" );
-                addedASector = true;
-            }
-            if( factionToSectorCountMap.getOrDefault( "paranid", 0 ) < config.getGodrealmSectors() ) {
-                addSector( "paranid" );
-                addedASector = true;
-            }
-            if( factionToSectorCountMap.getOrDefault( "teladi", 0 ) < config.getTeladiSectors() ) {
-                addSector( "teladi" );
-                addedASector = true;
-            }
-            if( factionToSectorCountMap.getOrDefault( "ministry", 0 ) < config.getMinistrySectors() ) {
-                addSector( "ministry" );
-                addedASector = true;
-            }
-            if( factionToSectorCountMap.getOrDefault( "split", 0 ) < config.getZyarthSectors() ) {
-                addSector( "split" );
-                addedASector = true;
-            }
-            if( factionToSectorCountMap.getOrDefault( "freesplit", 0 ) < config.getFreeFamiliesSectors() ) {
-                addSector( "freesplit" );
-                addedASector = true;
-            }
-            if( factionToSectorCountMap.getOrDefault( "terran", 0 ) < config.getTerranSectors() ) {
-                addSector( "terran" );
-                addedASector = true;
-            }
-            if( factionToSectorCountMap.getOrDefault( "pioneers", 0 ) < config.getSegarisSectors() ) {
-                addSector( "pioneers" );
-                addedASector = true;
-            }
-            if( !addedASector ) notAllFactionsPlaced = false;
-        }
+        boolean sectorAdded;
+        do {
+            sectorAdded = claimASectorForEachEnabledFaction( config.getEnabledFactions(), config );
+        } while( sectorAdded );
 
         placeXenon( config );
         return ownedSectors;
     }
 
-    private void placeXenon( GeneratorConfig config ) {
+    private void placeXenon( RandomizerConfig config ) {
         int placedShipyards = 0;
         while( placedShipyards < config.getXenonShipyardCount() ) {
             Cluster xenonSector = getRandomNonOwnedCluster(clusters);
             addFactionHq( "xenon", xenonSector );
             placedShipyards++;
         }
+    }
+
+    private boolean claimASectorForEachEnabledFaction( List<String> enabledFactions, RandomizerConfig config ) {
+        boolean addedASector = false;
+
+        for( String faction : enabledFactions ) {
+            int maxSectors;
+            switch( faction ) {
+                case "argon":
+                    maxSectors = config.getArgonSectors();
+                    break;
+                case "antigone":
+                    maxSectors = config.getAntigoneSectors();
+                    break;
+                case "holyorder":
+                    maxSectors = config.getHolyOrderSectors();
+                    break;
+                case "paranid":
+                    maxSectors = config.getGodrealmSectors();
+                    break;
+                case "teladi":
+                    maxSectors = config.getTeladiSectors();
+                    break;
+                case "ministry":
+                    maxSectors = config.getMinistrySectors();
+                    break;
+                case "split":
+                    maxSectors = config.getZyarthSectors();
+                    break;
+                case "freesplit":
+                    maxSectors = config.getFreeFamiliesSectors();
+                    break;
+                case "terran":
+                    maxSectors = config.getTerranSectors();
+                    break;
+                case "pioneers":
+                    maxSectors = config.getSegarisSectors();
+                    break;
+                default:
+                    throw new IllegalArgumentException( String.format( "Faction %s does not exist.", faction) );
+            }
+
+            if( factionToSectorCountMap.get( faction ) < maxSectors ) {
+                addSector( faction );
+                addedASector = true;
+            }
+        }
+        return addedASector;
     }
 
     private void addFactionHq( String factionName, Cluster deJureCapitol ) {
@@ -306,24 +313,41 @@ public class FactionPlacer {
     }
 
     private Optional<Cluster> getRandomNonOwnedAdjacentCluster( String factionName, List<Cluster> clusters ) {
-        List<Cluster> owned = clusters.stream().filter( cluster -> ownedSectors.contains( clusterToPair(cluster) ) )
-                                .filter( cluster -> cluster.getStations().get(0).getFaction().getName().equals( factionName ) )
-                                .collect( Collectors.toList() );
+        // Get owned sectors from the map, collect coordinates to a list
+        List<OddQHexCoord> owned = ownedSectors.stream()
+                                    .filter( item -> item.getValue0().equals(factionName) )
+                                    .collect( Collectors.mapping( Pair::getValue1, Collectors.toList() ) );
 
-        List<Cluster> nonOwnedNeighbor = new ArrayList<>();
-        owned.forEach( cluster -> {
+        // Convert coordinates to a list of Cluster objects so we know neighbors
+        List<Cluster> ownedClusters = new ArrayList<>();
+        for( OddQHexCoord hexCoord : owned ) {
+            String id = hexCoord.col() + " " + hexCoord.row();
+            ownedClusters.add( clusters.stream()
+                                .filter( cluster -> cluster.getId().equals( id ) )
+                                .findFirst()
+                                .orElseThrow( 
+                                    () -> new IllegalArgumentException( String.format("Cluster %s does not exist." ) ) 
+                                ) 
+                            );
+        }
+        
+        List<Cluster> nonOwnedNeighbors = new ArrayList<>();
+
+        // Now check for nonwned neighbors
+        ownedClusters.forEach( cluster -> {
             cluster.getConnections().forEach( conn -> {
                 Cluster neighbor = clusters.stream()
                                         .filter( cls-> cls.getId().equals( conn.getTargetClusterId() ) )
                                         .findFirst()
                                         .orElseThrow( () -> new IllegalArgumentException( String.format( "Neighbor %s does not exist.", conn.getTargetClusterId() ) ) );
                 if( !ownedSectors.contains( clusterToPair( neighbor ) ) ) {
-                    nonOwnedNeighbor.add( neighbor );
+                    nonOwnedNeighbors.add( neighbor );
                 }
             } );
         } );
 
-        return nonOwnedNeighbor.stream().skip( (int) (nonOwnedNeighbor.size() * this.rand.nextDouble() ) ).findFirst();
+        // Return random nonowned neighbor
+        return nonOwnedNeighbors.stream().skip( (int) (nonOwnedNeighbors.size() * this.rand.nextDouble() ) ).findFirst();
     }
 
     private Pair<String, OddQHexCoord> clusterToPair( Cluster cluster ) {

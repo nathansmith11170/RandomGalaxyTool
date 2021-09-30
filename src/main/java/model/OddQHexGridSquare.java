@@ -19,17 +19,22 @@ public class OddQHexGridSquare implements IOddQHexGrid {
     public Set<OddQHexCoord> members;
 
 
-    private static Map<String, OddQHexCoord> UnitDirections = new HashMap<String, OddQHexCoord>() {{
-        put( "N",   new OddQHexCoord(  0, -1 ) );
-        put( "S",   new OddQHexCoord(  0,  1 ) );
-        put( "even-NE",  new OddQHexCoord(  1, -1 ) );
-        put( "even-NW",  new OddQHexCoord( -1, -1 ) );
-        put( "even-SE",  new OddQHexCoord(  1,  0 ) );
-        put( "even-SW",  new OddQHexCoord( -1,  0 ) );
-        put( "odd-NE",  new OddQHexCoord(  1,   0 ) );
-        put( "odd-NW",  new OddQHexCoord( -1,   0 ) );
-        put( "odd-SE",  new OddQHexCoord(  1,   1 ) );
-        put( "odd-SW",  new OddQHexCoord( -1,   1 ) );
+    private static Map<String, OddQHexCoord> OddColUnitDirections = new HashMap<String, OddQHexCoord>() {{
+        put( "N",   new OddQHexCoord(  0,  1 ) );
+        put( "S",   new OddQHexCoord(  0, -1 ) );
+        put( "NE",  new OddQHexCoord(  1,  1 ) );
+        put( "NW",  new OddQHexCoord( -1,  1 ) );
+        put( "SE",  new OddQHexCoord(  1,  0 ) );
+        put( "SW",  new OddQHexCoord( -1,  0 ) );
+    }};
+
+    private static Map<String, OddQHexCoord> EvenColUnitDirections = new HashMap<String, OddQHexCoord>() {{
+        put( "N",   new OddQHexCoord(  0,  1 ) );
+        put( "S",   new OddQHexCoord(  0, -1 ) );
+        put( "NE",  new OddQHexCoord(  1,  0 ) );
+        put( "NW",  new OddQHexCoord( -1,  0 ) );
+        put( "SE",  new OddQHexCoord(  1, -1 ) );
+        put( "SW",  new OddQHexCoord( -1, -1 ) );
     }};
 
     /**
@@ -107,117 +112,117 @@ public class OddQHexGridSquare implements IOddQHexGrid {
                 OddQHexCoord current = new OddQHexCoord( col, row );
                 //first column
                 if( col == 0 ) {
-                    // top row
-                    if( row == 0 ) {
-                        addEdge( current, "S" );
-                        addEdge( current, "even-SE" );
-                    }
                     // bottom row
-                    else if ( row == side -1 ) {
+                    if( row == 0 ) {
                         addEdge( current, "N" );
-                        addEdge( current, "even-NE" );
-                        addEdge( current, "even-SE" );
+                        addEdge( current, "NE" );
+                    }
+                    // top row
+                    else if ( row == side - 1 ) {
+                        addEdge( current, "S" );
+                        addEdge( current, "SE" );
+                        addEdge( current, "NE" );
                     }
                     // other rows
                     else {
                         addEdge( current, "N" );
-                        addEdge( current, "even-NE" );
-                        addEdge( current, "even-SE" );
+                        addEdge( current, "NE" );
+                        addEdge( current, "SE" );
                         addEdge( current, "S" );
                     }
                 }
                 // last column if odd
                 else if( col == side - 1 && (col&1) == 1) {
-                    // top row
-                    if( row == 0 ) {
-                        addEdge( current, "S" );
-                        addEdge( current, "odd-NW" );
-                        addEdge( current, "odd-SW" );
-                    }
                     // bottom row
-                    else if ( row == side -1 ) {
+                    if( row == 0 ) {
                         addEdge( current, "N" );
-                        addEdge( current, "odd-NW" );
+                        addEdge( current, "NW" );
+                        addEdge( current, "SW" );
+                    }
+                    // top row
+                    else if ( row == side - 1 ) {
+                        addEdge( current, "S" );
+                        addEdge( current, "SW" );
                     }
                     // other rows
                     else {
                         addEdge( current, "N" );
-                        addEdge( current, "odd-NW" );
-                        addEdge( current, "odd-SW" );
+                        addEdge( current, "NW" );
+                        addEdge( current, "SW" );
                         addEdge( current, "S" );
                     }
                 }
                 // last column if even
                 else if( col == side - 1 && (col&1) != 1) {
-                    // Top row
+                    // bottom row
                     if( row == 0 ) {
-                        addEdge( current, "S" );
-                        addEdge( current, "even-SW" );
-                    }
-                    // Bottom row
-                    else if ( row == side -1 ) {
                         addEdge( current, "N" );
-                        addEdge( current, "even-SW" );
-                        addEdge( current, "even-NW" );
+                        addEdge( current, "NW" );
+                    }
+                    // top row
+                    else if ( row == side - 1 ) {
+                        addEdge( current, "S" );
+                        addEdge( current, "SW" );
+                        addEdge( current, "NW" );
                     }
                     // Other rows
                     else {
                         addEdge( current, "N" );
-                        addEdge( current, "even-NW" );
-                        addEdge( current, "even-SW" );
+                        addEdge( current, "NW" );
+                        addEdge( current, "SW" );
                         addEdge( current, "S" );
                     }
                 }
                 // other odd columns
                 else if ( (col&1) == 1 ) {
-                    // Top row
+                    // bottom row
                     if( row == 0 ) {
-                        addEdge( current, "S" );
-                        addEdge( current, "odd-NE" );
-                        addEdge( current, "odd-NW" );
-                        addEdge( current, "odd-SW" );
-                        addEdge( current, "odd-SE" );
-                    }
-                    // Bottom row
-                    else if (row == side -1 ) {
                         addEdge( current, "N" );
-                        addEdge( current, "odd-NE" );
-                        addEdge( current, "odd-NW" );
+                        addEdge( current, "NE" );
+                        addEdge( current, "NW" );
+                        addEdge( current, "SW" );
+                        addEdge( current, "SE" );
+                    }
+                    // top row
+                    else if (row == side - 1 ) {
+                        addEdge( current, "S" );
+                        addEdge( current, "SE" );
+                        addEdge( current, "SW" );
                     }
                     // Other rows
                     else {
                         addEdge( current, "S" );
-                        addEdge( current, "odd-SE" );
-                        addEdge( current, "odd-NE" );
+                        addEdge( current, "SE" );
+                        addEdge( current, "NE" );
                         addEdge( current, "N" );
-                        addEdge( current, "odd-NW" );
-                        addEdge( current, "odd-SW" );
+                        addEdge( current, "NW" );
+                        addEdge( current, "SW" );
                     }
                 }
                 //other even columns
                 else if ( (col&1) != 1 ) {
-                    // Top row
+                    // bottom row
                     if( row == 0 ) {
-                        addEdge( current, "S" );
-                        addEdge( current, "even-SE" );
-                        addEdge( current, "even-SW" );
+                        addEdge( current, "N" );
+                        addEdge( current, "NE" );
+                        addEdge( current, "NW" );
                     }
                     // Bottom row
-                    else if (row == side -1 ) {
-                        addEdge( current, "N" );
-                        addEdge( current, "even-SE" );
-                        addEdge( current, "even-SW" );
-                        addEdge( current, "even-NW" );
-                        addEdge( current, "even-NE" );
+                    else if (row == side - 1 ) {
+                        addEdge( current, "S" );
+                        addEdge( current, "SE" );
+                        addEdge( current, "SW" );
+                        addEdge( current, "NW" );
+                        addEdge( current, "NE" );
                     }
                     // Other rows
                     else {
                         addEdge( current, "S" );
-                        addEdge( current, "even-SE" );
-                        addEdge( current, "even-NE" );
+                        addEdge( current, "SE" );
+                        addEdge( current, "NE" );
                         addEdge( current, "N" );
-                        addEdge( current, "even-NW" );
-                        addEdge( current, "even-SW" );
+                        addEdge( current, "NW" );
+                        addEdge( current, "SW" );
                     }
                 }
             }
@@ -225,7 +230,14 @@ public class OddQHexGridSquare implements IOddQHexGrid {
     }
 
     private void addEdge(OddQHexCoord node, String direction) {
-        OddQHexCoord neighbor = node.add( UnitDirections.get(direction) );
+        OddQHexCoord unit;
+        if( (node.col() & 1) != 1) {
+            unit = EvenColUnitDirections.get( direction );
+        }
+        else {
+            unit = OddColUnitDirections.get( direction );
+        }
+        OddQHexCoord neighbor = node.add( unit );
         if( members.contains(neighbor) ) {
             this.grid.get( node ).add( neighbor );
             return;
