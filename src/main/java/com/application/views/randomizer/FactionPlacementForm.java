@@ -75,10 +75,7 @@ public class FactionPlacementForm extends FormLayout {
             .bind( RandomizerConfig::getGenerateConnectedTerritory, RandomizerConfig::setGenerateConnectedTerritory);
 
         binder.setStatusLabel( binderStatusLabel );
-        binder.withValidator( (bean) -> bean.getTotalOwnedSectors() < controller.getClusterCount(), "Owned sectors cannot exceed actual sector count." );
-
-
-        binder.addValueChangeListener( event -> {
+        binder.withValidator( ( bean ) -> {
             List<String> enabled = new ArrayList<String>();
             
             for ( HasValue<?,?> field : binder.getFields().collect( Collectors.toList() ) ) {
@@ -89,8 +86,11 @@ public class FactionPlacementForm extends FormLayout {
                     }
                 }
             }
-            this.config.setEnabledFactions( enabled );
+            bean.setEnabledFactions( enabled );
+            return bean.getTotalOwnedSectors() <= controller.getClusterCount();
+        }, "Owned sectors cannot exceed actual sector count." );
 
+        binder.addValueChangeListener( event -> {
             if( binder.isValid() ) {
                 populate.setEnabled( true );
             }

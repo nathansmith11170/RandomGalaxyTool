@@ -22,6 +22,7 @@ public class FactionSelectField extends CustomField<Integer> {
         sectorCount.setEnabled( false );
 
         includeFaction.addValueChangeListener( event -> {
+            sectorCount.setValue( "0" );
             sectorCount.setEnabled( !sectorCount.isEnabled() );
             sectorCount.setRequired( !sectorCount.isEnabled() );
         } );

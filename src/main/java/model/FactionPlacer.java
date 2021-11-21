@@ -239,6 +239,29 @@ public class FactionPlacer {
         }
     }
 
+    public List<FactionStart> addFactionStarts() {
+        List<Cluster> capitols = clusters.stream().filter( ( cluster ) -> {
+            return cluster.getStations().stream().filter( station -> 
+                station.getType().equals( StationType.SHIPYARD )
+            ).findFirst().isPresent();
+        } ).collect( Collectors.toList() );
+
+        List<FactionStart> starts = new ArrayList<>();
+        for( Cluster cluster : capitols ) {
+            FactionStart temp = new FactionStart();
+
+            temp.setClusterId( cluster.getId() );
+            temp.setFaction( cluster.getStations().get(0).getFaction() );
+            temp.setName( cluster.getStations().get(0).getFaction().getName() );
+            temp.setPlayerName( temp.getName() + " Citizen" );
+
+            cluster.setFactionStart( temp );
+            starts.add( temp );
+        }
+
+        return starts;
+    }
+
     private void addSector( String factionName )  {
         Optional<Cluster> prospect = getRandomNonOwnedAdjacentCluster(factionName, clusters);
                 

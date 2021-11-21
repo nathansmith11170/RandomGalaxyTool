@@ -13,7 +13,9 @@ import org.javatuples.Pair;
 import configurationmodel.RandomizerConfig;
 import model.OddQHexGridSquare;
 import model.Cluster;
+import model.FactionHqLocation;
 import model.FactionPlacer;
+import model.FactionStart;
 import model.Galaxy;
 import model.HexagonalMaze;
 import model.MazeBitmap;
@@ -43,10 +45,14 @@ public class GeneratorController {
         FactionPlacer placer = new FactionPlacer();
         List<Cluster> clusterList = placer.setClusters( this.map );
         Set<Pair<String, OddQHexCoord>> ownedSectors = placer.placeFactions( this.map, generatorConfig );
+        List<FactionStart> starts = placer.addFactionStarts();
 
         outputObject.setClusters( clusterList );
-
-
+        starts.forEach( ( start ) -> {
+            outputObject.addFactionHqLocation( new FactionHqLocation( start.getFaction(), start.getClusterId() ) );
+            outputObject.addFactionStart(start);
+        } );
+        
         MazeBitmap mapImg = new MazeBitmap( map );
 
         StreamResource previewResource = new StreamResource( "preview2.png", () -> mapImg.getStream( ownedSectors ) );
