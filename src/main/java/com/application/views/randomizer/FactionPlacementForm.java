@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import com.application.controllers.GeneratorController;
 import com.application.views.randomizer.components.FactionSelectField;
 import com.application.views.randomizer.events.BackEvent;
-import com.application.views.randomizer.events.NextEvent;
+import com.application.views.randomizer.events.DownloadEvent;
 import com.application.views.randomizer.events.PopulateEvent;
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -46,7 +46,7 @@ public class FactionPlacementForm extends FormLayout {
 
     Button back = new Button( "Back" );
     Button populate = new Button("Populate");
-    Button next = new Button("Next");
+    Button download = new Button("Download");
 
     public FactionPlacementForm( GeneratorController controller ) {
         binder.forField( argonSelect )
@@ -96,7 +96,7 @@ public class FactionPlacementForm extends FormLayout {
             }
             else {
                 populate.setEnabled( false );
-                next.setEnabled( false );
+                download.setEnabled( false );
             }
         } );
         
@@ -129,17 +129,17 @@ public class FactionPlacementForm extends FormLayout {
     private HorizontalLayout createButtonsLayout() {
         populate.addClickShortcut( Key.ENTER );
         populate.setEnabled( false );
-        next.setEnabled( false );
+        download.setEnabled( false );
 
         populate.addClickListener( ( event ) -> {
-            next.setEnabled( true );
+            download.setEnabled( true );
             fireEvent( new PopulateEvent( this, this.config ) );
         } );
 
-        next.addClickListener( event -> fireEvent( new NextEvent( this, this.config ) ) );
+        download.addClickListener( event -> fireEvent( new DownloadEvent( this, this.config ) ) );
         back.addClickListener( event -> fireEvent( new BackEvent( this, this.config ) ) );
 
-        return new HorizontalLayout( back, populate, next );
+        return new HorizontalLayout( back, populate, download );
     }
     
 }
