@@ -1,6 +1,6 @@
 package com.application.views.randomizer;
 
-import java.io.FileOutputStream;
+import java.io.ByteArrayInputStream;
 
 import com.application.controllers.GeneratorController;
 import com.application.views.main.MainView;
@@ -9,11 +9,16 @@ import com.application.views.randomizer.events.DownloadEvent;
 import com.application.views.randomizer.events.NextEvent;
 import com.application.views.randomizer.events.PopulateEvent;
 import com.application.views.randomizer.events.RandomizeEvent;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouteAlias;
+import com.vaadin.flow.server.StreamResource;
 
 @Route(value = "generator", layout = MainView.class)
 @RouteAlias(value = "", layout = MainView.class)
@@ -27,6 +32,9 @@ public class RandomizerView extends Div {
 
     GeneratorController controller;
 
+    Button downloadBtn = new Button( "Download", new Icon(VaadinIcon.DOWNLOAD_ALT) );
+    Anchor download = new Anchor();
+
     public RandomizerView() {
         addClassName( "generator-view" );
         controller = new GeneratorController();
@@ -34,6 +42,9 @@ public class RandomizerView extends Div {
         pageLayout = new SplitLayout();
     
         setupSectorPlacementForm();
+
+
+        downloadBtn.setEnabled( false );
 
         add( pageLayout );
     }
@@ -77,9 +88,16 @@ public class RandomizerView extends Div {
     
     private void factionPlacementDownload( DownloadEvent event ) {
         // Call controller to get files
-        FileOutputStream testFile = new F
+        byte[] zipOutput = controller.generateOutputFile( );
 
         // Give user download
-
+        StreamResource content = new StreamResource("output.zip", () -> { return new ByteArrayInputStream( zipOutput ); } );
+        content.setContentType( "download" );
+        download.setHref( content );
+        download.add(downloadBtn);
+        
+        // show Download Button
+        downloadBtn.setEnabled(true);
+        pageLayout.addToPrimary(download);
     }
 }

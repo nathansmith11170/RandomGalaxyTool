@@ -10,10 +10,10 @@ import java.net.URISyntaxException;
 
 public class UniverseGeneratorMain {
 
-    public void GenerateUniverse(Galaxy gal) throws IOException, TemplateException, URISyntaxException {
+    public byte[] GenerateUniverse(Galaxy gal) throws IOException, TemplateException, URISyntaxException {
 
         UniverseGenerator universeGenerator = new UniverseGenerator(gal);
-        universeGenerator.generateUniverse(gal);
+        return universeGenerator.generateUniverse(gal);
 
         // if(args.length > 1 && args[1].equalsIgnoreCase("generateSchema")){
         //     generateSchema(objectMapper);

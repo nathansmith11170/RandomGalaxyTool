@@ -37,7 +37,7 @@ public class FactionPlacerTests {
         List<Cluster> clusters = new FactionPlacer().setClusters( hexMaze );;
 
         assertTrue( clusters.stream().allMatch( (cluster) -> {
-            String[] coord = cluster.getId().split( " " );
+            String[] coord = cluster.getId().split( "_" );
             return cluster.getConnections().size() == hexMaze.maze.get( new OddQHexCoord( Integer.parseInt(coord[0]), Integer.parseInt(coord[1]) ) ).size();
         } ) );
     }
@@ -50,10 +50,10 @@ public class FactionPlacerTests {
         List<Cluster> clusters = new FactionPlacer().setClusters( hexMaze );;
 
         for( Cluster cluster : clusters) {
-            String[] sourceCoord = cluster.getId().split( " " );
+            String[] sourceCoord = cluster.getId().split( "_" );
             OddQHexCoord current = new OddQHexCoord( Integer.parseInt( sourceCoord[0] ), Integer.parseInt( sourceCoord[1] ) );
             for( Connection conn : cluster.getConnections() ) {
-                String[] destCoord = conn.getTargetClusterId().split( " " );
+                String[] destCoord = conn.getTargetClusterId().split( "_" );
                 OddQHexCoord prospectiveNeighbor = new OddQHexCoord( Integer.parseInt( destCoord[0] ), Integer.parseInt( destCoord[1] ) );
                 if( !hexMaze.maze.get( current ).contains( prospectiveNeighbor ) ) {
                     throw new AssertionError( String.format( "The neighbor %s was added to %s, but it does not exist in the maze", prospectiveNeighbor.toString(), cluster.getId() ) );

@@ -1,5 +1,7 @@
 package com.application.controllers;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -11,6 +13,8 @@ import com.vaadin.flow.server.StreamResource;
 import org.javatuples.Pair;
 
 import configurationmodel.RandomizerConfig;
+import freemarker.template.TemplateException;
+import generator.mainGenerator.UniverseGeneratorMain;
 import model.OddQHexGridSquare;
 import model.Cluster;
 import model.FactionHqLocation;
@@ -30,6 +34,9 @@ public class GeneratorController {
         map = new HexagonalMaze( grid, randomizerConfig.getPasses(), randomizerConfig.getDeadPercent().doubleValue() );
         
         outputObject.setGalaxyName( "X4SecondRealignment" );
+        outputObject.setGalaxyPrefix("x4sr");
+        outputObject.setDescription("The galaxy after a second realignment of the gates.");
+        outputObject.setAuthor("HogMcMassive and Celludriel");
         outputObject.setDate( Date.from( Instant.now() ).toString() );
         outputObject.setSave( "0" );
         outputObject.setSeed( Instant.now().getEpochSecond() );
@@ -50,7 +57,6 @@ public class GeneratorController {
         outputObject.setClusters( clusterList );
         starts.forEach( ( start ) -> {
             outputObject.addFactionHqLocation( new FactionHqLocation( start.getFaction(), start.getClusterId() ) );
-            outputObject.addFactionStart(start);
         } );
         
         MazeBitmap mapImg = new MazeBitmap( map );
@@ -58,6 +64,21 @@ public class GeneratorController {
         StreamResource previewResource = new StreamResource( "preview2.png", () -> mapImg.getStream( ownedSectors ) );
 
         return previewResource;
+    }
+
+    public byte[] generateOutputFile() {
+        try {
+            return new UniverseGeneratorMain().GenerateUniverse(outputObject);
+        }
+        catch( TemplateException e) {
+            return null;
+        }
+        catch( IOException e ) {
+            return null;
+        }
+        catch( URISyntaxException e) {
+            return null;
+        }
     }
 
     public int getClusterCount() {

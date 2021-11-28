@@ -3,8 +3,10 @@
   <remove sel="/gamestarts"/>
   <add sel="/">
     <gamestarts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="gamestarts.xsd">
-      <#list galaxy.factionStarts as factionStart>
-      <gamestart id="${galaxy.galaxyPrefix}_galaxy_main_${factionStart?index}" name="${factionStart.name!"Generic"}" description="${factionStart.description!""}" image="gamestart_1">
+      <#assign factionstarts = galaxy.factionStarts>
+      <#assign index = 0>
+      <#foreach factionStart in factionstarts>
+      <gamestart id="${galaxy.galaxyPrefix}_galaxy_main_${index}" name="${factionStart.name!"Generic"}" description="${factionStart.description!""}" image="gamestart_1">
         <location galaxy="${galaxy.galaxyPrefix}_galaxy_macro" zone="${galaxy.galaxyPrefix}_zone001_cluster${factionStart.clusterId?lower_case}_sector001_macro">
           <position x="1000" y="0" z="1000"/>
           <rotation yaw="0" pitch="0" roll="0"/>
@@ -86,7 +88,8 @@
           <theme paint="painttheme_player_01" />
         </player>
       </gamestart>
-      </#list>
+      <#assign index = index + 1>
+      </#foreach>
     </gamestarts>
   </add>
 </diff>

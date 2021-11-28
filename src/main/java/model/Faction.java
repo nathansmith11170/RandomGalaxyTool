@@ -2,13 +2,13 @@ package model;
 
 public enum Faction {
     PLAYER("faction.player", "", ""),
-    ARGON("argon", "arg", "Argon", "discover"),
+    ARGON("argon", "arg", "Argon"),
     ANTIGONE("antigone", "arg", "Antigone"),
     HATIKVAH("hatikvah", "arg", "HatikvahFreeLeague"),
-    PARANID("paranid", "par","GodrealmOfTheParanid", "fight"),
+    PARANID("paranid", "par","GodrealmOfTheParanid"),
     HOLYORDER("holyorder", "par", "HolyOrderFactionLogic"),
     ALLIANCE("alliance", "par", "AllianceOfTheWord"),
-    TELADI("teladi", "tel", "TeladiCompany", "trade"),
+    TELADI("teladi", "tel", "TeladiCompany"),
     MINISTRY("ministry", "tel", "MinistryOfFinance"),
     SCALEPLATE("scaleplate", "tel", "ScalePlatePact"),
     XENON("xenon", "xen", "XenonFaction"),
@@ -26,7 +26,6 @@ public enum Faction {
 
     private String name;
     private String raceAbbreviation;
-    private String playerStartMacro;
     private String managerName;
 
     public String getName() {
@@ -38,19 +37,34 @@ public enum Faction {
     }
 
     public String getPlayerStartMacro(){
-        return playerStartMacro;
+        switch( this.name ) {
+            case "argon":
+                return "tutorial";
+            case "terran":
+                return "tutorial";
+            case "paranid":
+                return "fight";
+            case "teladi":
+                return "trade";
+            case "split":
+                return "pirate";
+            case "freesplit":
+                return "pirate";
+            case "pioneers":
+                return "tutorial";
+            case "ministry":
+                return "trade";
+            case "antigone":
+                return "tutorial";
+            case "holyorder":
+                return "fight";
+            default:
+                return null;
+        }
     }
 
     public String getManagerName(){
         return managerName;
-    }
-
-
-    Faction(String name, String raceAbbreviation, String managerName, String playerStartMacro) {
-        this.name = name;
-        this.raceAbbreviation = raceAbbreviation;
-        this.playerStartMacro = playerStartMacro;
-        this.managerName = managerName;
     }
 
     Faction(String name, String raceAbbreviation, String managerName) {

@@ -15,6 +15,7 @@ import org.javatuples.Pair;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.NoSuchElementException;
 
@@ -155,7 +156,7 @@ public class FactionPlacer {
 
     private void addFactionHq( String factionName, Cluster deJureCapitol ) {
         deJureCapitol.setFactionHq( Faction.getEnum( factionName ) );
-        String[] coordinates = deJureCapitol.getId().split(" ");
+        String[] coordinates = deJureCapitol.getId().split("_");
 
         List<Station> stationList = new ArrayList<>();
 
@@ -224,7 +225,7 @@ public class FactionPlacer {
 
         factionCapitol.setStations( stationList );
 
-        String[] coordinates = factionCapitol.getId().split(" ");
+        String[] coordinates = factionCapitol.getId().split("_");
         ownedSectors.add( new Pair<>( factionName, new OddQHexCoord(Integer.parseInt( coordinates[0] ), Integer.parseInt( coordinates[1] ) ) ) );
         
 
@@ -243,6 +244,7 @@ public class FactionPlacer {
         List<Cluster> capitols = clusters.stream().filter( ( cluster ) -> {
             return cluster.getStations().stream().filter( station -> 
                 station.getType().equals( StationType.SHIPYARD )
+                && !station.getFaction().getRaceAbbreviation().equals("xen")
             ).findFirst().isPresent();
         } ).collect( Collectors.toList() );
 
@@ -279,7 +281,7 @@ public class FactionPlacer {
             clusters.removeIf( cluster -> cluster.getId().equals( prospect.get().getId() ) );
             clusters.add( prospect.get() );
             
-            String[] coordinates = prospect.get().getId().split(" ");
+            String[] coordinates = prospect.get().getId().split("_");
             ownedSectors.add( new Pair<>( factionName, new OddQHexCoord(Integer.parseInt( coordinates[0] ), Integer.parseInt( coordinates[1] ) ) ) );
         }
         else {
@@ -289,7 +291,7 @@ public class FactionPlacer {
             clusters.removeIf( cluster -> cluster.getId().equals( otherProspect.getId() ) );
             clusters.add( otherProspect );
 
-            String[] coordinates = otherProspect.getId().split(" ");
+            String[] coordinates = otherProspect.getId().split("_");
             ownedSectors.add( new Pair<>( factionName, new OddQHexCoord(Integer.parseInt( coordinates[0] ), Integer.parseInt( coordinates[1] ) ) ) );
         }
 
@@ -314,13 +316,13 @@ public class FactionPlacer {
         // Convert coordinates to a list of Cluster objects so we know neighbors
         List<Cluster> ownedClusters = new ArrayList<>();
         for( OddQHexCoord hexCoord : owned ) {
-            String id = hexCoord.col() + " " + hexCoord.row();
+            String id = hexCoord.col() + "_" + hexCoord.row();
             ownedClusters.add( 
                 clusters.stream()
                             .filter( cluster -> cluster.getId().equals( id ) )
                             .findFirst()
                             .orElseThrow( 
-                                () -> new IllegalArgumentException( String.format( "Cluster %s does not exist." ) ) 
+                                () -> new IllegalArgumentException( String.format( "Cluster %s does not exist.", id ) ) 
                             ) 
             );
         }
@@ -409,25 +411,36 @@ public class FactionPlacer {
         for( Entry<OddQHexCoord, ArrayList<OddQHexCoord>> entry : hexMaze.maze.entrySet() ) {
             Cluster temp = oddQCoordToCluster( entry.getKey() );
             List<Connection> connectionList = new ArrayList<>();
-            temp.setId( String.valueOf( entry.getKey().col() ) + " " + String.valueOf( entry.getKey().row() ) );
+            temp.setId( String.valueOf( entry.getKey().col() ) + "_" + String.valueOf( entry.getKey().row() ) );
 
             entry.getValue().forEach( neighbor -> {
                 Connection conn = new Connection();
-                conn.setTargetClusterId( String.valueOf( neighbor.col() ) + " " + String.valueOf( neighbor.row() ) );
+                conn.setTargetClusterId( String.valueOf( neighbor.col() ) + "_" + String.valueOf( neighbor.row() ) );
                 conn.setConnectionType( getConnectionType( entry.getKey(), neighbor ) );
                 connectionList.add( conn );
             } );
 
             temp.setConnections( connectionList );
 
+            DecimalFormat df = new DecimalFormat("0.00");
             if( namesAndDescriptions.size() != 0) {
                 Sector name = namesAndDescriptions.pop();
                 temp.setName( name.Name );
                 temp.setDescription( name.Description );
+                temp.setBackdrop( "empty_space" );
+                temp.setMusic( "music_cluster_02" );
+                temp.setSunlight( df.format( 3.0 * rand.nextDouble() ) );
+                temp.setSecurity("0.5");
+                temp.setEconomy("0.5");
             }
             else {
                 temp.setName( String.format("Unknown Sector %s", temp.getId().replace(' ', '-') ) );
                 temp.setDescription( "No description available." );
+                temp.setBackdrop( "empty_space" );
+                temp.setMusic( "music_cluster_02" );
+                temp.setSunlight( df.format( 3.0 * rand.nextDouble() ) );
+                temp.setSecurity("0.5");
+                temp.setEconomy("0.5");
             }
 
             result.add( temp );

@@ -19,6 +19,7 @@ import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.shared.Registration;
 
 import configurationmodel.RandomizerConfig;
@@ -46,7 +47,9 @@ public class FactionPlacementForm extends FormLayout {
 
     Button back = new Button( "Back" );
     Button populate = new Button("Populate");
-    Button download = new Button("Download");
+
+    StreamResource outputResource;
+    Button next = new Button("Next");
 
     public FactionPlacementForm( GeneratorController controller ) {
         binder.forField( argonSelect )
@@ -96,7 +99,7 @@ public class FactionPlacementForm extends FormLayout {
             }
             else {
                 populate.setEnabled( false );
-                download.setEnabled( false );
+                next.setEnabled( false );
             }
         } );
         
@@ -129,17 +132,17 @@ public class FactionPlacementForm extends FormLayout {
     private HorizontalLayout createButtonsLayout() {
         populate.addClickShortcut( Key.ENTER );
         populate.setEnabled( false );
-        download.setEnabled( false );
+        next.setEnabled( false );
 
         populate.addClickListener( ( event ) -> {
-            download.setEnabled( true );
+            next.setEnabled( true );
             fireEvent( new PopulateEvent( this, this.config ) );
         } );
 
-        download.addClickListener( event -> fireEvent( new DownloadEvent( this, this.config ) ) );
+        next.addClickListener( event -> fireEvent( new DownloadEvent( this, this.config ) ) );
         back.addClickListener( event -> fireEvent( new BackEvent( this, this.config ) ) );
 
-        return new HorizontalLayout( back, populate, download );
+        return new HorizontalLayout( back, populate, next );
     }
     
 }
