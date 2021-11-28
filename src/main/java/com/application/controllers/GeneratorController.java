@@ -33,14 +33,16 @@ public class GeneratorController {
         grid = new OddQHexGridSquare( randomizerConfig.getClusters() );
         map = new HexagonalMaze( grid, randomizerConfig.getPasses(), randomizerConfig.getDeadPercent().doubleValue() );
         
-        outputObject.setGalaxyName( "X4SecondRealignment" );
-        outputObject.setGalaxyPrefix("x4sr");
-        outputObject.setDescription("The galaxy after a second realignment of the gates.");
+        outputObject.setGalaxyName( "x4_secondalignment_universe" );
+        outputObject.setGalaxyPrefix( "x4sr" );
+        outputObject.setDescription( "The galaxy after a second realignment of the gates." );
         outputObject.setAuthor("HogMcMassive and Celludriel");
         outputObject.setDate( Date.from( Instant.now() ).toString() );
         outputObject.setSave( "0" );
         outputObject.setSeed( Instant.now().getEpochSecond() );
         outputObject.setVersion( "1.0.0" );
+        outputObject.setMinRandomBelts( randomizerConfig.getClusters()/16 );
+        outputObject.setMaxRandomBelts( randomizerConfig.getClusters()/8 );
         MazeBitmap mapImg = new MazeBitmap( map );
 
         StreamResource previewResource = new StreamResource( "preview.png", () -> mapImg.getStream() );

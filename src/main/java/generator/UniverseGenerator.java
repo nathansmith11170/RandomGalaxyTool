@@ -200,7 +200,8 @@ public class UniverseGenerator {
             zos.write( files.get(i) );
             zos.closeEntry();
         }
-
+        zos.finish();
+        zos.close();
         return baos.toByteArray();
 
         // Maybe enable double travel speed later
