@@ -423,6 +423,25 @@ public class FactionPlacer {
             e.printStackTrace();
         }
 
+        //Get music from resources
+        ArrayList<String> music = new ArrayList<>();
+        try{
+            String obj = Files.readString( Path.of("./src/main/java/model/Music.json") );
+
+            JSONObject jsonObject = new JSONObject( new JSONTokener(obj) );
+
+            JSONArray rawSectors = (JSONArray) jsonObject.get("Music");
+            rawSectors.forEach( (jObj) -> {
+                String item = jObj.toString();
+                music.add( item );
+            } );
+
+            Collections.shuffle( music );
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+
         // Add each node to cluster list with an id
         // Set connections for each cluster
         // Set name and description
@@ -454,7 +473,9 @@ public class FactionPlacer {
                     temp.setBackdrop( backdrop.orElseGet( () -> "Cluster_100") );
                 }
 
-                temp.setMusic( "music_cluster_02" );
+                Optional<String> track = music.stream().skip( (int) (music.size() * this.rand.nextDouble() ) ).findFirst();
+                temp.setMusic( track.orElseGet( () -> "music_soundtrack_periphery" ) );
+
                 temp.setSunlight( df.format( 3.0 * rand.nextDouble() ) );
                 temp.setSecurity("0.5");
                 temp.setEconomy("0.5");
@@ -466,7 +487,9 @@ public class FactionPlacer {
                 Optional<String> backdrop = backdrops.stream().skip( (int) (backdrops.size() * this.rand.nextDouble() ) ).findFirst();
                 temp.setBackdrop( backdrop.orElseGet( () -> "Cluster_100") );
 
-                temp.setMusic( "music_cluster_02" );
+                Optional<String> track = music.stream().skip( (int) (music.size() * this.rand.nextDouble() ) ).findFirst();
+                temp.setMusic( track.orElseGet( () -> "music_soundtrack_periphery" ) );
+                
                 temp.setSunlight( df.format( 3.0 * rand.nextDouble() ) );
                 temp.setSecurity("0.5");
                 temp.setEconomy("0.5");
