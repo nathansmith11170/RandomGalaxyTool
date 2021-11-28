@@ -404,6 +404,25 @@ public class FactionPlacer {
             e.printStackTrace();
         }
 
+        //Get backdrops from resources
+        ArrayList<String> backdrops = new ArrayList<>();
+        try{
+            String obj = Files.readString( Path.of("./src/main/java/model/Backdrops.json") );
+
+            JSONObject jsonObject = new JSONObject( new JSONTokener(obj) );
+
+            JSONArray rawSectors = (JSONArray) jsonObject.get("Backdrops");
+            rawSectors.forEach( (jObj) -> {
+                String item = jObj.toString();
+                backdrops.add( item );
+            } );
+
+            Collections.shuffle( backdrops );
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+
         // Add each node to cluster list with an id
         // Set connections for each cluster
         // Set name and description
@@ -427,7 +446,14 @@ public class FactionPlacer {
                 Sector name = namesAndDescriptions.pop();
                 temp.setName( name.Name );
                 temp.setDescription( name.Description );
-                temp.setBackdrop( "empty_space" );
+
+                if(temp.getName().equals("Sol")) {
+                    temp.setBackdrop( "Cluster_104" );
+                } else {
+                    Optional<String> backdrop = backdrops.stream().skip( (int) (backdrops.size() * this.rand.nextDouble() ) ).findFirst();
+                    temp.setBackdrop( backdrop.orElseGet( () -> "Cluster_100") );
+                }
+
                 temp.setMusic( "music_cluster_02" );
                 temp.setSunlight( df.format( 3.0 * rand.nextDouble() ) );
                 temp.setSecurity("0.5");
@@ -436,7 +462,10 @@ public class FactionPlacer {
             else {
                 temp.setName( String.format("Unknown Sector %s", temp.getId().replace(' ', '-') ) );
                 temp.setDescription( "No description available." );
-                temp.setBackdrop( "empty_space" );
+
+                Optional<String> backdrop = backdrops.stream().skip( (int) (backdrops.size() * this.rand.nextDouble() ) ).findFirst();
+                temp.setBackdrop( backdrop.orElseGet( () -> "Cluster_100") );
+
                 temp.setMusic( "music_cluster_02" );
                 temp.setSunlight( df.format( 3.0 * rand.nextDouble() ) );
                 temp.setSecurity("0.5");
