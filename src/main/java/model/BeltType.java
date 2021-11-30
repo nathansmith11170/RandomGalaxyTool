@@ -1,8 +1,10 @@
 package model;
 
 public enum BeltType {
-    ORE("region_highyield_ore",1.0), ICE("p1_40km_ice_field",0.9), SILICON("region_highyield_silicon", .7), HYDROGEN("p1_80km_hydrogen_field",0.6),
-    HELIUM("p1_40km_helium_highyield_field",0.6), METHANE("p1_40km_methane_highyield_field",0.6),  NVIDIUM("region_highyield_nvidium",0.1);
+    ASTEROIDS("p1_c01s01_asteroid_field",1.0), ICE("p1_40km_ice_field",0.9), HYDROGEN("p1_40km_hydrogen_field",0.6),
+    HELIUM("p1_40km_helium_field",0.6), METHANE("p1_40km_methane_field",0.6);
+
+
 
     private final String name;
     private final Double weight;

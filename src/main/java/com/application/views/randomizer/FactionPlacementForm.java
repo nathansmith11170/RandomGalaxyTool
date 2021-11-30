@@ -32,7 +32,6 @@ public class FactionPlacementForm extends FormLayout {
     FactionSelectField holyOrderSelect = new FactionSelectField( "Holy Order of the Pontifex", "holyorder" );
     FactionSelectField godrealmSelect = new FactionSelectField( "Godrealm of the Paranid", "paranid" );
     FactionSelectField teladiSelect = new FactionSelectField( "Teladi Company", "teladi" );
-    FactionSelectField ministrySelect = new FactionSelectField( "Ministry of Finance", "ministry" );
     FactionSelectField zyarthSelect = new FactionSelectField( "Zyarth Patriarchy", "split" );
     FactionSelectField freeFamiliesSelect = new FactionSelectField( "Free Families", "freesplit" );
     FactionSelectField terranSelect = new FactionSelectField( "Terran Protectorate", "terran" );
@@ -62,8 +61,6 @@ public class FactionPlacementForm extends FormLayout {
             .bind( RandomizerConfig::getGodrealmSectors, RandomizerConfig::setGodrealmSectors );
         binder.forField(teladiSelect)
             .bind( RandomizerConfig::getTeladiSectors, RandomizerConfig::setTeladiSectors );
-        binder.forField( ministrySelect )
-            .bind( RandomizerConfig::getMinistrySectors, RandomizerConfig::setMinistrySectors );
         binder.forField( zyarthSelect )
             .bind( RandomizerConfig::getZyarthSectors, RandomizerConfig::setZyarthSectors );
         binder.forField( freeFamiliesSelect )
@@ -112,7 +109,6 @@ public class FactionPlacementForm extends FormLayout {
             holyOrderSelect,
             godrealmSelect,
             teladiSelect,
-            ministrySelect,
             zyarthSelect,
             freeFamiliesSelect,
             terranSelect,

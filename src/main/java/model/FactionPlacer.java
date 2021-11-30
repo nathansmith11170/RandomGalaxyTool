@@ -20,7 +20,6 @@ import java.util.Collections;
 import java.util.NoSuchElementException;
 
 import java.util.Stack;
-import java.util.Map.Entry;
 
 import java.util.Iterator;
 
@@ -62,7 +61,6 @@ public class FactionPlacer {
         put( "holyorder", "Holy Vision" );
         put( "paranid", "Trinity Sanctum" );
         put( "teladi", "Profit Center Alpha" );
-        put( "ministry", "Eighteen Billion" );
         put( "split", "Zyarth's Dominion");
         put( "freesplit", "Heart of Acrimony" );
         put( "terran", "Sol" );
@@ -117,9 +115,6 @@ public class FactionPlacer {
                     break;
                 case "teladi":
                     maxSectors = config.getTeladiSectors();
-                    break;
-                case "ministry":
-                    maxSectors = config.getMinistrySectors();
                     break;
                 case "split":
                     maxSectors = config.getZyarthSectors();
@@ -254,8 +249,9 @@ public class FactionPlacer {
 
             temp.setClusterId( cluster.getId() );
             temp.setFaction( cluster.getStations().get(0).getFaction() );
-            temp.setName( cluster.getStations().get(0).getFaction().getName() );
-            temp.setPlayerName( temp.getName() + " Citizen" );
+            String name = cluster.getStations().get(0).getFaction().getName().substring(0,1).toUpperCase() + cluster.getStations().get(0).getFaction().getName().substring(1);
+            temp.setName( name );
+            temp.setPlayerName( name + " Citizen" );
 
             cluster.setFactionStart( temp );
             starts.add( temp );
@@ -332,12 +328,19 @@ public class FactionPlacer {
         // Now check for nonwned neighbors
         ownedClusters.forEach( cluster -> {
             cluster.getConnections().forEach( conn -> {
-                Cluster neighbor = clusters.stream()
-                                        .filter( cls-> cls.getId().equals( conn.getTargetClusterId() ) )
-                                        .findFirst()
-                                        .orElseThrow( () -> new IllegalArgumentException( String.format( "Neighbor %s of %s does not exist.", conn.getTargetClusterId(), cluster.getId() ) ) );
-                if( neighbor.getStations().size() == 0 ) {
-                    nonOwnedNeighbors.add( neighbor );
+                Cluster neighbor = null;
+                for( Cluster cls : clusters) {
+                    if( cls.getId().equals( conn.getTargetClusterId() ) ) {
+                        neighbor = cls;
+                        break;
+                    }
+                }
+                if( neighbor == null ) {
+                    throw new IllegalArgumentException( String.format( "Neighbor %s of %s does not exist.", conn.getTargetClusterId(), cluster.getId() ) );
+                } else {
+                    if( neighbor.getStations().size() == 0 ) {
+                        nonOwnedNeighbors.add( neighbor );
+                    }
                 }
             } );
         } );
@@ -446,15 +449,15 @@ public class FactionPlacer {
         // Set connections for each cluster
         // Set name and description
 
-        for( Entry<OddQHexCoord, ArrayList<OddQHexCoord>> entry : hexMaze.maze.entrySet() ) {
-            Cluster temp = oddQCoordToCluster( entry.getKey() );
+        for( OddQHexCoord key : hexMaze.maze.keySet() ) {
+            Cluster temp = oddQCoordToCluster( key );
             List<Connection> connectionList = new ArrayList<>();
-            temp.setId( String.valueOf( entry.getKey().col() ) + "_" + String.valueOf( entry.getKey().row() ) );
+            temp.setId( String.valueOf( temp.getX() ) + "_" + String.valueOf( temp.getY() ) );
 
-            entry.getValue().forEach( neighbor -> {
+            hexMaze.maze.get(key).forEach( neighbor -> {
                 Connection conn = new Connection();
                 conn.setTargetClusterId( String.valueOf( neighbor.col() ) + "_" + String.valueOf( neighbor.row() ) );
-                conn.setConnectionType( getConnectionType( entry.getKey(), neighbor ) );
+                conn.setConnectionType( getConnectionType( key, neighbor ) );
                 connectionList.add( conn );
             } );
 

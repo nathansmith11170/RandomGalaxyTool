@@ -44,9 +44,9 @@ public class FactionPlacerTests {
 
     @Test
     public void HexagonalMaze_ToClusterList_AssignsConnectionWithDestinationsThatExist() {
-        IOddQHexGrid grid = new OddQHexGridSquare(25);
+        IOddQHexGrid grid = new OddQHexGridSquare(256);
 
-        HexagonalMaze hexMaze = new HexagonalMaze( grid, 1 , .10 );
+        HexagonalMaze hexMaze = new HexagonalMaze( grid, 2 , .33 );
         List<Cluster> clusters = new FactionPlacer().setClusters( hexMaze );;
 
         for( Cluster cluster : clusters) {
@@ -58,7 +58,20 @@ public class FactionPlacerTests {
                 if( !hexMaze.maze.get( current ).contains( prospectiveNeighbor ) ) {
                     throw new AssertionError( String.format( "The neighbor %s was added to %s, but it does not exist in the maze", prospectiveNeighbor.toString(), cluster.getId() ) );
                 }
+                clusters.stream().filter( (cls) -> cls.getId().equals( destCoord[0] + "_" + destCoord[1] ) ).findFirst().orElseThrow(() -> new AssertionError( String.format( "The neighbor %s was added to %s, but it does not exist in the maze", prospectiveNeighbor.toString(), cluster.getId() ) ) );
             }
+        }
+    }
+
+    @Test
+    public void HexagonalMaze_ToClusterList_CreatesProperNumberOfClusters100Times() {
+        for( int i = 0; i < 100; i++) {
+            IOddQHexGrid grid = new OddQHexGridSquare(25);
+
+            HexagonalMaze hexMaze = new HexagonalMaze( grid, 2 , .33 );
+            List<Cluster> clusters = new FactionPlacer().setClusters( hexMaze );;
+
+            assertTrue( clusters.size() == hexMaze.maze.size() );
         }
     }
 
