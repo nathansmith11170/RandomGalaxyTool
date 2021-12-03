@@ -62,126 +62,147 @@ public class UniverseGenerator {
         ArrayList<ZipEntry> zipEntries = new ArrayList<>();
         ArrayList<byte[]> files = new ArrayList<>();
 
-        String path = "output/" + galaxy.getGalaxyName() + "/maps/" + galaxy.getGalaxyName() + "/zones.xml";
+        String path = galaxy.getGalaxyName() + "/maps/" + galaxy.getGalaxyName() + "/zones.xml";
         ByteArrayOutputStream tempFile = generateZones( cfg, root, CLUSTERS );
         ZipEntry tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/maps/" + galaxy.getGalaxyName() + "/sectors.xml";
+        path = galaxy.getGalaxyName() + "/maps/" + galaxy.getGalaxyName() + "/sectors.xml";
         tempFile = generateSectors( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/maps/" + galaxy.getGalaxyName() + "/clusters.xml";
+        path = galaxy.getGalaxyName() + "/maps/" + galaxy.getGalaxyName() + "/clusters.xml";
         tempFile = generateClusters( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/maps/" + galaxy.getGalaxyName() + "/galaxy.xml";
+        path = galaxy.getGalaxyName() + "/maps/" + galaxy.getGalaxyName() + "/galaxy.xml";
         tempFile = generateUniverse( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/index/macros.xml";
+        path = galaxy.getGalaxyName() + "/index/macros.xml";
         tempFile = generateMacros( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/libraries/mapdefaults.xml";
+        path = galaxy.getGalaxyName() + "/libraries/mapdefaults.xml";
         tempFile = generateMapDefaults( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/content.xml";
+        path = galaxy.getGalaxyName() + "/content.xml";
         tempFile = generateContent( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/libraries/god.xml";
+        path = galaxy.getGalaxyName() + "/libraries/god.xml";
         tempFile = generateGod( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/libraries/jobs.xml";
+        path = galaxy.getGalaxyName() + "/libraries/modules.xml";
+        tempFile = generateModules( cfg, root, CLUSTERS );
+        tempZip = new ZipEntry( path );
+        tempZip.setSize( tempFile.size() );
+        zipEntries.add( tempZip );
+        files.add( tempFile.toByteArray() );
+
+        path = galaxy.getGalaxyName() + "/libraries/jobs.xml";
         tempFile = generateJobs( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/libraries/gamestarts.xml";
+        path = galaxy.getGalaxyName() + "/libraries/gamestarts.xml";
         tempFile = generateGameStart( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/md/FactionLogic.xml";
+        path = galaxy.getGalaxyName() + "/libraries/factions.xml";
+        tempFile = generateFactions( cfg, root, CLUSTERS );
+        tempZip = new ZipEntry( path );
+        tempZip.setSize( tempFile.size() );
+        zipEntries.add( tempZip );
+        files.add( tempFile.toByteArray() );
+
+        path = galaxy.getGalaxyName() + "/libraries/region_definitions.xml";
+        tempFile = generateRegionDefinitions( cfg, root, CLUSTERS );
+        tempZip = new ZipEntry( path );
+        tempZip.setSize( tempFile.size() );
+        zipEntries.add( tempZip );
+        files.add( tempFile.toByteArray() );
+
+        path = galaxy.getGalaxyName() + "/md/FactionLogic.xml";
         tempFile = generateMdFixFileOne( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/md/Drain_Stations.xml";
+        path = galaxy.getGalaxyName() + "/md/Drain_Stations.xml";
         tempFile = generateMdFixFileTwo( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/md/playerreputation.xml";
+        path = galaxy.getGalaxyName() + "/md/playerreputation.xml";
         tempFile = generateMdFixFileThree( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/md/x4ep1_war_subscriptions.xml";
+        path = galaxy.getGalaxyName() + "/md/x4ep1_war_subscriptions.xml";
         tempFile = generateMdFixFileFour( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/md/CustomGameStart.xml";
+        path = galaxy.getGalaxyName() + "/md/CustomGameStart.xml";
         tempFile = generateMdFixFileFive( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/md/PlacedObjects.xml";
+        path = galaxy.getGalaxyName() + "/md/PlacedObjects.xml";
         tempFile = generatePlacedObjects( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/assets/environments/cluster/empty_space.xml";
+        path = galaxy.getGalaxyName() + "/assets/environments/cluster/empty_space.xml";
         tempFile = generateAssetsOne( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
         zipEntries.add( tempZip );
         files.add( tempFile.toByteArray() );
 
-        path = "output/" + galaxy.getGalaxyName() + "/index/components.xml";
+        path = galaxy.getGalaxyName() + "/index/components.xml";
         tempFile = generateAssetsTwo( cfg, root, CLUSTERS );
         tempZip = new ZipEntry( path );
         tempZip.setSize( tempFile.size() );
@@ -270,8 +291,24 @@ public class UniverseGenerator {
         return writeToByteArrayOutputStream(root, temp);
     }
 
+    private ByteArrayOutputStream generateModules(Configuration cfg, Map<String, Object> root, String type) throws IOException, TemplateException {
+        Template temp = cfg.getTemplate(type + "/modules.ftl");
+        return writeToByteArrayOutputStream(root, temp);
+    }
+
+
     private ByteArrayOutputStream generateJobs(Configuration cfg, Map<String, Object> root, String type) throws IOException, TemplateException {
         Template temp = cfg.getTemplate(type + "/jobs.ftl");
+        return writeToByteArrayOutputStream(root, temp);
+    }
+
+    private ByteArrayOutputStream generateFactions(Configuration cfg, Map<String, Object> root, String type) throws IOException, TemplateException {
+        Template temp = cfg.getTemplate(type + "/factions.ftl");
+        return writeToByteArrayOutputStream(root, temp);
+    }
+
+    private ByteArrayOutputStream generateRegionDefinitions(Configuration cfg, Map<String, Object> root, String type) throws IOException, TemplateException {
+        Template temp = cfg.getTemplate(type + "/region_definitions.ftl");
         return writeToByteArrayOutputStream(root, temp);
     }
 

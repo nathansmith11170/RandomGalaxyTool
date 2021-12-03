@@ -87,6 +87,15 @@
             </research>
           <theme paint="painttheme_player_01" />
         </player>
+        <universe>
+          <factions>
+            <relations>
+              <#foreach relation in factionStart.getRelations()>
+                <relation faction="${relation.getFaction()}" otherfaction="${relation.getOtherFaction()}" relation="${relation.getValue()}" />
+              </#foreach>
+            </relations>
+          </factions>
+        </universe>
       </gamestart>
       <#assign index = index + 1>
       </#foreach>

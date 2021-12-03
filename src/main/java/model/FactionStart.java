@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -11,6 +13,7 @@ public class FactionStart extends AbstractJson {
     private String description;
     private String playerName;
     private Integer credits = 10000;
+    private List<Relation> relations;
 
     public String getClusterId() {
         return clusterId;
@@ -34,6 +37,14 @@ public class FactionStart extends AbstractJson {
 
     public Integer getCredits() {
         return credits;
+    }
+
+    public List<Relation> getRelations() {
+        return this.relations;
+    }
+
+    public void setRelations(List<Relation> relations) {
+        this.relations = relations;
     }
 
     public void setClusterId(String clusterId) {

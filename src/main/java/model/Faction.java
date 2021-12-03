@@ -33,6 +33,10 @@ public enum Faction {
         return name;
     }
 
+    public String getProperName() {
+        return name.substring(0,1).toUpperCase() + name.substring(1);
+    }
+
     public String getRaceAbbreviation(){
         return raceAbbreviation;
     }

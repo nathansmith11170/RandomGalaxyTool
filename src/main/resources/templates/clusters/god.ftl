@@ -8,11 +8,11 @@
     <objects></objects>
     <stations>
 		<defaults>
-		  <location newzonechance="0.25" coreboundaryzoneheight="40000">
+		  <location newzonechance="0.0" coreboundaryzoneheight="40000">
 			<corerange max="1.3"/>
 		  </location>
-		  <modules production="5" storage="10" />
-		  <quota zone="3" />
+		  <modules production="10" storage="10" />
+		  <quota zone="1" />
 		</defaults>
 		<#assign count = 0>
 		<#list galaxy.clusters as cl>
@@ -30,7 +30,7 @@
 		  <quotas>
 			<quota galaxy="1" zone="1" />
 		  </quotas>
-		  <location class="zone" macro="${galaxy.galaxyPrefix}_zone001_cluster${cl.id}_sector001_macro">
+		  <location class="sector" macro="${galaxy.galaxyPrefix}_cluster${cl.id}_sector001_macro">
 			<corerange min="1.2" max="1.6" />
 		  </location>
 		  <station>

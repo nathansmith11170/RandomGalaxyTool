@@ -235,7 +235,7 @@ public class FactionPlacer {
         }
     }
 
-    public List<FactionStart> addFactionStarts() {
+    public List<FactionStart> addFactionStarts( List<String> enabledFactions) {
         List<Cluster> capitols = clusters.stream().filter( ( cluster ) -> {
             return cluster.getStations().stream().filter( station -> 
                 station.getType().equals( StationType.SHIPYARD )
@@ -252,6 +252,30 @@ public class FactionPlacer {
             String name = cluster.getStations().get(0).getFaction().getName().substring(0,1).toUpperCase() + cluster.getStations().get(0).getFaction().getName().substring(1);
             temp.setName( name );
             temp.setPlayerName( name + " Citizen" );
+            
+            List<Relation> relations = new ArrayList<>();
+            for( String faction : enabledFactions ) {
+                if( faction.equals( "xenon" ) ) {
+                    Relation rel = new Relation();
+                    rel.setFaction( faction );
+                    rel.setOtherFaction("player");
+                    rel.setValue("-0.03");
+                    rel.setValue("0.0");
+                    relations.add( rel );
+                } else {
+                    Relation rel = new Relation();
+                    rel.setFaction( faction );
+                    rel.setOtherFaction("player");
+                    if( faction.equals( temp.getFaction().getName() ) ) {
+                        rel.setValue("0.01");
+                    } else {
+                        rel.setValue("0.0");
+                    }
+                    relations.add( rel );
+                }
+            }
+
+            temp.setRelations( relations );
 
             cluster.setFactionStart( temp );
             starts.add( temp );
@@ -484,7 +508,7 @@ public class FactionPlacer {
                 temp.setEconomy("0.5");
             }
             else {
-                temp.setName( String.format("Unknown Sector %s", temp.getId().replace(' ', '-') ) );
+                temp.setName( String.format("Unknown Sector %s", temp.getId().replace('_', '-') ) );
                 temp.setDescription( "No description available." );
 
                 Optional<String> backdrop = backdrops.stream().skip( (int) (backdrops.size() * this.rand.nextDouble() ) ).findFirst();

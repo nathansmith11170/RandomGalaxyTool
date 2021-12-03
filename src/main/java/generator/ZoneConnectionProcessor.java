@@ -18,6 +18,7 @@ public class ZoneConnectionProcessor {
 
     public void processConnections(Galaxy galaxy, Cluster cluster){
         List<Cluster> clusters = galaxy.getClusters();
+
         if(cluster.getZoneList().size() == 0){
             addDefaultZone(cluster, galaxy);
         }
@@ -27,12 +28,24 @@ public class ZoneConnectionProcessor {
             Cluster targetCluster = getTargetCluster(clusters, connection.getTargetClusterId());
             addConnectionZone(galaxy, cluster, targetCluster, connection);
         }
+
+        while( cluster.getZoneList().size() < 7 ) {
+            addAdditionalZone( cluster, galaxy );
+        }
     }
 
     private void addDefaultZone(Cluster cluster, Galaxy galaxy) {
         //add default zone
         Zone zone = new Zone();
         zone.setName(DEFAULT_CLUSTER_PREFIX + cluster.getId());
+        cluster.addToZoneList(zone);
+    }
+
+    private void addAdditionalZone(Cluster cluster, Galaxy galaxy) {
+        int nextId = cluster.getZoneList().size() + 1;
+        String newZoneId = StringUtils.leftPad(Integer.toString(nextId), 3, "0");
+        Zone zone = new Zone();
+        zone.setName( String.format("zone%s_cluster%s", newZoneId, cluster.getId() ) );
         cluster.addToZoneList(zone);
     }
 
