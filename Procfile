@@ -1,1 +1,1 @@
-web: java -jar target\x4galaxygenerator-1.0-SNAPSHOT.jar $PORT
+web: java -jar target/x4galaxygenerator-1.0-SNAPSHOT.jar $PORT
