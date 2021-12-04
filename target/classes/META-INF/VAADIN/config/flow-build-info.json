@@ -1,0 +1,15 @@
+{
+  "productionMode": false,
+  "useDeprecatedV14Bootstrapping": false,
+  "eagerServerLoad": false,
+  "npmFolder": "C:\\Users\\Nathan\\Documents\\X4 Map Generator\\RandomGalaxyTool",
+  "generatedFolder": "C:\\Users\\Nathan\\Documents\\X4 Map Generator\\RandomGalaxyTool\\target\\frontend",
+  "frontendFolder": "C:\\Users\\Nathan\\Documents\\X4 Map Generator\\RandomGalaxyTool\\frontend",
+  "connect.javaSourceFolder": "C:\\Users\\Nathan\\Documents\\X4 Map Generator\\RandomGalaxyTool\\src\\main\\java",
+  "connect.applicationProperties": "C:\\Users\\Nathan\\Documents\\X4 Map Generator\\RandomGalaxyTool\\src\\main\\resources\\application.properties",
+  "connect.openApiFile": "C:\\Users\\Nathan\\Documents\\X4 Map Generator\\RandomGalaxyTool\\target\\generated-resources\\openapi.json",
+  "project.frontend.generated": "C:\\Users\\Nathan\\Documents\\X4 Map Generator\\RandomGalaxyTool\\frontend\\generated",
+  "pnpm.enable": true,
+  "require.home.node": false,
+  "build.folder": "target"
+}

@@ -1,0 +1,32 @@
+{
+    "Music": [
+        "music_soundtrack_periphery",
+        "music_soundtrack_teladi",
+        "music_soundtrack_argon",
+        "music_soundtrack_paranid",
+        "music_soundtrack_xenon",
+        "music_cluster_antigone_memorial",
+        "music_cluster_getsu_fune",
+        "music_cluster_frontier_edge",
+        "music_cluster_turquoise_sea",
+        "music_cluster_complete",
+        "music_dlc_terran_soundtrack_terran_periphery",
+        "music_dlc_terran_soundtrack_mars",
+        "music_dlc_terran_soundtrack_terran_core",
+        "music_dlc_terran_soundtrack_earth",
+        "music_dlc_terran_soundtrack_terran_core",
+        "music_dlc_terran_soundtrack_jupiter_saturn",
+        "music_dlc_terran_soundtrack_terran_pioneers",
+        "music_dlc_terran_soundtrack_yaki",
+        "music_dlc_terran_soundtrack_brennans_triumph",
+        "music_dlc_terran_soundtrack_oort_cloud",
+        "music_dlc_split_soundtrack_periphery",
+        "music_dlc_split_soundtrack_loyal_families",
+        "music_dlc_split_soundtrack_patriarchy",
+        "music_dlc_split_soundtrack_ravine",
+        "music_dlc_split_cluster_heart_of_acrimony",
+        "music_dlc_split_soundtrack_xenon",
+        "music_dlc_split_soundtrack_argon",
+        "music_dlc_split_soundtrack_paranid"
+    ]
+}
