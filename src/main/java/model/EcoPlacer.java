@@ -2294,183 +2294,238 @@ public class EcoPlacer {
         quotaMap.put("scruffinfruits", 0);
         quotaMap.put("cheltmeat", 0);
 
-        int stationsPerRound = 0;
-        switch( faction.getRace() ) {
-            case ARGON:
-                // Add universal stations
-                stationsPerRound += 26;
-                // Add Argon specific, minus spacefuel
-                stationsPerRound += 3;
-                break; 
-            case TELADI:
-                // Add universal stations minus refined metals
-                stationsPerRound += 25;
-                // Add Teladi specific
-                stationsPerRound = 5;
-                break;
-            case PARANID:
-                // Add universal stations
-                stationsPerRound += 26;
-                // Add Paranid specific
-                stationsPerRound += 3;
-                break;
-            case SPLIT:
-                // Add universal stations
-                stationsPerRound += 26;
-                // Add Split specific
-                stationsPerRound += 2;
-                break;
-            case TERRAN:
-                // Add Terran stations
-                stationsPerRound += 6;
-                break;
-            case XENON:
-                // Add solar
-                stationsPerRound += 1;
-                break;
-        }
-
-        while( quotaMap.values().stream().reduce(0, Integer::sum ) + stationsPerRound < stationLimit ) {
+        int stationCount = 0;
+        while(  stationCount < stationLimit ) {
             switch( faction.getRace() ) {
                 case ARGON:
-                    quotaMap.replace( "advancedcomposites", quotaMap.get( "advancedcomposites" ) + 1 );
-                    quotaMap.replace( "advancedelectronics", quotaMap.get( "advancedelectronics" ) + 1 );
-                    quotaMap.replace( "antimattercells", quotaMap.get( "antimattercells" ) + 1 );
-                    quotaMap.replace( "antimatterconverters", quotaMap.get( "antimatterconverters" ) + 1 );
-                    quotaMap.replace( "claytronics", quotaMap.get( "claytronics" ) + 1 );
-                    quotaMap.replace( "dronecomponents", quotaMap.get( "dronecomponents" ) + 1 );
-                    quotaMap.replace( "energycells", quotaMap.get( "energycells" ) + 1 );
-                    quotaMap.replace( "engineparts", quotaMap.get( "engineparts" ) + 1 );
-                    quotaMap.replace( "fieldcoils", quotaMap.get( "fieldcoils" ) + 1 );       
-                    quotaMap.replace( "graphene", quotaMap.get( "graphene" ) + 1 );
-                    quotaMap.replace( "hullparts", quotaMap.get( "hullparts" ) + 1 );
-                    quotaMap.replace( "medicalsupplies", quotaMap.get( "medicalsupplies" ) + 1 );
-                    quotaMap.replace( "microchips", quotaMap.get( "microchips" ) + 1 );
-                    quotaMap.replace( "missilecomponents", quotaMap.get( "missilecomponents" ) + 1 );
-                    quotaMap.replace( "plasmaconductors", quotaMap.get( "plasmaconductors" ) + 1 );
-                    quotaMap.replace( "quantumtubes", quotaMap.get( "quantumtubes" ) + 1 );
-                    quotaMap.replace( "refinedmetals", quotaMap.get( "refinedmetals" ) + 1 );
-                    quotaMap.replace( "scanningarrays", quotaMap.get( "scanningarrays" ) + 1 );
-                    quotaMap.replace( "shieldcomponents", quotaMap.get( "shieldcomponents" ) + 1 );
-                    quotaMap.replace( "siliconwafers", quotaMap.get( "siliconwafers" ) + 1 );
-                    quotaMap.replace( "smartchips", quotaMap.get( "smartchips" ) + 1 );
-                    quotaMap.replace( "spices", quotaMap.get( "spices" ) + 1 );
-                    quotaMap.replace( "superfluidcoolant", quotaMap.get( "superfluidcoolant" ) + 1 );
-                    quotaMap.replace( "turretcomponents", quotaMap.get( "turretcomponents" ) + 1 );
-                    quotaMap.replace( "water", quotaMap.get( "water" ) + 1 );
-                    quotaMap.replace( "weaponcomponents", quotaMap.get( "weaponcomponents" ) + 1 );
-                    quotaMap.replace( "foodrations", quotaMap.get( "foodrations" ) + 1 );
-                    quotaMap.replace( "meat", quotaMap.get( "meat" ) + 1 );
-                    quotaMap.replace( "wheat", quotaMap.get( "wheat" ) + 1 );
-                    if( quotaMap.get( "spacefuel" ) == 0 && faction.equals( Faction.ARGON ) ) {
-                        quotaMap.replace( "spacefuel", 1 );
-                    }
+                    // Main - missile components, weapon components, turret components, shield components, hull parts, engine parts, antimatter converters,
+                    // field coils, advanced electronics, claytronics, smart chips, advanced composites
+                    // Add one station's worth of modules for each of these
+                    quotaMap.replace( "advancedcomposites", quotaMap.get( "advancedcomposites" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "advancedelectronics", quotaMap.get( "advancedelectronics" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "antimatterconverters", quotaMap.get( "antimatterconverters" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "claytronics", quotaMap.get( "claytronics" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "dronecomponents", quotaMap.get( "dronecomponents" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "engineparts", quotaMap.get( "engineparts" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "fieldcoils", quotaMap.get( "fieldcoils" ) + 8 );
+                    stationCount++;       
+                    quotaMap.replace( "hullparts", quotaMap.get( "hullparts" ) + 10 );
+                    stationCount++;
+                    quotaMap.replace( "missilecomponents", quotaMap.get( "missilecomponents" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "shieldcomponents", quotaMap.get( "shieldcomponents" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "smartchips", quotaMap.get( "smartchips" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "turretcomponents", quotaMap.get( "turretcomponents" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "weaponcomponents", quotaMap.get( "weaponcomponents" ) + 8 );
+                    stationCount++;
+
+                    // Add supporting stations for the above, excepting workforce support
+                    // the AI can build their workforce stations later
+                    quotaMap.replace( "antimattercells", quotaMap.get( "antimattercells" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "energycells", quotaMap.get( "energycells" ) + 18 );
+                    stationCount += 3;
+                    quotaMap.replace( "graphene", quotaMap.get( "graphene" ) + 16 );
+                    stationCount += 4;
+                    quotaMap.replace( "microchips", quotaMap.get( "microchips" ) + 24 );
+                    stationCount += 3;
+                    quotaMap.replace( "plasmaconductors", quotaMap.get( "plasmaconductors" ) + 16 );
+                    stationCount += 2;
+                    quotaMap.replace( "quantumtubes", quotaMap.get( "quantumtubes" ) + 16 );
+                    stationCount += 4;
+                    quotaMap.replace( "refinedmetals", quotaMap.get( "refinedmetals" ) + 12 );
+                    stationCount += 3;
+                    quotaMap.replace( "scanningarrays", quotaMap.get( "scanningarrays" ) + 3 );
+                    stationCount++;
+                    quotaMap.replace( "siliconwafers", quotaMap.get( "siliconwafers" ) + 12 );
+                    stationCount += 3;
+                    quotaMap.replace( "superfluidcoolant", quotaMap.get( "superfluidcoolant" ) + 8 );
+                    stationCount += 2;
                     break; 
                 case TELADI:
-                    quotaMap.replace( "advancedcomposites", quotaMap.get( "advancedcomposites" ) + 1 );
-                    quotaMap.replace( "advancedelectronics", quotaMap.get( "advancedelectronics" ) + 1 );
-                    quotaMap.replace( "antimattercells", quotaMap.get( "antimattercells" ) + 1 );
-                    quotaMap.replace( "antimatterconverters", quotaMap.get( "antimatterconverters" ) + 1 );
-                    quotaMap.replace( "claytronics", quotaMap.get( "claytronics" ) + 1 );
-                    quotaMap.replace( "dronecomponents", quotaMap.get( "dronecomponents" ) + 1 );
-                    quotaMap.replace( "energycells", quotaMap.get( "energycells" ) + 1 );
-                    quotaMap.replace( "engineparts", quotaMap.get( "engineparts" ) + 1 );
-                    quotaMap.replace( "fieldcoils", quotaMap.get( "fieldcoils" ) + 1 );       
-                    quotaMap.replace( "graphene", quotaMap.get( "graphene" ) + 1 );
-                    quotaMap.replace( "hullparts", quotaMap.get( "hullparts" ) + 1 );
-                    quotaMap.replace( "medicalsupplies", quotaMap.get( "medicalsupplies" ) + 1 );
-                    quotaMap.replace( "microchips", quotaMap.get( "microchips" ) + 1 );
-                    quotaMap.replace( "missilecomponents", quotaMap.get( "missilecomponents" ) + 1 );
-                    quotaMap.replace( "plasmaconductors", quotaMap.get( "plasmaconductors" ) + 1 );
-                    quotaMap.replace( "quantumtubes", quotaMap.get( "quantumtubes" ) + 1 );
-                    quotaMap.replace( "scanningarrays", quotaMap.get( "scanningarrays" ) + 1 );
-                    quotaMap.replace( "shieldcomponents", quotaMap.get( "shieldcomponents" ) + 1 );
-                    quotaMap.replace( "siliconwafers", quotaMap.get( "siliconwafers" ) + 1 );
-                    quotaMap.replace( "smartchips", quotaMap.get( "smartchips" ) + 1 );
-                    quotaMap.replace( "spices", quotaMap.get( "spices" ) + 1 );
-                    quotaMap.replace( "superfluidcoolant", quotaMap.get( "superfluidcoolant" ) + 1 );
-                    quotaMap.replace( "turretcomponents", quotaMap.get( "turretcomponents" ) + 1 );
-                    quotaMap.replace( "water", quotaMap.get( "water" ) + 1 );
-                    quotaMap.replace( "weaponcomponents", quotaMap.get( "weaponcomponents" ) + 1 );
-                    quotaMap.replace( "swampplant", quotaMap.get( "swampplant" ) + 1 );
-                    quotaMap.replace( "teladianium", quotaMap.get( "teladianium" ) + 1 );
-                    quotaMap.replace( "sunriseflowers", quotaMap.get( "sunriseflowers" ) + 1 );
-                    quotaMap.replace( "nostropoil", 0 );
-                    if( quotaMap.get( "spaceweed" ) == 0 ) {
-                        quotaMap.replace( "spaceweed", 1 );
-                    }
+                    // Main - missile components, weapon components, turret components, shield components, hull parts, engine parts, antimatter converters,
+                    // field coils, advanced electronics, claytronics, smart chips, advanced composites
+                    // Add one station's worth of modules for each of these
+                    quotaMap.replace( "advancedcomposites", quotaMap.get( "advancedcomposites" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "advancedelectronics", quotaMap.get( "advancedelectronics" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "antimatterconverters", quotaMap.get( "antimatterconverters" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "claytronics", quotaMap.get( "claytronics" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "dronecomponents", quotaMap.get( "dronecomponents" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "engineparts", quotaMap.get( "engineparts" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "fieldcoils", quotaMap.get( "fieldcoils" ) + 8 );
+                    stationCount++;       
+                    quotaMap.replace( "hullparts", quotaMap.get( "hullparts" ) + 10 );
+                    stationCount++;
+                    quotaMap.replace( "missilecomponents", quotaMap.get( "missilecomponents" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "shieldcomponents", quotaMap.get( "shieldcomponents" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "smartchips", quotaMap.get( "smartchips" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "turretcomponents", quotaMap.get( "turretcomponents" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "weaponcomponents", quotaMap.get( "weaponcomponents" ) + 8 );
+                    stationCount++;
+
+                    // Add supporting stations for the above, excepting workforce support
+                    // the AI can build their workforce stations later
+                    quotaMap.replace( "antimattercells", quotaMap.get( "antimattercells" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "energycells", quotaMap.get( "energycells" ) + 18 );
+                    stationCount += 3;
+                    quotaMap.replace( "graphene", quotaMap.get( "graphene" ) + 16 );
+                    stationCount += 4;
+                    quotaMap.replace( "microchips", quotaMap.get( "microchips" ) + 24 );
+                    stationCount += 3;
+                    quotaMap.replace( "plasmaconductors", quotaMap.get( "plasmaconductors" ) + 16 );
+                    stationCount += 2;
+                    quotaMap.replace( "quantumtubes", quotaMap.get( "quantumtubes" ) + 16 );
+                    stationCount += 4;
+                    quotaMap.replace( "teladianium", quotaMap.get( "teladianium" ) + 8 );
+                    stationCount += 2;
+                    quotaMap.replace( "scanningarrays", quotaMap.get( "scanningarrays" ) + 3 );
+                    stationCount++;
+                    quotaMap.replace( "siliconwafers", quotaMap.get( "siliconwafers" ) + 12 );
+                    stationCount += 3;
+                    quotaMap.replace( "superfluidcoolant", quotaMap.get( "superfluidcoolant" ) + 8 );
+                    stationCount += 2;
                     break;
                 case PARANID:
-                    quotaMap.replace( "advancedcomposites", quotaMap.get( "advancedcomposites" ) + 1 );
-                    quotaMap.replace( "advancedelectronics", quotaMap.get( "advancedelectronics" ) + 1 );
-                    quotaMap.replace( "antimattercells", quotaMap.get( "antimattercells" ) + 1 );
-                    quotaMap.replace( "antimatterconverters", quotaMap.get( "antimatterconverters" ) + 1 );
-                    quotaMap.replace( "claytronics", quotaMap.get( "claytronics" ) + 1 );
-                    quotaMap.replace( "dronecomponents", quotaMap.get( "dronecomponents" ) + 1 );
-                    quotaMap.replace( "energycells", quotaMap.get( "energycells" ) + 1 );
-                    quotaMap.replace( "engineparts", quotaMap.get( "engineparts" ) + 1 );
-                    quotaMap.replace( "fieldcoils", quotaMap.get( "fieldcoils" ) + 1 );       
-                    quotaMap.replace( "graphene", quotaMap.get( "graphene" ) + 1 );
-                    quotaMap.replace( "hullparts", quotaMap.get( "hullparts" ) + 1 );
-                    quotaMap.replace( "medicalsupplies", quotaMap.get( "medicalsupplies" ) + 1 );
-                    quotaMap.replace( "microchips", quotaMap.get( "microchips" ) + 1 );
-                    quotaMap.replace( "missilecomponents", quotaMap.get( "missilecomponents" ) + 1 );
-                    quotaMap.replace( "plasmaconductors", quotaMap.get( "plasmaconductors" ) + 1 );
-                    quotaMap.replace( "quantumtubes", quotaMap.get( "quantumtubes" ) + 1 );
-                    quotaMap.replace( "refinedmetals", quotaMap.get( "refinedmetals" ) + 1 );
-                    quotaMap.replace( "scanningarrays", quotaMap.get( "scanningarrays" ) + 1 );
-                    quotaMap.replace( "shieldcomponents", quotaMap.get( "shieldcomponents" ) + 1 );
-                    quotaMap.replace( "siliconwafers", quotaMap.get( "siliconwafers" ) + 1 );
-                    quotaMap.replace( "smartchips", quotaMap.get( "smartchips" ) + 1 );
-                    quotaMap.replace( "spices", quotaMap.get( "spices" ) + 1 );
-                    quotaMap.replace( "superfluidcoolant", quotaMap.get( "superfluidcoolant" ) + 1 );
-                    quotaMap.replace( "turretcomponents", quotaMap.get( "turretcomponents" ) + 1 );
-                    quotaMap.replace( "water", quotaMap.get( "water" ) + 1 );
-                    quotaMap.replace( "weaponcomponents", quotaMap.get( "weaponcomponents" ) + 1 );
-                    quotaMap.replace( "majasnails", quotaMap.get( "majasnails" ) + 1 );
-                    quotaMap.replace( "sojabeans", quotaMap.get( "sojabeans" ) + 1 );
-                    quotaMap.replace( "sojahusk",quotaMap.get( "sojahusk" ) + 1 );
+                    // Main - missile components, weapon components, turret components, shield components, hull parts, engine parts, antimatter converters,
+                    // field coils, advanced electronics, claytronics, smart chips, advanced composites
+                    // Add one station's worth of modules for each of these
+                    quotaMap.replace( "advancedcomposites", quotaMap.get( "advancedcomposites" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "advancedelectronics", quotaMap.get( "advancedelectronics" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "antimatterconverters", quotaMap.get( "antimatterconverters" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "claytronics", quotaMap.get( "claytronics" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "dronecomponents", quotaMap.get( "dronecomponents" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "engineparts", quotaMap.get( "engineparts" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "fieldcoils", quotaMap.get( "fieldcoils" ) + 8 );
+                    stationCount++;       
+                    quotaMap.replace( "hullparts", quotaMap.get( "hullparts" ) + 10 );
+                    stationCount++;
+                    quotaMap.replace( "missilecomponents", quotaMap.get( "missilecomponents" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "shieldcomponents", quotaMap.get( "shieldcomponents" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "smartchips", quotaMap.get( "smartchips" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "turretcomponents", quotaMap.get( "turretcomponents" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "weaponcomponents", quotaMap.get( "weaponcomponents" ) + 8 );
+                    stationCount++;
+
+                    // Add supporting stations for the above, excepting workforce support
+                    // the AI can build their workforce stations later
+                    quotaMap.replace( "antimattercells", quotaMap.get( "antimattercells" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "energycells", quotaMap.get( "energycells" ) + 18 );
+                    stationCount += 3;
+                    quotaMap.replace( "graphene", quotaMap.get( "graphene" ) + 16 );
+                    stationCount += 4;
+                    quotaMap.replace( "microchips", quotaMap.get( "microchips" ) + 24 );
+                    stationCount += 3;
+                    quotaMap.replace( "plasmaconductors", quotaMap.get( "plasmaconductors" ) + 16 );
+                    stationCount += 2;
+                    quotaMap.replace( "quantumtubes", quotaMap.get( "quantumtubes" ) + 16 );
+                    stationCount += 4;
+                    quotaMap.replace( "refinedmetals", quotaMap.get( "refinedmetals" ) + 12 );
+                    stationCount += 3;
+                    quotaMap.replace( "scanningarrays", quotaMap.get( "scanningarrays" ) + 3 );
+                    stationCount++;
+                    quotaMap.replace( "siliconwafers", quotaMap.get( "siliconwafers" ) + 12 );
+                    stationCount += 3;
+                    quotaMap.replace( "superfluidcoolant", quotaMap.get( "superfluidcoolant" ) + 8 );
+                    stationCount += 2; 
                     break;
                 case SPLIT:
-                    quotaMap.replace( "advancedcomposites", quotaMap.get( "advancedcomposites" ) + 1 );
-                    quotaMap.replace( "advancedelectronics", quotaMap.get( "advancedelectronics" ) + 1 );
-                    quotaMap.replace( "antimattercells", quotaMap.get( "antimattercells" ) + 1 );
-                    quotaMap.replace( "antimatterconverters", quotaMap.get( "antimatterconverters" ) + 1 );
-                    quotaMap.replace( "claytronics", quotaMap.get( "claytronics" ) + 1 );
-                    quotaMap.replace( "dronecomponents", quotaMap.get( "dronecomponents" ) + 1 );
-                    quotaMap.replace( "energycells", quotaMap.get( "energycells" ) + 1 );
-                    quotaMap.replace( "engineparts", quotaMap.get( "engineparts" ) + 1 );
-                    quotaMap.replace( "fieldcoils", quotaMap.get( "fieldcoils" ) + 1 );       
-                    quotaMap.replace( "graphene", quotaMap.get( "graphene" ) + 1 );
-                    quotaMap.replace( "hullparts", quotaMap.get( "hullparts" ) + 1 );
-                    quotaMap.replace( "medicalsupplies", quotaMap.get( "medicalsupplies" ) + 1 );
-                    quotaMap.replace( "microchips", quotaMap.get( "microchips" ) + 1 );
-                    quotaMap.replace( "missilecomponents", quotaMap.get( "missilecomponents" ) + 1 );
-                    quotaMap.replace( "plasmaconductors", quotaMap.get( "plasmaconductors" ) + 1 );
-                    quotaMap.replace( "quantumtubes", quotaMap.get( "quantumtubes" ) + 1 );
-                    quotaMap.replace( "refinedmetals", quotaMap.get( "refinedmetals" ) + 1 );
-                    quotaMap.replace( "scanningarrays", quotaMap.get( "scanningarrays" ) + 1 );
-                    quotaMap.replace( "shieldcomponents", quotaMap.get( "shieldcomponents" ) + 1 );
-                    quotaMap.replace( "siliconwafers", quotaMap.get( "siliconwafers" ) + 1 );
-                    quotaMap.replace( "smartchips", quotaMap.get( "smartchips" ) + 1 );
-                    quotaMap.replace( "spices", quotaMap.get( "spices" ) + 1 );
-                    quotaMap.replace( "superfluidcoolant", quotaMap.get( "superfluidcoolant" ) + 1 );
-                    quotaMap.replace( "turretcomponents", quotaMap.get( "turretcomponents" ) + 1 );
-                    quotaMap.replace( "water", quotaMap.get( "water" ) + 1 );
-                    quotaMap.replace( "weaponcomponents", quotaMap.get( "weaponcomponents" ) + 1 );
-                    quotaMap.replace( "scruffinfruits", quotaMap.get( "scruffinfruits" ) + 1 );
-                    quotaMap.replace( "cheltmeat", quotaMap.get( "cheltmeat" ) + 1 );
+                    // Main - missile components, weapon components, turret components, shield components, hull parts, engine parts, antimatter converters,
+                    // field coils, advanced electronics, claytronics, smart chips, advanced composites
+                    // Add one station's worth of modules for each of these
+                    quotaMap.replace( "advancedcomposites", quotaMap.get( "advancedcomposites" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "advancedelectronics", quotaMap.get( "advancedelectronics" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "antimatterconverters", quotaMap.get( "antimatterconverters" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "claytronics", quotaMap.get( "claytronics" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "dronecomponents", quotaMap.get( "dronecomponents" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "engineparts", quotaMap.get( "engineparts" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "fieldcoils", quotaMap.get( "fieldcoils" ) + 8 );
+                    stationCount++;       
+                    quotaMap.replace( "hullparts", quotaMap.get( "hullparts" ) + 10 );
+                    stationCount++;
+                    quotaMap.replace( "missilecomponents", quotaMap.get( "missilecomponents" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "shieldcomponents", quotaMap.get( "shieldcomponents" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "smartchips", quotaMap.get( "smartchips" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "turretcomponents", quotaMap.get( "turretcomponents" ) + 8 );
+                    stationCount++;
+                    quotaMap.replace( "weaponcomponents", quotaMap.get( "weaponcomponents" ) + 8 );
+                    stationCount++;
+
+                    // Add supporting stations for the above, excepting workforce support
+                    // the AI can build their workforce stations later
+                    quotaMap.replace( "antimattercells", quotaMap.get( "antimattercells" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "energycells", quotaMap.get( "energycells" ) + 18 );
+                    stationCount += 3;
+                    quotaMap.replace( "graphene", quotaMap.get( "graphene" ) + 16 );
+                    stationCount += 4;
+                    quotaMap.replace( "microchips", quotaMap.get( "microchips" ) + 24 );
+                    stationCount += 3;
+                    quotaMap.replace( "plasmaconductors", quotaMap.get( "plasmaconductors" ) + 16 );
+                    stationCount += 2;
+                    quotaMap.replace( "quantumtubes", quotaMap.get( "quantumtubes" ) + 16 );
+                    stationCount += 4;
+                    quotaMap.replace( "refinedmetals", quotaMap.get( "refinedmetals" ) + 12 );
+                    stationCount += 3;
+                    quotaMap.replace( "scanningarrays", quotaMap.get( "scanningarrays" ) + 3 );
+                    stationCount++;
+                    quotaMap.replace( "siliconwafers", quotaMap.get( "siliconwafers" ) + 12 );
+                    stationCount += 3;
+                    quotaMap.replace( "superfluidcoolant", quotaMap.get( "superfluidcoolant" ) + 8 );
+                    stationCount += 2; 
                     break;
                 case TERRAN:
-                    quotaMap.replace( "computronicsubstrate", quotaMap.get( "computronicsubstrate" ) + 1 );
-                    quotaMap.replace( "metallicmicrolattice", quotaMap.get( "metallicmicrolattice" ) + 1 );
-                    quotaMap.replace( "siliconcarbide", quotaMap.get( "siliconcarbide" ) + 1);
-                    quotaMap.replace( "proteinpaste", quotaMap.get( "proteinpaste" ) + 1 );
-                    quotaMap.replace( "terranmre", quotaMap.get( "terranmre" ) + 1 );
-                    quotaMap.replace( "stimulants", quotaMap.get( "stimulants" ) + 1 );
+                    quotaMap.replace( "computronicsubstrate", quotaMap.get( "computronicsubstrate" ) + 2 );
+                    stationCount++;
+                    quotaMap.replace( "metallicmicrolattice", quotaMap.get( "metallicmicrolattice" ) + 3 );
+                    stationCount += 2;
+                    quotaMap.replace( "siliconcarbide", quotaMap.get( "siliconcarbide" ) + 4 );
+                    stationCount++;
+                    quotaMap.replace( "energycells", quotaMap.get( "energycells" ) + 6 );
+                    stationCount++;
                     break;
                 case XENON:
-                    quotaMap.replace( "energycells", quotaMap.get( "energycells" ) + 1 );
+                    quotaMap.replace( "energycells", quotaMap.get( "energycells" ) + 2);
+                    stationCount++;
                     break;
             }
         }

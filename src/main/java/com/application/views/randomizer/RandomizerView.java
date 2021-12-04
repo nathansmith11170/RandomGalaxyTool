@@ -20,6 +20,8 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.server.StreamResource;
 
+import org.vaadin.olli.FileDownloadWrapper;
+
 @Route(value = "generator", layout = MainView.class)
 @RouteAlias(value = "", layout = MainView.class)
 @PageTitle("Generator")
@@ -89,15 +91,15 @@ public class RandomizerView extends Div {
     private void factionPlacementDownload( DownloadEvent event ) {
         // Call controller to get files
         byte[] zipOutput = controller.generateOutputFile( );
-
+        
         // Give user download
         StreamResource content = new StreamResource("output.zip", () -> { return new ByteArrayInputStream( zipOutput ); } );
         content.setContentType( "download" );
-        download.setHref( content );
-        download.add(downloadBtn);
+        FileDownloadWrapper buttonWrapper = new FileDownloadWrapper( content );
+        buttonWrapper.wrapComponent( downloadBtn );
         
         // show Download Button
-        downloadBtn.setEnabled(true);
-        pageLayout.addToPrimary(download);
+        downloadBtn.setEnabled( true );
+        pageLayout.addToPrimary(buttonWrapper);
     }
 }
