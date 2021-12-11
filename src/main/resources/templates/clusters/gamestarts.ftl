@@ -16,6 +16,10 @@
             <loadout>
               <macros>
                 <engine macro="engine_${factionStart.faction.getRaceAbbreviation()}_s_allround_01_mk1_macro" path="../con_engine_01" />
+                <engine macro="engine_${factionStart.faction.getRaceAbbreviation()}_s_allround_01_mk1_macro" path="../con_engine_02" />
+                <engine macro="engine_${factionStart.faction.getRaceAbbreviation()}_s_allround_01_mk1_macro" path="../con_engine_03" />
+                <engine macro="engine_${factionStart.faction.getRaceAbbreviation()}_s_allround_01_mk1_macro" path="../con_engine_04" />
+                <engine macro="engine_${factionStart.faction.getRaceAbbreviation()}_s_allround_01_mk1_macro" path="../con_engine_05" />
                 <#if factionStart.faction == "ARGON">
                 <weapon macro="weapon_gen_s_laser_01_mk1_macro" path="../con_primaryweapon_01" optional="1" />
                 <#else>
