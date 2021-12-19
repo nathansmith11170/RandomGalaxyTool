@@ -259,7 +259,7 @@ public class FactionPlacer {
                     Relation rel = new Relation();
                     rel.setFaction( faction );
                     rel.setOtherFaction("player");
-                    rel.setValue("-0.03");
+                    rel.setValue("-0.10");
                     relations.add( rel );
                 } else {
                     Relation rel = new Relation();
