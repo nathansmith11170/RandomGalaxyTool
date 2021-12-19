@@ -46,8 +46,8 @@ public class GeneratorController {
         outputObject.setSave( "0" );
         outputObject.setSeed( Instant.now().getEpochSecond() );
         outputObject.setVersion( "1.0.0" );
-        outputObject.setMinRandomBelts(2);
-        outputObject.setMaxRandomBelts(5);
+        outputObject.setMinRandomBelts(1);
+        outputObject.setMaxRandomBelts(3);
         MazeBitmap mapImg = new MazeBitmap( map );
 
         StreamResource previewResource = new StreamResource( "preview.png", () -> mapImg.getStream() );

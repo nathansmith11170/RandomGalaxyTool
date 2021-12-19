@@ -4,7 +4,6 @@ import com.application.views.main.MainView;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
-import com.vaadin.flow.component.html.Header;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;

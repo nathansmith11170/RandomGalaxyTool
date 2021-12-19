@@ -20,11 +20,11 @@
                 <asteroid groupref="asteroid_ice_xl" densityfactor="0.5" noisescale="1000" minnoisevalue="0.8" maxnoisevalue="1"/>
                 <asteroid groupref="asteroid_ore_l" densityfactor="0.5" noisescale="1000" minnoisevalue="0.8" maxnoisevalue="1"/>
                 <asteroid groupref="asteroid_silicon_l" densityfactor="0.5" noisescale="1000" minnoisevalue="0.8" maxnoisevalue="1"/>
-                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="hydrogen" />
-                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="helium" />
-                <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="methane" />
             </fields>
             <resources>
@@ -56,11 +56,11 @@
                 <asteroid groupref="asteroid_ice_xl" densityfactor="0.25" noisescale="1000" minnoisevalue="0.3" maxnoisevalue="0.7"/>
                 <asteroid groupref="asteroid_ore_l" densityfactor="0.25" noisescale="1000" minnoisevalue="0.3" maxnoisevalue="0.7"/>
                 <asteroid groupref="asteroid_silicon_l" densityfactor="0.25" noisescale="1000" minnoisevalue="0.3" maxnoisevalue="0.7"/>
-                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="hydrogen" />
-                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="helium" />
-                <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="methane" />
             </fields>
             <resources>
@@ -117,11 +117,11 @@
                 <asteroid groupref="asteroid_ice_xl" densityfactor="0.5" noisescale="1000" minnoisevalue="0.8" maxnoisevalue="1"/>
                 <asteroid groupref="asteroid_ore_l" densityfactor="0.55" noisescale="1000" minnoisevalue="0.8" maxnoisevalue="1"/>
                 <asteroid groupref="asteroid_silicon_l" densityfactor="0.45" noisescale="1000" minnoisevalue="0.8" maxnoisevalue="1"/>
-                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="hydrogen" />
-                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="helium" />
-                <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="methane" />
             </fields>
             <resources>
@@ -153,11 +153,11 @@
                 <asteroid groupref="asteroid_ice_xl" densityfactor="0.25" noisescale="1000" minnoisevalue="0.3" maxnoisevalue="0.7"/>
                 <asteroid groupref="asteroid_ore_l" densityfactor="0.25" noisescale="1000" minnoisevalue="0.3" maxnoisevalue="0.7"/>
                 <asteroid groupref="asteroid_silicon_l" densityfactor="0.25" noisescale="1000" minnoisevalue="0.3" maxnoisevalue="0.7"/>
-                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="hydrogen" />
-                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="helium" />
-                <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="methane" />
             </fields>
             <resources>
@@ -189,11 +189,11 @@
                 <asteroid groupref="asteroid_ice_xl" densityfactor="0.5" noisescale="1000" minnoisevalue="0.8" maxnoisevalue="1"/>
                 <asteroid groupref="asteroid_ore_l" densityfactor="0.45" noisescale="1000" minnoisevalue="0.8" maxnoisevalue="1"/>
                 <asteroid groupref="asteroid_silicon_l" densityfactor="0.55" noisescale="1000" minnoisevalue="0.8" maxnoisevalue="1"/>
-                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="hydrogen" />
-                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="helium" />
-                <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="methane" />
             </fields>
             <resources>
@@ -225,11 +225,11 @@
                 <asteroid groupref="asteroid_ice_xl" densityfactor="0.25" noisescale="1000" minnoisevalue="0.3" maxnoisevalue="0.7"/>
                 <asteroid groupref="asteroid_ore_l" densityfactor="0.25" noisescale="1000" minnoisevalue="0.3" maxnoisevalue="0.7"/>
                 <asteroid groupref="asteroid_silicon_l" densityfactor="0.25" noisescale="1000" minnoisevalue="0.3" maxnoisevalue="0.7"/>
-                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="hydrogen" />
-                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="helium" />
-                <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="methane" />
             </fields>
             <resources>
@@ -398,11 +398,11 @@
             </falloff>
             <fields>
                 <object groupref="lockboxes_extra" densityfactor="0.00005" minnoisevalue="0.1" maxnoisevalue="1"/>
-                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="hydrogen" />
-                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="helium" />
-                <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="methane" />
             </fields>
             <resources>
@@ -431,7 +431,7 @@
             </falloff>
             <fields>
                 <object groupref="lockboxes_extra" densityfactor="0.00005" minnoisevalue="0.1" maxnoisevalue="1"/>
-                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="hydrogen" />
                 <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.10" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="helium" />
@@ -466,7 +466,7 @@
                 <object groupref="lockboxes_extra" densityfactor="0.00005" minnoisevalue="0.1" maxnoisevalue="1"/>
                 <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.10" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="hydrogen" />
-                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="helium" />
                 <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.10" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="methane" />            </fields>
@@ -496,11 +496,11 @@
             </falloff>
             <fields>
                 <object groupref="lockboxes_extra" densityfactor="0.00005" minnoisevalue="0.1" maxnoisevalue="1"/>
-                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="hydrogen" />
-                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="helium" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="5345334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="helium" />
-                <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="methane" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1289974" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="methane" />            
             </fields>
             <resources>
@@ -534,7 +534,7 @@
             <fields>
                 <object groupref="lockboxes_extra" densityfactor="0.00005" minnoisevalue="0.1" maxnoisevalue="1"/>
                 <asteroid groupref="asteroid_silicon_s" minnoisevalue="0.4" maxnoisevalue="0.8"/>
-                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.05" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
+                <volumetricfog multiplier="0.05" medium="hydrogen" texture="assets/textures/environments/volumefog\vf_smoothclouds_01-small" lodrule="nebulafar" size="30000" sizevariation="0.4" densityfactor="0.01" rotation="360" rotationvariation="0.0" noisescale="15000" seed="1252334" minnoisevalue="0.4" maxnoisevalue="1.0" distancefactor="0.5" />
                 <nebula resources="hydrogen" />
             </fields>
             <resources>

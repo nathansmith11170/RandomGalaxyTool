@@ -9,6 +9,31 @@ public class FactionSelectField extends CustomField<Integer> {
     private String faction;
     private TextField sectorCount = new TextField();
 
+    public FactionSelectField( String factionLabel, String factionId, String helperText ) {
+        setLabel( factionLabel );
+        this.faction = factionId;
+        addValueChangeListener( event -> updateValue() );
+        
+        sectorCount.setLabel( String.format( "%s Sectors", factionLabel ) );
+        sectorCount.setHelperText( helperText );
+
+        sectorCount.setPreventInvalidInput( true );
+        sectorCount.setPattern( "[0-9]*" );
+        sectorCount.setRequired( false );
+        sectorCount.setEnabled( false );
+
+        includeFaction.addValueChangeListener( event -> {
+            sectorCount.setValue( "0" );
+            sectorCount.setEnabled( !sectorCount.isEnabled() );
+            sectorCount.setRequired( !sectorCount.isEnabled() );
+        } );
+
+        add( 
+            includeFaction,
+            sectorCount
+        );
+    }
+
     public FactionSelectField( String factionLabel, String factionId ) {
         setLabel( factionLabel );
         this.faction = factionId;
@@ -45,5 +70,9 @@ public class FactionSelectField extends CustomField<Integer> {
 
     public String getFaction() {
         return this.faction;
+    }
+
+    public Integer getCount() {
+        return this.generateModelValue();
     }
 }
