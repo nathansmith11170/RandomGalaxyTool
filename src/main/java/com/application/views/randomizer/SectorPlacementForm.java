@@ -62,9 +62,9 @@ public class SectorPlacementForm extends FormLayout {
             }
         } );
 
-        txtClusters.setHelperText( "Enter an integer between 4 and 256." );
+        txtClusters.setHelperText( "Enter an integer between 4 and 256. This is the number of grid locations before empty nodes are placed." );
         txtPasses.setHelperText( "Enter an integer between 1 and 5, 5 is densest." );
-        txtDeadPercent.setHelperText( "Enter an decimal between 0 and 0.50." );
+        txtDeadPercent.setHelperText( "Enter an decimal between 0 and 0.50. The expected number of sectors on the map is the number of clusters multiplied by this factor. Larger factors will take longer to generate." );
 
         add(txtClusters,
             txtPasses,

@@ -14,6 +14,9 @@ import java.util.stream.Collectors;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.Font;
 
 import javax.imageio.ImageIO;
 
@@ -60,6 +63,12 @@ public class MazeBitmap {
                 g2.draw(link);
             });
         });
+
+        // Flip the image vertically
+        AffineTransform tx = AffineTransform.getScaleInstance(1, -1);
+        tx.translate(0, -img.getHeight(null));
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        img = op.filter(img, null);
 
         try {
             ByteArrayOutputStream imgBuffer = new ByteArrayOutputStream();
@@ -139,11 +148,24 @@ public class MazeBitmap {
             });
         });
 
+        // Flip the image vertically
+        AffineTransform tx = AffineTransform.getScaleInstance(1, -1);
+        tx.translate(0, -img.getHeight(null));
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        img = op.filter(img, null);
+
+        g2 = (Graphics2D) this.img.getGraphics();
+
         // Draw Legend
+        Font font = new Font(null, Font.PLAIN, 10);    
+        AffineTransform affineTransform = new AffineTransform();
+        affineTransform.rotate(Math.toRadians(0), 0, 0);
+        Font rotatedFont = font.deriveFont(affineTransform);
+        g2.setFont(rotatedFont);
         List<String> distinctFactions = ownedSectors.stream().map( Pair::getValue0 ).distinct().collect( Collectors.toList() );
         distinctFactions.add( "Ownerless" );
         int x = 50;
-        int y = (int) Math.round(this.size * Math.sqrt(3) * (Math.sqrt(this.HexMaze.OddQHexGrid.members().size()) + 0.5 * (Math.round(Math.sqrt(this.HexMaze.OddQHexGrid.members().size()))&1))) + this.size/3;
+        int y = this.size/3;
         for( String faction : distinctFactions ) {
             switch( faction ) {
                 case "argon":
@@ -219,15 +241,16 @@ public class MazeBitmap {
                     g2.drawString( "Ownerless", x, y );
                     break;
             }
-            if( y+30 < this.height ) {
+            if( y+30 < this.size*2 ) {
                 y += 25;
             }
             else {
                 x += 150;
-                y = (int) Math.round(this.size * Math.sqrt(3) * (Math.sqrt(this.HexMaze.OddQHexGrid.members().size()) + 0.5 * (Math.round(Math.sqrt(this.HexMaze.OddQHexGrid.members().size()))&1))) + this.size/3;
+                y = this.size/3;
             }
 
         }
+
         try {
             ByteArrayOutputStream imgBuffer = new ByteArrayOutputStream();
             ImageIO.write( this.img, "png", imgBuffer );

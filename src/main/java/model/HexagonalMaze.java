@@ -41,8 +41,12 @@ public class HexagonalMaze {
 
         // Deaden a percent of the grid
         int numDeadZones = (int) Math.floor( grid.members().size() * deadPercent );
-        for ( int i = 0; i < numDeadZones; i++ ) {
-            deadZones.add( grid.grid().keySet().stream().skip( (int) (grid.members().size() * this.rand.nextDouble()) ).findFirst().get() );
+        while( deadZones.size() < numDeadZones ) {
+            OddQHexCoord potentialDeadZone = grid.grid().keySet().stream().skip( (int) (grid.members().size() * this.rand.nextDouble()) ).findFirst().get();
+            deadZones.add( potentialDeadZone );
+            if( !this.IsConnected() ) {
+                deadZones.remove( potentialDeadZone );
+            }
         }
 
         this.maze = new HashMap<>();
@@ -51,6 +55,48 @@ public class HexagonalMaze {
         for (int i = 0; i < passes; i++) {
             generateMaze();
         }
+    }
+
+    private boolean IsConnected() {
+        Stack<OddQHexCoord> workingStack = new Stack<>();
+        Set<OddQHexCoord> visited = new HashSet<>();
+
+        // Random starting node
+        Optional<OddQHexCoord> start = this.OddQHexGrid.members().stream()
+                                                .skip( (int) (this.OddQHexGrid.members().size() * rand.nextDouble()) )
+                                                .findFirst();
+        if ( !start.isEmpty() ) {
+            visited.add( start.get() );
+            workingStack.push( start.get() );
+        }
+        else {
+            throw new IllegalStateException("This method cannot be called on an empty grid.");
+        }
+
+        // While there are nodes in the stack
+        while ( !workingStack.isEmpty() ) {
+
+            // Pop top node, get neighbors
+            OddQHexCoord current = workingStack.pop();
+            ArrayList<OddQHexCoord> neighbors = getNeighborsWithoutDeadZones( current );
+
+            // If any neighbor is unvisited and not a deadzone, push current onto stack
+            if ( neighbors.stream().anyMatch( (n) -> !visited.contains( n ) ) ) {
+                workingStack.push( current );
+
+                //Choose random unvisited neighbor
+                ArrayList<OddQHexCoord> unvisitedNeighbors = new ArrayList<>(neighbors.stream().filter( (n) -> !visited.contains(n) ).collect(Collectors.toList()));
+                Optional<OddQHexCoord> neighbor = unvisitedNeighbors.stream().skip( (int) (unvisitedNeighbors.size() * rand.nextDouble()) ).findFirst();
+                
+                visited.add( neighbor.get() );
+
+                // place neigbor onto stack
+                workingStack.push( neighbor.get() );
+            }
+        }
+
+        // If the maze is connected, then we will visit all the members except deadzones
+        return visited.size() == this.OddQHexGrid.members().size() - this.deadZones.size();
     }
 
     private void generateMaze() {

@@ -1629,6 +1629,38 @@ public class EcoPlacer {
                         true,
                         subordinates));
 
+        parms = new HashMap<>();
+        parms.put("deploysatellites", "true");
+        subordinates = new ArrayList<>();
+        jobs.add(
+                setMilJob(
+                        faction,
+                        faction.getFactionAbbreviation() + "_recon_s",
+                        "Recon",
+                        false,
+                        true,
+                        "Recon",
+                        true,
+                        parms,
+                        "[factionlogic, scout]",
+                        "ship_s",
+                        -1,
+                        1*clusterCount,
+                        1,
+                        -1,
+                        "galaxy",
+                        galaxyMacro,
+                        "self",
+                        "exact",
+                        false,
+                        true,
+                        "[scout]",
+                        "0.0",
+                        "0.3",
+                        "1.0",
+                        true,
+                        subordinates));
+
         return jobs;
     }
 
@@ -1921,6 +1953,38 @@ public class EcoPlacer {
                         false,
                         true,
                         "[resupplier]",
+                        "0.0",
+                        "0.3",
+                        "1.0",
+                        true,
+                        subordinates));
+
+        parms = new HashMap<>();
+        parms.put("deploysatellites", "true");
+        subordinates = new ArrayList<>();
+        jobs.add(
+                setMilJob(
+                        faction,
+                        faction.getFactionAbbreviation() + "_recon_s",
+                        "Recon",
+                        false,
+                        true,
+                        "Recon",
+                        true,
+                        parms,
+                        "[factionlogic, scout]",
+                        "ship_s",
+                        -1,
+                        1*clusterCount,
+                        1,
+                        -1,
+                        "galaxy",
+                        galaxyMacro,
+                        "self",
+                        "exact",
+                        false,
+                        true,
+                        "[scout]",
                         "0.0",
                         "0.3",
                         "1.0",
@@ -2475,6 +2539,38 @@ public class EcoPlacer {
                         "1.0",
                         true,
                         subordinates));
+        
+        parms = new HashMap<>();
+        parms.put("deploysatellites", "true");
+        subordinates = new ArrayList<>();
+        jobs.add(
+                setMilJob(
+                        faction,
+                        faction.getFactionAbbreviation() + "_recon_s",
+                        "Recon",
+                        false,
+                        true,
+                        "Recon",
+                        true,
+                        parms,
+                        "[factionlogic, scout]",
+                        "ship_s",
+                        -1,
+                        1*clusterCount,
+                        1,
+                        -1,
+                        "galaxy",
+                        galaxyMacro,
+                        "self",
+                        "exact",
+                        false,
+                        true,
+                        "[scout]",
+                        "0.0",
+                        "0.3",
+                        "1.0",
+                        true,
+                        subordinates));
 
         return jobs;
     }
@@ -2798,6 +2894,38 @@ public class EcoPlacer {
                         false,
                         true,
                         "[resupplier]",
+                        "0.0",
+                        "0.3",
+                        "1.0",
+                        true,
+                        subordinates));
+
+        parms = new HashMap<>();
+        parms.put("deploysatellites", "true");
+        subordinates = new ArrayList<>();
+        jobs.add(
+                setMilJob(
+                        faction,
+                        faction.getFactionAbbreviation() + "_recon_s",
+                        "Recon",
+                        false,
+                        true,
+                        "Recon",
+                        true,
+                        parms,
+                        "[factionlogic, scout]",
+                        "ship_s",
+                        -1,
+                        1*clusterCount,
+                        1,
+                        -1,
+                        "galaxy",
+                        galaxyMacro,
+                        "self",
+                        "exact",
+                        false,
+                        true,
+                        "[scout]",
                         "0.0",
                         "0.3",
                         "1.0",
@@ -3132,6 +3260,38 @@ public class EcoPlacer {
                         true,
                         subordinates));
 
+        parms = new HashMap<>();
+        parms.put("deploysatellites", "true");
+        subordinates = new ArrayList<>();
+        jobs.add(
+                setMilJob(
+                        faction,
+                        faction.getFactionAbbreviation() + "_recon_s",
+                        "Recon",
+                        false,
+                        true, 
+                        "Recon",
+                        true,
+                        parms,
+                        "[factionlogic, scout]",
+                        "ship_s",
+                        -1,
+                        1*clusterCount,
+                        1,
+                        -1,
+                        "galaxy",
+                        galaxyMacro,
+                        "self",
+                        "exact",
+                        false,
+                        true,
+                        "[scout]",
+                        "0.0",
+                        "0.3",
+                        "1.0",
+                        true,
+                        subordinates));
+
         return jobs;
     }
 
@@ -3424,6 +3584,39 @@ public class EcoPlacer {
                         false,
                         true,
                         "[military, fighter]",
+                        "0.0",
+                        "0.3",
+                        "1.0",
+                        true,
+                        subordinates));
+
+
+        parms = new HashMap<>();
+        parms.put("deploysatellites", "true");
+        subordinates = new ArrayList<>();
+        jobs.add(
+                setMilJob(
+                        faction,
+                        faction.getFactionAbbreviation() + "_recon_s",
+                        "Recon",
+                        false,
+                        true,
+                        "Recon",
+                        true,
+                        parms,
+                        "[factionlogic, scout]",
+                        "ship_s",
+                        -1,
+                        1*clusterCount,
+                        1,
+                        -1,
+                        "galaxy",
+                        galaxyMacro,
+                        "self",
+                        "exact",
+                        false,
+                        true,
+                        "[scout]",
                         "0.0",
                         "0.3",
                         "1.0",
